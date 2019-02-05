@@ -35,10 +35,6 @@ In addition to these languages and technologies, there are [x] main parts that m
 - music.js: this will handle the logic for rendering the background music for the game
     
 ## Implementation Timeline
-    * Most important category
-    * Daily breakdown
-    * Aim to be done by Friday
-
 ##### Day 1
 - [ ] Create skeleton JavaScript files for each part of the game
 - [ ] Create webpack.config.js file
