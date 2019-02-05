@@ -76,3 +76,10 @@ Board class should...
 - [ ] Make sure the game is visually appealing
 - [ ] Include project into resume
 - [ ] Put project into personal site
+
+## Bonus Features
+- [ ] Add a physics API to make the game more visually appealing
+- [ ] Allow players to add their own music
+- [ ] Allow players to change speed of the game based on frame rate options
+- [ ] Allow players to speed up the rate at which a piece falls down with the "down" key
+- [ ] Make the game 3-dimensional
