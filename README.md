@@ -48,7 +48,7 @@ In addition to these languages and technologies, there are [x] main parts that m
 Board class should...
 - [ ] Display a 10x20 grid with each grid block having a dimension of 50x50 pixels
 - [ ] Be able to house pieces
-- [ ] Should update at least at 30 frames per second
+- [ ] Update at least at 30 frames per second
 
 ##### Day 3: Work on Piece Class
 - [ ] Piece class should be able to generate a piece object depending on the arguments given to it
