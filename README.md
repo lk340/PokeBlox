@@ -84,3 +84,4 @@ Board class should...
 - [ ] Allow players to change speed of the game based on frame rate options
 - [ ] Allow players to speed up the rate at which a piece falls down with the "down" key
 - [ ] Make the game 3-dimensional
+- [ ] Display piece shadows like in TetrisFriends
