@@ -76,6 +76,7 @@ Board class should...
 - [ ] Make sure the game is visually appealing
 - [ ] Include project into resume
 - [ ] Put project into personal site
+- [ ] Take screenshot of game screen and import into GitHub README.md
 
 ## Bonus Features
 - [ ] Add a physics API to make the game more visually appealing
