@@ -39,3 +39,44 @@ In addition to these languages and technologies, there are [x] main parts that m
     * Daily breakdown
     * Aim to be done by Friday
 
+##### Day 1
+- [ ] Create skeleton JavaScript files for each part of the game
+- [ ] Create webpack.config.js file
+- [ ] Create package.json
+- [ ] Create a board.js file and a Board class
+- [ ] Create a pieces.js file and a Piece class
+- [ ] Create a music.js file
+- [ ] Do basic CSS for the initial version of the page
+
+##### Day 2: Work on Board Class
+Board class should...
+- [ ] Display a 10x20 grid with each grid block having a dimension of 50x50 pixels
+- [ ] Be able to house pieces
+- [ ] Should update at least at 30 frames per second
+
+##### Day 3: Work on Piece Class
+- [ ] Piece class should be able to generate a piece object depending on the arguments given to it
+- [ ] Create data for seven different pieces
+- [ ] Create a method that will siphon out one random piece a time, using the piece class to generate the 
+
+##### Day 4: Learn How to Use Music API
+- [ ] Watch a tutorial on importing a music API into project
+- [ ] Import music API into project
+- [ ] Complete logic for music.js
+
+##### Day 5: Create Modals and Other Important Buttons
+- [ ] About modal
+- [ ] Rules modal
+- [ ] Button to start the game
+- [ ] Button to pause the game
+- [ ] Button to turn off the music
+
+##### Day 6: Play Project and Debug
+- [ ] Play project and find tons of bugs
+- [ ] Fix said bugs
+- [ ] CSS if there is time
+
+##### Day 7: Last-minute CSS
+- [ ] Make sure the game is visually appealing
+- [ ] Include project into resume
+- [ ] Put project into personal site
