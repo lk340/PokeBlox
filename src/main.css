@@ -6,6 +6,15 @@
   --lightGray: rgb(206, 206, 206);
   --panchamPurple: #626473;
   --scarletRed: rgb(241, 131, 131);
+
+  /* Tetromino Piece Colors */
+  --lightBlue: rgb(145, 145, 245);
+  --yellow: rgb(255, 255, 149);
+  --purple: rgb(204, 129, 204);
+  --green: rgb(179, 221, 179);
+  --red: rgb(211, 123, 123);
+  --blue: rgb(73, 73, 172);
+  --orange: rgb(255, 205, 113);
 }
 
 body, html {

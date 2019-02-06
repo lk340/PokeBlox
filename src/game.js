@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailModal = document.getElementById("detail-modal");
 
   document.getElementById("details").addEventListener("click", () => {
+    debugger;
+    console.log(document.getElementById("about-modal-close").style.color);
+    console.log("hello");
+
     if (detailModal.classList.contains("hide-about-modal")) {
       detailModal.classList.remove("hide-about-modal");
       detailModal.classList.add("about-modal");
