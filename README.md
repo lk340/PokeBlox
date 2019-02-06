@@ -12,14 +12,6 @@ PokéBlox will provide players with:
 - [ ] The option to save a piece when clicking the "shift" button
 - [ ] The option to rotate a piece with the "up" arrow key
 - [ ] The option to instantly bring a piece to the floor with the "spacebar" key
-
-## Wireframes
-PokéBlox will feature a single game screen with buttons for
-- [ ] About Modal
-- [ ] Rules Modal
-- [ ] Turning off the music
-- [ ] A start button
-- [ ] A pause button
     
 ## Architecture and Technologies
 This project was developed using the following languages / technologies:
@@ -33,6 +25,14 @@ In addition to these languages and technologies, there are [x] main parts that m
 - board.js: this will handle the logic for creating the board the player will be playing on
 - pieces.js: this will allow the game to generate certain pieces based on random input into a Pieces class
 - music.js: this will handle the logic for rendering the background music for the game
+
+## Wireframes
+PokéBlox will feature a single game screen with buttons for
+- [ ] About Modal
+- [ ] Rules Modal
+- [ ] Turning off the music
+- [ ] A start button
+- [ ] A pause button
     
 ## Implementation Timeline
 ##### Day 1
@@ -76,6 +76,7 @@ Board class should...
 - [ ] Make sure the game is visually appealing
 - [ ] Include project into resume
 - [ ] Put project into personal site
+- [ ] Take screenshot of game screen and import into GitHub README.md
 
 ## Bonus Features
 - [ ] Add a physics API to make the game more visually appealing
@@ -83,3 +84,4 @@ Board class should...
 - [ ] Allow players to change speed of the game based on frame rate options
 - [ ] Allow players to speed up the rate at which a piece falls down with the "down" key
 - [ ] Make the game 3-dimensional
+- [ ] Display piece shadows like in TetrisFriends
