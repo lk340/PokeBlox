@@ -85,3 +85,21 @@ Board class should...
 - [ ] Allow players to speed up the rate at which a piece falls down with the "down" key
 - [ ] Make the game 3-dimensional
 - [ ] Display piece shadows like in TetrisFriends
+
+## Checklist
+##### Live Project
+- [ ] Includes links to your Portfolio, Github and LinkedIn.
+- [ ] Landing page/modal with obvious, clear instructions.
+- [ ] Interactivity of some kind.
+- [ ] Well styled, clean frontend.
+- [ ] If it has music, the option to mute or stop it.
+- [ ] Hosted from your portfolio site on GitHub pages.
+
+##### Repo and README
+- [ ] Link to live version.
+- [ ] Instructions on how to play/use the project.
+- [ ] List of techs/languages/plugins/APIs used.
+- [ ] Technical implementation details with code snippets (make sure it looks good).
+- [ ] To-dos/future features.
+- [ ] No .DS_Stores / debuggers / console.logs.
+- [ ] Organize into /assets and /lib.
