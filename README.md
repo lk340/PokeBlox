@@ -29,7 +29,6 @@ In addition to these languages and technologies, there are [x] main parts that m
 ## Wireframes
 PokéBlox will feature a single game screen with buttons for
 - [x] About Modal
-- [ ] Rules Modal
 - [ ] Turning off the music
 - [ ] A start button
 - [ ] A pause button
