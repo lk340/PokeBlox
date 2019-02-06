@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './src/board.js',
+    './src/entry.js',
     // './src/main.css'
   ],
   output: {
