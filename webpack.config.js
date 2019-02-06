@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: "./javascript/index.js",
+  entry: "./src/javascript/board.js",
   output: {
     path: path.resolve(__dirname),
     filename: "bundle.js"
@@ -10,7 +10,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        // test: /\.jsx?$/,
+        test: /\.js?$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
