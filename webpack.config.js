@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './src/entry.js',
+    './src/game.js',
     // './src/main.css'
   ],
   output: {

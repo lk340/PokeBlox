@@ -5,6 +5,7 @@
   --lightBeige: rgb(190, 185, 185);
   --lightGray: rgb(206, 206, 206);
   --panchamPurple: #626473;
+  --scarletRed: rgb(241, 131, 131);
 }
 
 body, html {
@@ -48,9 +49,10 @@ h1 {
 }
 
 /* ============================= DETAIL MODAL START ============================= */
-#detail-modal {
+.about-modal {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
+  z-index: 10;
   top: 0;
   right: 0;
   bottom: 0;
@@ -59,7 +61,9 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
+.hide-about-modal {
   display: none;
 }
 
@@ -67,6 +71,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 9;
   
   background-color: white;
   height: 500px;
@@ -82,6 +87,23 @@ h1 {
   margin: 0;
   color: var(--ash);
   font-size: 2rem;
+}
+
+#detail-modal #about-modal-close {
+  background-color: var(--scarletRed);
+  color: white;
+  font-size: 3rem;
+  padding: 8px 23px 8px 26px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  cursor: pointer;
+  transform: translateX(-60px);
+  z-index: 8;
+  transition-duration: 0.4s;
+}
+
+#detail-modal #about-modal-close:hover {
+  transform: translateX(0);
 }
 
 /* ============================= DETAIL MODAL END ============================= */
