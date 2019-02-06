@@ -1,29 +1,70 @@
-const path = require('path');
-
 module.exports = {
-  context: __dirname,
-  entry: "./src/javascript/board.js",
+  entry: [
+    './src/board.js',
+    // './src/main.css'
+  ],
   output: {
-    path: path.resolve(__dirname),
-    filename: "bundle.js"
+    path: __dirname,
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        // test: /\.jsx?$/,
-        test: /\.js?$/,
-        exclude: /(node_modules)/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          query: {
-            presets: ['@babel/env', '@babel/react']
-          }
-        },
-      }
+          loader: "script-loader"
+        }
+      },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     {
+      //       loader: "style-loader"
+      //     },
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         modules: true,
+      //         importLoaders: 1,
+      //         localIdentName: "[name]_[local]_[hash:base64]",
+      //         sourceMap: true,
+      //         minimize: true
+      //       }
+      //     }
+      //   ]
+      // }
     ]
-  },
-  devtool: 'source-map',
-  resolve: {
-    extensions: [".js", ".jsx", "*"]
   }
 };
+
+// const path = require('path');
+
+// module.exports = {
+//   context: __dirname,
+//   entry: "./src/javascript/board.js",
+//   output: {
+//     path: path.resolve(__dirname),
+//     filename: "bundle.js"
+//   },
+//   module: {
+//     rules: [
+//       {
+//         // test: /\.jsx?$/,
+//         test: /\.js?$/,
+//         exclude: /(node_modules)/,
+//         use: {
+//           loader: 'babel-loader',
+//           query: {
+//             presets: ['@babel/env', '@babel/react']
+//           }
+//         },
+//       }
+//     ]
+//   },
+//   devtool: 'source-map',
+//   resolve: {
+//     extensions: [".js", ".jsx", "*"]
+//   }
+// };

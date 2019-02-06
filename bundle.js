@@ -77,25 +77,57 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./javascript/board.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./javascript/board.js":
-/*!*****************************!*\
-  !*** ./javascript/board.js ***!
-  \*****************************/
+/***/ "./node_modules/raw-loader/index.js!./src/board.js":
+/*!************************************************!*\
+  !*** ./node_modules/raw-loader!./src/board.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+eval("module.exports = \"document.addEventListener(\\\"DOMContentLoaded\\\", () => {\\n  document.getElementById(\\\"details\\\").addEventListener(\\\"click\\\", () => {\\n    alert(\\\"successful!\\\");\\n    // 1. Find the detail-modal.\\n    // 2. If the detail-modal contains \\\"hide-modal\\\", change it to \\\"show-modal\\\".\\n    // 3. Else, change \\\"show-modal\\\" to \\\"hide-modal\\\".\\n  });\\n});\"\n\n//# sourceURL=webpack:///./src/board.js?./node_modules/raw-loader");
 
+/***/ }),
+
+/***/ "./node_modules/script-loader/addScript.js":
+/*!*************************************************!*\
+  !*** ./node_modules/script-loader/addScript.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAuthor Tobias Koppers @sokra\n*/\nmodule.exports = function(src) {\n\tfunction log(error) {\n\t\t(typeof console !== \"undefined\")\n\t\t&& (console.error || console.log)(\"[Script Loader]\", error);\n\t}\n\n\t// Check for IE =< 8\n\tfunction isIE() {\n\t\treturn typeof attachEvent !== \"undefined\" && typeof addEventListener === \"undefined\";\n\t}\n\n\ttry {\n\t\tif (typeof execScript !== \"undefined\" && isIE()) {\n\t\t\texecScript(src);\n\t\t} else if (typeof eval !== \"undefined\") {\n\t\t\teval.call(null, src);\n\t\t} else {\n\t\t\tlog(\"EvalError: No eval function available\");\n\t\t}\n\t} catch (error) {\n\t\tlog(error);\n\t}\n}\n\n\n//# sourceURL=webpack:///./node_modules/script-loader/addScript.js?");
+
+/***/ }),
+
+/***/ "./src/board.js":
+/*!**********************!*\
+  !*** ./src/board.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("__webpack_require__(/*! !./node_modules/script-loader/addScript.js */ \"./node_modules/script-loader/addScript.js\")(__webpack_require__(/*! !./node_modules/raw-loader!./src/board.js */ \"./node_modules/raw-loader/index.js!./src/board.js\"))\n\n//# sourceURL=webpack:///./src/board.js?");
+
+/***/ }),
+
+/***/ 0:
+/*!****************************!*\
+  !*** multi ./src/board.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__(/*! ./src/board.js */\"./src/board.js\");\n\n\n//# sourceURL=webpack:///multi_./src/board.js?");
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map

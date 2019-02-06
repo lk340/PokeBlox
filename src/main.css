@@ -1,0 +1,273 @@
+/* ============================= GLOBAL ============================= */
+:root {
+  --charcoal: rgb(54, 54, 54);
+  --ash: rgb(92, 92, 92);
+  --lightBeige: rgb(190, 185, 185);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  /* border: red solid 1px; */
+  background-color: rgb(102, 102, 102);
+  display: relative;
+}
+
+body #logo-image {
+  width: 500px;
+  height: auto;
+  margin: auto;
+  display: block;
+  margin: 2% auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input, button {
+  outline: none;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 5rem;
+  padding: 0;
+  margin: 0;
+  color: var(--charcoal);
+}
+
+/* ============================= DETAIL MODAL START ============================= */
+#detail-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  display: none;
+}
+
+#detail-modal #detail-modal-information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background-color: white;
+  height: 500px;
+  width: 500px;
+  padding: 20px 30px;
+  /* text-align: center; */
+
+  border-radius: 20px;
+}
+
+#detail-modal #detail-modal-information h3 {
+  padding: 0;
+  margin: 0;
+  color: var(--ash);
+  font-size: 2rem;
+}
+
+/* ============================= DETAIL MODAL END ============================= */
+
+/* ============================= GAME CONTAINER START ============================= */
+#game-container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  display: block;
+  width: 100%;
+  /* height: 606px; */
+
+  /* border: white solid 1px; */
+}
+
+#game-container #board-container {
+  display: flex;
+  justify-content: center;
+  margin-left: 13.5%;
+}
+
+#game-container #game-options {
+  text-align: center;
+}
+/* ============================= GAME CONTAINER END ============================= */
+
+/* ============================= BOARD CONTAINER START ============================= */
+#board-container {
+  /* border: red solid 1px; */
+}
+/* ============================= BOARD CONTAINER END ============================= */
+
+/* ============================= GAME OPTIONS START ============================= */
+#game-options {
+  text-align: center;
+  margin-bottom: 5px;
+  /* border: red solid 1px; */
+}
+
+#game-options h3 {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  color: var(--charcoal);
+  font-size: 1rem;
+}
+
+#game-options button {
+  height: 20px;
+  width: 80px;
+  margin: 10px 0;
+  border: white solid 1px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+#game-options button:hover {
+  background-color: var(--ash);
+  border: var(--charcoal) solid 1px;
+}
+/* ============================= GAME OPTIONS END ============================= */
+
+/* ============================= MUSIC OPTIONS START ============================= */
+#music-options {
+  text-align: center;
+  margin-bottom: 10px;
+  /* border: red solid 1px; */
+}
+
+#music-options h3 {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  color: var(--charcoal);
+  font-size: 1rem;
+}
+
+#music-options button {
+  height: 20px;
+  width: 80px;
+  margin: 10px 0;
+  border: white solid 1px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+#music-options button:hover {
+  background-color: var(--ash);
+  border: var(--charcoal) solid 1px;
+}
+/* ============================= MUSIC OPTIONS END ============================= */
+
+/* ============================= BOARD START ============================= */
+#board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 0;
+  width: 304px;
+  border: var(--charcoal) solid 2px;
+}
+
+#board .board-grid {
+  width: 30px;
+  height: 30px;
+  border: var(--charcoal) solid 2px;
+  background-color: var(--ash);
+}
+/* ============================= BOARD END ============================= */
+
+/* ============================= PIECE-OPTIONS START ============================= */
+#piece-options {
+  margin-left: 5%;
+}
+
+#piece-options #next-piece, #saved-piece {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  /* margin-left: 5%; */
+  border: var(--charcoal) solid 10px;
+  border-radius: 9px;
+}
+
+#piece-options h3 {
+  text-align: center;
+  padding: 0;
+  margin-bottom: 5px;
+  color: var(--lightBeige);
+  /* margin-left: 5%; */
+}
+/* ============================= PIECE-OPTIONS END ============================= */
+
+/* ============================= FOOTER START ============================= */
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1% 0 3%;
+}
+
+#details {
+  text-align: center;
+  height: 20px;
+  width: 80px;
+  margin: auto;
+  border: white solid 1px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+#details:hover {
+  background-color: var(--ash);
+  border: var(--charcoal) solid 1px;
+}
+
+#footer-links {
+  display: flex;
+  justify-content: center;
+}
+
+#footer-links a {
+  display: block;
+  text-decoration: none;
+  font-size: 5rem;
+  transition-duration: 0.5s;
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer-links a:first-child {
+  color: #0077B5;
+  margin-right: 6px;
+}
+
+#footer-links a:last-child {
+  color: #23292D;
+  margin-left: 6px;
+}
+
+#footer-links a:hover {
+  opacity: 0.7;
+  color: rgb(216, 201, 201);
+}
+/* ============================= FOOTER END ============================= */
