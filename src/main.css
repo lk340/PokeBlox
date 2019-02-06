@@ -20,6 +20,7 @@ body {
 }
 
 body #logo-image {
+  /* width: 26%; */
   width: 500px;
   height: auto;
   margin: auto;
@@ -95,22 +96,68 @@ h1 {
   /* border: white solid 1px; */
 }
 
-#game-container #board-container {
-  display: flex;
-  justify-content: center;
-  margin-left: 13.5%;
-}
-
 #game-container #game-options {
   text-align: center;
 }
 /* ============================= GAME CONTAINER END ============================= */
 
 /* ============================= BOARD CONTAINER START ============================= */
-#board-container {
-  /* border: red solid 1px; */
+#game-container #board-container {
+  display: flex;
+  justify-content: center;
+
+  /* border: lightblue solid 2px; */
+}
+
+#board-container #spacer {
+  width: 150px;
 }
 /* ============================= BOARD CONTAINER END ============================= */
+
+/* ============================= BOARD START ============================= */
+#board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  width: 320px;
+  border: var(--charcoal) solid 10px;
+  border-radius: 7px;
+  margin: 0 30px;
+
+  /* border: red solid 2px; */
+}
+
+#board .board-grid {
+  width: 30px;
+  height: 30px;
+  border: var(--charcoal) solid 2px;
+  background-color: var(--ash);
+}
+/* ============================= BOARD END ============================= */
+
+/* ============================= PIECE-OPTIONS START ============================= */
+#piece-options {
+  /* margin-left: 5%; */
+  
+  /* border: white solid 2px; */
+}
+
+#piece-options #next-piece, #saved-piece {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  /* margin-left: 5%; */
+  border: var(--charcoal) solid 10px;
+  border-radius: 9px;
+}
+
+#piece-options h3 {
+  text-align: center;
+  padding: 0;
+  margin-bottom: 5px;
+  color: var(--lightBeige);
+  /* margin-left: 5%; */
+}
+/* ============================= PIECE-OPTIONS END ============================= */
 
 /* ============================= GAME OPTIONS START ============================= */
 #game-options {
@@ -175,46 +222,6 @@ h1 {
   border: var(--charcoal) solid 1px;
 }
 /* ============================= MUSIC OPTIONS END ============================= */
-
-/* ============================= BOARD START ============================= */
-#board {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-gap: 0;
-  width: 304px;
-  border: var(--charcoal) solid 2px;
-}
-
-#board .board-grid {
-  width: 30px;
-  height: 30px;
-  border: var(--charcoal) solid 2px;
-  background-color: var(--ash);
-}
-/* ============================= BOARD END ============================= */
-
-/* ============================= PIECE-OPTIONS START ============================= */
-#piece-options {
-  margin-left: 5%;
-}
-
-#piece-options #next-piece, #saved-piece {
-  width: 150px;
-  height: 150px;
-  background-color: white;
-  /* margin-left: 5%; */
-  border: var(--charcoal) solid 10px;
-  border-radius: 9px;
-}
-
-#piece-options h3 {
-  text-align: center;
-  padding: 0;
-  margin-bottom: 5px;
-  color: var(--lightBeige);
-  /* margin-left: 5%; */
-}
-/* ============================= PIECE-OPTIONS END ============================= */
 
 /* ============================= FOOTER START ============================= */
 footer {
