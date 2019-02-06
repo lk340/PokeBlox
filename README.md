@@ -28,7 +28,7 @@ In addition to these languages and technologies, there are [x] main parts that m
 
 ## Wireframes
 PokéBlox will feature a single game screen with buttons for
-- [ ] About Modal
+- [x] About Modal
 - [ ] Rules Modal
 - [ ] Turning off the music
 - [ ] A start button
@@ -36,13 +36,13 @@ PokéBlox will feature a single game screen with buttons for
     
 ## Implementation Timeline
 ##### Day 1
-- [ ] Create skeleton JavaScript files for each part of the game
-- [ ] Create webpack.config.js file
-- [ ] Create package.json
-- [ ] Create a board.js file and a Board class
-- [ ] Create a pieces.js file and a Piece class
-- [ ] Create a music.js file
-- [ ] Do basic CSS for the initial version of the page
+- [x] Create skeleton JavaScript files for each part of the game
+- [x] Create webpack.config.js file
+- [x] Create package.json
+- [x] Create a board.js file and a Board class
+- [x] Create a pieces.js file and a Piece class
+- [x] Create a music.js file
+- [x] Do basic CSS for the initial version of the page
 
 ##### Day 2: Work on Board Class
 Board class should...
