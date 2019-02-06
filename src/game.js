@@ -1,10 +1,19 @@
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {
+  const detailModal = document.getElementById("detail-modal");
+
   document.getElementById("details").addEventListener("click", () => {
-    let detailModal = document.getElementById("detail-modal");
     if (detailModal.classList.contains("hide-about-modal")) {
       detailModal.classList.remove("hide-about-modal");
       detailModal.classList.add("about-modal");
+    }
+  });
+
+  // Close About Modal
+  document.getElementById("about-modal-close").addEventListener("click", () => {
+    if (detailModal.classList.contains("about-modal")) {
+      detailModal.classList.remove("about-modal");
+      detailModal.classList.add("hide-about-modal");
     }
   });
 
@@ -23,14 +32,4 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("change-music").addEventListener("click", () => {
     alert("change-music");
   });
-
-  // Close About Modal
-  document.getElementById("about-modal-close").addEventListener("click", () => {
-    let detailModal = document.getElementById("detail-modal");
-    if (detailModal.classList.contains("about-modal")) {
-      detailModal.classList.remove("about-modal");
-      detailModal.classList.add("hide-about-modal");
-    }
-  });
 });
-

@@ -51,12 +51,12 @@ h1 {
 /* ============================= DETAIL MODAL START ============================= */
 .about-modal {
   background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  z-index: 10;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 10;
+  position: fixed;
 
   display: flex;
   justify-content: center;
@@ -87,6 +87,18 @@ h1 {
   margin: 0;
   color: var(--ash);
   font-size: 2rem;
+}
+
+#detail-modal #about-modal-spacer {
+  background-color: var(--scarletRed);
+  color: white;
+  font-size: 3rem;
+  padding: 8px 23px 8px 26px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  cursor: pointer;
+  transform: translateX(-60px);
+  visibility: hidden;
 }
 
 #detail-modal #about-modal-close {
