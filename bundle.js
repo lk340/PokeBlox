@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = \"import Button from './button';\"\n\n//# sourceURL=webpack:///./src/entry.js?./node_modules/raw-loader");
+eval("module.exports = \"import Button from './button';\\n\\ndocument.addEventListener(\\\"DOMContentLoaded\\\", () => {\\n  document.getElementById(\\\"details\\\").addEventListener(\\\"click\\\", () => {\\n    alert(\\\"successful!\\\");\\n    // 1. Find the detail-modal.\\n    // 2. If the detail-modal contains \\\"hide-modal\\\", change it to \\\"show-modal\\\".\\n    // 3. Else, change \\\"show-modal\\\" to \\\"hide-modal\\\".\\n  });\\n\\n  document.getElementById(\\\"start-game\\\").addEventListener(\\\"click\\\", () => {\\n    alert(\\\"start-game\\\");\\n  });\\n\\n  document.getElementById(\\\"pause-game\\\").addEventListener(\\\"click\\\", () => {\\n    alert(\\\"pause-game\\\");\\n  });\\n\\n  document.getElementById(\\\"mute-music\\\").addEventListener(\\\"click\\\", () => {\\n    alert(\\\"mute-music\\\");\\n  });\\n\\n  document.getElementById(\\\"change-music\\\").addEventListener(\\\"click\\\", () => {\\n    alert(\\\"change-music\\\");\\n  });\\n});\"\n\n//# sourceURL=webpack:///./src/entry.js?./node_modules/raw-loader");
 
 /***/ }),
 
