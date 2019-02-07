@@ -3,5 +3,15 @@ export default class Board {
     this.piece = piece;
   }
 
+  start() {
 
+  }
+
+  pause() {
+
+  }
+  
+  is_over() {
+
+  }
 }
