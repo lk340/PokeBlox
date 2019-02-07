@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailModal = document.getElementById("detail-modal");
 
   document.getElementById("details").addEventListener("click", () => {
-    debugger;
+    // debugger;
     console.log(document.getElementById("about-modal-close").style.color);
     console.log("hello");
 

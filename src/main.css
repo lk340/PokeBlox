@@ -213,6 +213,10 @@ h1 {
   align-items: center;
 }
 
+#piece-options #next-piece > div, #piece-options #saved-piece > div {
+  position: absolute;
+}
+
 .tetronimo-I {
  display: flex;
 }
@@ -222,6 +226,108 @@ h1 {
   height: 30px;
   border: white solid 2px;
   background-color: var(--lightBlue);
+}
+
+.tetronimo-O {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.tetronimo-O > div {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--yellow);
+}
+
+.tetronimo-T {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tetronimo-T > div {
+  width: 30px;
+  height: 30px;
+}
+
+.tetronimo-T div:nth-child(2),
+.tetronimo-T div:nth-child(4),
+.tetronimo-T div:nth-child(5),
+.tetronimo-T div:nth-child(6) {
+  background-color: var(--purple);
+  border: white solid 2px;
+}
+
+.tetronimo-S {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tetronimo-S > div {
+  width: 30px;
+  height: 30px;
+}
+
+.tetronimo-S div:nth-child(2),
+.tetronimo-S div:nth-child(3),
+.tetronimo-S div:nth-child(4),
+.tetronimo-S div:nth-child(5) {
+  background-color: var(--green);
+  border: white solid 2px;
+}
+
+.tetronimo-Z {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tetronimo-Z > div {
+  width: 30px;
+  height: 30px;
+}
+
+.tetronimo-Z div:nth-child(1),
+.tetronimo-Z div:nth-child(2),
+.tetronimo-Z div:nth-child(5),
+.tetronimo-Z div:nth-child(6) {
+  background-color: var(--red);
+  border: white solid 2px;
+}
+
+.tetronimo-J {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tetronimo-J > div {
+  width: 30px;
+  height: 30px;
+}
+
+.tetronimo-J div:nth-child(1),
+.tetronimo-J div:nth-child(4),
+.tetronimo-J div:nth-child(5),
+.tetronimo-J div:nth-child(6) {
+  background-color: var(--blue);
+  border: white solid 2px;
+}
+
+.tetronimo-L {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tetronimo-L > div {
+  width: 30px;
+  height: 30px;
+}
+
+.tetronimo-L div:nth-child(3),
+.tetronimo-L div:nth-child(4),
+.tetronimo-L div:nth-child(5),
+.tetronimo-L div:nth-child(6) {
+  background-color: var(--orange);
+  border: white solid 2px;
 }
 
 /* ============================= PIECE-OPTIONS END ============================= */
