@@ -205,6 +205,25 @@ h1 {
   color: var(--lightBeige);
   /* margin-left: 5%; */
 }
+
+#piece-options #next-piece, #piece-options #saved-piece {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tetronimo-I {
+ display: flex;
+}
+
+.tetronimo-I > div {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--lightBlue);
+}
+
 /* ============================= PIECE-OPTIONS END ============================= */
 
 /* ============================= GAME OPTIONS START ============================= */
