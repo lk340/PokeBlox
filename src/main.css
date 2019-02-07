@@ -217,6 +217,7 @@ h1 {
   position: absolute;
 }
 
+/* ============================= TETRONIMO-I START ============================= */
 .tetronimo-I {
  display: flex;
 }
@@ -227,7 +228,9 @@ h1 {
   border: white solid 2px;
   background-color: var(--lightBlue);
 }
+/* ============================= TETRONIMO-I END ============================= */
 
+/* ============================= TETRONIMO-O START ============================= */
 .tetronimo-O {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -239,7 +242,9 @@ h1 {
   border: white solid 2px;
   background-color: var(--yellow);
 }
+/* ============================= TETRONIMO-O END ============================= */
 
+/* ============================= TETRONIMO-T START ============================= */
 .tetronimo-T {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -257,7 +262,9 @@ h1 {
   background-color: var(--purple);
   border: white solid 2px;
 }
+/* ============================= TETRONIMO-T END ============================= */
 
+/* ============================= TETRONIMO-S START ============================= */
 .tetronimo-S {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -275,7 +282,9 @@ h1 {
   background-color: var(--green);
   border: white solid 2px;
 }
+/* ============================= TETRONIMO-S END ============================= */
 
+/* ============================= TETRONIMO-Z START ============================= */
 .tetronimo-Z {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -293,7 +302,9 @@ h1 {
   background-color: var(--red);
   border: white solid 2px;
 }
+/* ============================= TETRONIMO-Z END ============================= */
 
+/* ============================= TETRONIMO-J START ============================= */
 .tetronimo-J {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -311,7 +322,9 @@ h1 {
   background-color: var(--blue);
   border: white solid 2px;
 }
+/* ============================= TETRONIMO-J END ============================= */
 
+/* ============================= TETRONIMO-L START ============================= */
 .tetronimo-L {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -329,6 +342,7 @@ h1 {
   background-color: var(--orange);
   border: white solid 2px;
 }
+/* ============================= TETRONIMO-L ENDS ============================= */
 
 /* ============================= PIECE-OPTIONS END ============================= */
 
