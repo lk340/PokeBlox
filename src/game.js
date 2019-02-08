@@ -36,4 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("change-music").addEventListener("click", () => {
     alert("change-music");
   });
+
+  // console.log(document.getElementById("tetronimo-I-next").classList);
+
 });
