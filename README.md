@@ -45,7 +45,7 @@ PokéBlox will feature a single game screen with buttons for
 
 ##### Day 2: Work on Board Class
 Board class should...
-- [ ] Display a 10x20 grid with each grid block having a dimension of 50x50 pixels
+- [ ] Have pieces move through a 10x20 grid with each grid block having a dimension of 34x34 pixels and a border of 2 pixels
 - [ ] Be able to house pieces
 - [ ] Update at least at 30 frames per second
 
