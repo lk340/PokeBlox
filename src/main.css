@@ -174,11 +174,60 @@ h1 {
   /* border: red solid 2px; */
 }
 
-#board .board-grid {
+.board-grid {
   width: 30px;
   height: 30px;
   border: var(--charcoal) solid 2px;
   background-color: var(--ash);
+}
+
+.T {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--purple);
+}
+
+.L {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--orange);
+}
+
+.J {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--blue);
+}
+
+.I {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--lightBlue);
+}
+
+.S {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--green);
+}
+
+.Z {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--red);
+}
+
+.O {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--yellow);
 }
 /* ============================= BOARD END ============================= */
 

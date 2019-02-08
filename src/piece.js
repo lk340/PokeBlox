@@ -5,7 +5,7 @@ export default class Piece {
 
   piece() {
     if (this.type === "I") {
-
+      
     }
 
     else if (this.type === "O") {
