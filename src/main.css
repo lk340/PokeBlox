@@ -2,12 +2,14 @@
 :root {
   --charcoal: rgb(54, 54, 54);
   --ash: rgb(92, 92, 92);
+  --lighterBeige: rgb(216, 201, 201);
   --lightBeige: rgb(190, 185, 185);
   --lightGray: rgb(206, 206, 206);
   --panchamPurple: #626473;
+  --panchamBeige: rgb(211, 217, 169);
   --scarletRed: rgb(241, 131, 131);
   --skyBlue: rgb(80, 156, 255);
-  --leafGreen: rgb(101, 196, 101);
+  --leafGreen: rgb(60, 170, 83);
 
   /* Tetromino Piece Colors */
   --lightBlue: rgb(145, 145, 245);
@@ -402,7 +404,7 @@ h1 {
 
 #linkedIn a:hover, #github a:hover {
   opacity: 0.7;
-  color: rgb(216, 201, 201);
+  color: var(--panchamBeige);
   background-color: var(--charcoal);
 }
 
