@@ -189,19 +189,6 @@ h1 {
   background-color: var(--lightBlue);
 }
 
-#tetronimo-I {
-  display: flex;
-  position: absolute;
-  z-index: 7;
-}
-
-#tetronimo-I > div {
-  width: 30px;
-  height: 30px;
-  border: white solid 2px;
-  background-color: var(--lightBlue);
-}
-
 #tetronimo-O {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -223,7 +210,11 @@ h1 {
   z-index: 7;
 }
 
-#tetronimo-T > div {
+#tetronimo-T > div,
+#tetronimo-S > div,
+#tetronimo-Z > div,
+#tetronimo-J > div,
+#tetronimo-L > div {
   width: 30px;
   height: 30px;
 }
@@ -243,11 +234,6 @@ h1 {
   z-index: 7;
 }
 
-#tetronimo-S > div {
-  width: 30px;
-  height: 30px;
-}
-
 #tetronimo-S div:nth-child(2),
 #tetronimo-S div:nth-child(3),
 #tetronimo-S div:nth-child(4),
@@ -261,11 +247,6 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   position: absolute;
   z-index: 7;
-}
-
-#tetronimo-Z > div {
-  width: 30px;
-  height: 30px;
 }
 
 #tetronimo-Z div:nth-child(1),
@@ -283,11 +264,6 @@ h1 {
   z-index: 7;
 }
 
-#tetronimo-J > div {
-  width: 30px;
-  height: 30px;
-}
-
 #tetronimo-J div:nth-child(1),
 #tetronimo-J div:nth-child(4),
 #tetronimo-J div:nth-child(5),
@@ -301,11 +277,6 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   position: absolute;
   z-index: 7;
-}
-
-#tetronimo-L > div {
-  width: 30px;
-  height: 30px;
 }
 
 #tetronimo-L div:nth-child(3),
