@@ -73,45 +73,49 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================ GAME CONTROLS START ============================================================
   // console.log(document.getElementById("tetronimo-I-next").classList);
 
+  // Generate random Tetris piece
+  const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
+  const currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+  
   // Position of Pieces
-  document.getElementById("tetronimo-I").style.marginLeft = "90px";
-  document.getElementById("tetronimo-I").style.marginTop = "0px";
+  document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
+  document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
 
   document.addEventListener("keydown", event => {
     if (event.which === 87) {
       // w key
       // remember to use this for the rotating logic
-      if (parseInt(document.getElementById("tetronimo-I").style.marginTop) >= 30) {
-        document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) - 30}px`;
+      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) >= 30) {
+        document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) - 30}px`;
       }
     }
 
     else if (event.which === 83) {
     // else if (event.which === 83) {
       // s key
-      if (parseInt(document.getElementById("tetronimo-I").style.marginTop) <= 540) {
-        document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) + 30}px`;
+      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 540) {
+        document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
       }
     }
 
     else if (event.which === 65) {
       // a key
-      if (parseInt(document.getElementById("tetronimo-I").style.marginLeft) >= 30) {
-        document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) - 30}px`;
+      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) >= 30) {
+        document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) - 30}px`;
       }
     }
 
     else if (event.which === 68) {
       // d key
-      if (parseInt(document.getElementById("tetronimo-I").style.marginLeft) <= 150) {
-        document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) + 30}px`;
+      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 150) {
+        document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
       }
     }
 
     else if (event.which === 32 && event.target === document.body) {
       // spacebar key
       event.preventDefault();
-      document.getElementById("tetronimo-I").style.marginTop = "570px";
+      document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
     }
 
     else if (event.which === 16) {
