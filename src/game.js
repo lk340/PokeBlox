@@ -81,33 +81,33 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
   document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
   document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = "0px";
-  // document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
   
-  let frames;
-  function frameRate() {
-    frames = setInterval(() => {
-      if (currentPiece === "I") {
-        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 540) {
-          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+  let frameLimiter = 0;
+
+  let frameRate;
+  function playGame() {
+    if (frameLimiter === 1) {
+      frameRate = setInterval(() => {
+        if (currentPiece === "I") {
+          if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 540) {
+            document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+          }
         }
-      }
-      else if (currentPiece !== "I") {
-        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 510) {
-          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+        else if (currentPiece !== "I") {
+          if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 510) {
+            document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+          }
         }
-      }
-      else {
-        clearInterval();
-      }
-    }, 1000);
+        else {
+          clearInterval();
+        }
+      }, 1000);
+    }
   }
-  frameRate();
 
   function pauseGame() {
-    clearInterval(frames);
+      clearInterval(frameRate);
   }
-
-  // pauseGame();
 
   document.addEventListener("keydown", event => {
     if (event.which === 87) {
@@ -177,12 +177,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     else if (event.which === 79) {
       // o key
-      console.log("o key");
+      console.log("game start");
+      frameLimiter += 1;
+      playGame();
     }
 
     else if (event.which === 80) {
       // p key
-      console.log("p key");
+      console.log("game paused");
+      frameLimiter = 0;
       pauseGame();
     }
 
