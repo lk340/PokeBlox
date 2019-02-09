@@ -80,6 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Position of Pieces
   document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
   document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
+  document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = "0px";
+  // document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
 
   document.addEventListener("keydown", event => {
     if (event.which === 87) {
@@ -100,15 +102,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     else if (event.which === 65) {
       // a key
-      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) >= 30) {
+      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginRight) >= 0 && parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) >= 30) {
+        document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginRight) + 30}px`;
         document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) - 30}px`;
       }
     }
 
     else if (event.which === 68) {
       // d key
-      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 150) {
-        document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+      if (currentPiece === "O") {
+        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 210 ) {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+        }
+      }
+      else if (currentPiece === "I") {
+        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 150 ) {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+        }
+      }
+      else {
+        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 180 ) {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+        }
       }
     }
 
