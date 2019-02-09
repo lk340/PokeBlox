@@ -27,13 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ START GAME START ============================================================
   document.getElementById("start-game").addEventListener("click", () => {
-    alert("start-game");
+    frameLimiter += 1;
+    playGame();
 
     // instantiate a piece class using a random Tetronimo letter as an argument
     // instantiate a board class using the piece class as an argument
 
-    const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
-    const tetronimo = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+    // const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
+    // const tetronimo = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
 
     // let randomPiece = Piece(tetronimo);
     // let currentBoard = Board(randomPiece); 
@@ -48,7 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ PAUSE GAME START ============================================================
   document.getElementById("pause-game").addEventListener("click", () => {
-    alert("pause-game");
+    frameLimiter = 0;
+    pauseGame();
   });
   // ============================================================ PAUSE GAME END ============================================================
 
