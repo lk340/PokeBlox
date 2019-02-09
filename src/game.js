@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ START GAME START ============================================================
   document.getElementById("start-game").addEventListener("click", () => {
+    console.log("game start");
     frameLimiter += 1;
     playGame();
 
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ PAUSE GAME START ============================================================
   document.getElementById("pause-game").addEventListener("click", () => {
+    console.log("game paused");
     frameLimiter = 0;
     pauseGame();
   });
