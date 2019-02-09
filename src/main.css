@@ -6,6 +6,8 @@
   --lightGray: rgb(206, 206, 206);
   --panchamPurple: #626473;
   --scarletRed: rgb(241, 131, 131);
+  --skyBlue: rgb(80, 156, 255);
+  --leafGreen: rgb(101, 196, 101);
 
   /* Tetromino Piece Colors */
   --lightBlue: rgb(145, 145, 245);
@@ -427,7 +429,9 @@ h1 {
 
 /* ============================= PIECE-OPTIONS START ============================= */
 #piece-options {
-  /* margin-left: 5%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
   /* border: white solid 2px; */
 }
@@ -458,6 +462,23 @@ h1 {
 
 #piece-options #next-piece > div, #piece-options #saved-piece > div {
   position: absolute;
+}
+
+#current-song {
+  text-align: center;
+  font-size: 1.4rem;
+  height: 50px;
+  width: 130px;
+  margin: 15px auto;
+  border: white solid 1px;
+  background-color: var(--panchamPurple);
+  color: white;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+#current-song:hover {
+  background-color: var(--leafGreen);
 }
 
 /* ============================= TETRONIMO-I START ============================= */
