@@ -3,6 +3,7 @@
 
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {
+  // ============================================================ DETAILS MODAL START ============================================================
   const detailModal = document.getElementById("detail-modal");
 
   document.getElementById("details").addEventListener("click", () => {
@@ -20,7 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
       detailModal.classList.add("hide-about-modal");
     }
   });
+  // ============================================================ DETAILS MODAL END ============================================================
 
+
+
+  // ============================================================ START GAME START ============================================================
   document.getElementById("start-game").addEventListener("click", () => {
     alert("start-game");
 
@@ -37,19 +42,35 @@ document.addEventListener("DOMContentLoaded", () => {
         // possible work-around: instantiate pieces classes inside of the board itself, rather than here
           // so that we only need to instantiate the board once until the game is over
   });
+  // ============================================================ START GAME END ============================================================
 
+
+
+  // ============================================================ PAUSE GAME START ============================================================
   document.getElementById("pause-game").addEventListener("click", () => {
     alert("pause-game");
   });
+  // ============================================================ PAUSE GAME END ============================================================
 
+
+
+  // ============================================================ MUTE MUSIC START ============================================================
   document.getElementById("mute-music").addEventListener("click", () => {
     alert("mute-music");
   });
+  // ============================================================ MUTE MUSIC END ============================================================
 
+
+
+  // ============================================================ CHANGE MUSIC START ============================================================
   document.getElementById("change-music").addEventListener("click", () => {
     alert("change-music");
   });
+  // ============================================================ CHANGE MUSIC END ============================================================
 
+
+
+  // ============================================================ GAME CONTROLS START ============================================================
   // console.log(document.getElementById("tetronimo-I-next").classList);
 
   // Position of Pieces
@@ -59,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", event => {
     if (event.which === 87) {
       // w key
+      // remember to use this for the rotating logic
       if (parseInt(document.getElementById("tetronimo-I").style.marginTop) >= 30) {
         document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) - 30}px`;
       }
@@ -117,5 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("i key");
     }
   });
+  // ============================================================ GAME CONTROLS END ============================================================
 
 });
