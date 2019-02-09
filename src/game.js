@@ -52,26 +52,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // console.log(document.getElementById("tetronimo-I-next").classList);
 
+  // Position of Pieces
+  document.getElementById("tetronimo-I").style.marginLeft = "90px";
+  document.getElementById("tetronimo-I").style.marginTop = "0px";
+
   document.addEventListener("keydown", event => {
-    if (event.which === 38) {
-      // up arrow key
-      console.log("up arrow key");
+    if (event.which === 87) {
+      // w key
+      // console.log("w key");
+      document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) - 30}px`;
     }
 
-    else if (event.which === 37) {
-      // left arrow key
-      console.log("left arrow key");
+    else if (event.which === 83) {
+    // else if (event.which === 83) {
+      // s key
+      // console.log("s key");
+      document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) + 30}px`;
     }
 
-    else if (event.which === 39) {
-      // right arrow key
-      console.log("right arrow key");
-      document.getElementById("tetronimo-I").classList.add("left-shift");
+    else if (event.which === 65) {
+      // a key
+      // console.log("a key");
+      document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) - 30}px`;
     }
 
-    else if (event.which === 40) {
-      // down arrow key
-      console.log("down arrow key");
+    else if (event.which === 68) {
+      // d key
+      // console.log("d key");
+      document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) + 30}px`;
     }
 
     else if (event.which === 32) {
