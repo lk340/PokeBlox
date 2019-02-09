@@ -83,8 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = "0px";
   // document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
   
+  let frames;
   function frameRate() {
-    setInterval(() => {
+    frames = setInterval(() => {
       if (currentPiece === "I") {
         if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 540) {
           document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
@@ -101,6 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
   frameRate();
+
+  function pauseGame() {
+    clearInterval(frames);
+  }
+
+  // pauseGame();
 
   document.addEventListener("keydown", event => {
     if (event.which === 87) {
@@ -176,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (event.which === 80) {
       // p key
       console.log("p key");
+      pauseGame();
     }
 
     else if (event.which === 85) {
