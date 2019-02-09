@@ -59,32 +59,37 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", event => {
     if (event.which === 87) {
       // w key
-      // console.log("w key");
-      document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) - 30}px`;
+      if (parseInt(document.getElementById("tetronimo-I").style.marginTop) >= 30) {
+        document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) - 30}px`;
+      }
     }
 
     else if (event.which === 83) {
     // else if (event.which === 83) {
       // s key
-      // console.log("s key");
-      document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) + 30}px`;
+      if (parseInt(document.getElementById("tetronimo-I").style.marginTop) <= 540) {
+        document.getElementById("tetronimo-I").style.marginTop = `${parseInt(document.getElementById("tetronimo-I").style.marginTop) + 30}px`;
+      }
     }
 
     else if (event.which === 65) {
       // a key
-      // console.log("a key");
-      document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) - 30}px`;
+      if (parseInt(document.getElementById("tetronimo-I").style.marginLeft) >= 30) {
+        document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) - 30}px`;
+      }
     }
 
     else if (event.which === 68) {
       // d key
-      // console.log("d key");
-      document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) + 30}px`;
+      if (parseInt(document.getElementById("tetronimo-I").style.marginLeft) <= 150) {
+        document.getElementById("tetronimo-I").style.marginLeft = `${parseInt(document.getElementById("tetronimo-I").style.marginLeft) + 30}px`;
+      }
     }
 
-    else if (event.which === 32) {
+    else if (event.which === 32 && event.target === document.body) {
       // spacebar key
-      console.log("spacebar key");
+      event.preventDefault();
+      document.getElementById("tetronimo-I").style.marginTop = "570px";
     }
 
     else if (event.which === 16) {

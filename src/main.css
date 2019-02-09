@@ -179,7 +179,7 @@ h1 {
 #tetronimo-I {
   display: flex;
   position: absolute;
-  z-index: 10;
+  z-index: 7;
 }
 
 #tetronimo-I > div {
@@ -276,6 +276,7 @@ h1 {
   padding: 0;
   margin-bottom: 5px;
   color: var(--lightBeige);
+  cursor: default;
 }
 
 #linkedIn a, #github a {
@@ -347,7 +348,7 @@ h1 {
   padding: 0;
   margin-bottom: 5px;
   color: var(--lightBeige);
-  /* margin-left: 5%; */
+  cursor: default;
 }
 
 #piece-options #next-piece, #piece-options #saved-piece {
@@ -506,6 +507,7 @@ h1 {
   margin-bottom: 5px;
   color: var(--charcoal);
   font-size: 1rem;
+  cursor: default;
 }
 
 #game-options button {
@@ -521,6 +523,7 @@ h1 {
 
 #game-options button:hover {
   background-color: var(--ash);
+  color: white;
   border: var(--charcoal) solid 1px;
 }
 /* ============================= GAME OPTIONS END ============================= */
@@ -539,6 +542,7 @@ h1 {
   margin-bottom: 5px;
   color: var(--charcoal);
   font-size: 1rem;
+  cursor: default;
 }
 
 #music-options button {
@@ -554,6 +558,7 @@ h1 {
 
 #music-options button:hover {
   background-color: var(--ash);
+  color: white;
   border: var(--charcoal) solid 1px;
 }
 /* ============================= MUSIC OPTIONS END ============================= */
