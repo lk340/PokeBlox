@@ -78,10 +78,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   
   // Position of Pieces
-  document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
   document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
+  document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
   document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = "0px";
   // document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
+  
+  function frameRate() {
+    setInterval(() => {
+      if (currentPiece === "I") {
+        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 540) {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+        }
+      }
+      else if (currentPiece !== "I") {
+        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 510) {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+        }
+      }
+      else {
+        clearInterval();
+      }
+    }, 1000);
+  }
+  frameRate();
 
   document.addEventListener("keydown", event => {
     if (event.which === 87) {
