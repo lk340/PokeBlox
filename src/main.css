@@ -170,8 +170,25 @@ h1 {
   border: var(--charcoal) solid 10px;
   border-radius: 7px;
   margin: 0 30px;
+  position: relative;
 
   /* border: red solid 2px; */
+}
+
+#tetronimo-I {
+  display: flex;
+  position: absolute;
+}
+
+#tetronimo-I > div {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+  background-color: var(--lightBlue);
+}
+
+.left-shift {
+  transform: translateX(30px);
 }
 
 .board-grid {

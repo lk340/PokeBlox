@@ -21,7 +21,7 @@ export default class Board {
       const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
 
       const tetronimoCurrent = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
-      const tetronimoNext = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+      // const tetronimoNext = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
 
       const currentPiece = Piece(tetronimoCurrent);
       // const nextPiece = Piece(tetronimoNext);
@@ -62,8 +62,8 @@ export default class Board {
     // if the piece is on the ground, check if there is a row to clear
     // if the piece is on the ground, check if there is a filled column - if so, it's game over!
     if (piece_is_on_ground) {
-      this.row_check();
       this.game_over_check();
+      this.row_check();
     }
   }
 

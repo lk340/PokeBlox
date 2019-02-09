@@ -52,4 +52,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // console.log(document.getElementById("tetronimo-I-next").classList);
 
+  document.addEventListener("keydown", event => {
+    if (event.which === 38) {
+      // up arrow key
+      console.log("up arrow key");
+    }
+
+    else if (event.which === 37) {
+      // left arrow key
+      console.log("left arrow key");
+    }
+
+    else if (event.which === 39) {
+      // right arrow key
+      console.log("right arrow key");
+      document.getElementById("tetronimo-I").classList.add("left-shift");
+    }
+
+    else if (event.which === 40) {
+      // down arrow key
+      console.log("down arrow key");
+    }
+
+    else if (event.which === 32) {
+      // spacebar key
+      console.log("spacebar key");
+    }
+
+    else if (event.which === 16) {
+      // shift key
+      console.log("shift key");
+    }
+
+    else if (event.which === 79) {
+      // o key
+      console.log("o key");
+    }
+
+    else if (event.which === 80) {
+      // p key
+      console.log("p key");
+    }
+
+    else if (event.which === 85) {
+      // u key
+      console.log("u key");
+    }
+
+    else if (event.which === 73) {
+      // i key
+      console.log("i key");
+    }
+  });
+
 });
