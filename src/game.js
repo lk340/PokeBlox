@@ -189,19 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
   
-      // else if (event.which === 32 && event.target === document.body) {
-      //   // spacebar key
-      //   event.preventDefault();
-      //   if (currentPiece === "I") {
-      //     document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
-      //   }
-      //   else {
-      //     document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "540px";
-      //   }
-      // }
-  
-      else if (event.which === 81) {
-        // q key
+      else if (event.which === 32 && event.target === document.body) {
+        // spacebar key
+        event.preventDefault();
         if (currentPiece === "I") {
           document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
         }
@@ -209,6 +199,16 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "540px";
         }
       }
+  
+      // else if (event.which === 81) {
+      //   // q key
+      //   if (currentPiece === "I") {
+      //     document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
+      //   }
+      //   else {
+      //     document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "540px";
+      //   }
+      // }
   
       else if (event.which === 16) {
         // shift key

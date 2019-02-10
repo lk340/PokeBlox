@@ -715,7 +715,12 @@ h1 {
   cursor: default;
 }
 
-#game-options button {
+#game-options #game-options-container {
+  display: flex;
+  justify-content: center;
+}
+
+#game-options #game-options-container div {
   height: 20px;
   width: 80px;
   margin: 10px 0;
@@ -724,9 +729,18 @@ h1 {
   cursor: pointer;
   margin: 0;
   padding: 0;
+  background-color: white;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#game-options button:hover {
+#game-options #game-options-container div:nth-child(2) {
+  margin-left: 5px;
+}
+
+#game-options #game-options-container div:hover {
   background-color: var(--ash);
   color: white;
   border: var(--charcoal) solid 1px;
@@ -750,7 +764,12 @@ h1 {
   cursor: default;
 }
 
-#music-options button {
+#music-options #music-options-container {
+  display: flex;
+  justify-content: center;
+}
+
+#music-options #music-options-container div {
   height: 20px;
   width: 80px;
   margin: 10px 0;
@@ -759,9 +778,18 @@ h1 {
   cursor: pointer;
   margin: 0;
   padding: 0;
+  background-color: white;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#music-options button:hover {
+#music-options #music-options-container div:nth-child(2) {
+  margin-left: 5px;
+}
+
+#music-options #music-options-container div:hover {
   background-color: var(--ash);
   color: white;
   border: var(--charcoal) solid 1px;
