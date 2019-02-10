@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("play-game").addEventListener("click", () => {
+    document.getElementById("play-screen").classList.remove("show-screen");
     document.getElementById("play-screen").classList.add("hide-screen");
     
     console.log("game start");
@@ -70,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ PAUSE GAME START ============================================================
   document.getElementById("pause-game").addEventListener("click", () => {
+    document.getElementById("pause-screen").classList.remove("hide-screen");
     document.getElementById("pause-screen").classList.add("show-screen");
     console.log("game paused");
     frameLimiter = 0;
@@ -203,6 +205,10 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (event.which === 79) {
       // o key
       console.log("game start");
+
+      document.getElementById("pause-screen").classList.remove("show-screen");
+      document.getElementById("pause-screen").classList.add("hide-screen");
+      
       frameLimiter += 1;
       playGame();
     }
@@ -210,6 +216,10 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (event.which === 80) {
       // p key
       console.log("game paused");
+      
+      document.getElementById("pause-screen").classList.remove("hide-screen");
+      document.getElementById("pause-screen").classList.add("show-screen");
+      
       frameLimiter = 0;
       pauseGame();
     }
