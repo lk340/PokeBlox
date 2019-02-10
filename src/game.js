@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let frameRate;
   function playGame() {
     gameFreeze = false;
+    
     if (frameLimiter === 1) {
       frameRate = setInterval(() => {
         if (currentPiece === "I") {
@@ -126,9 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
           }
         }
-        else {
-          clearInterval();
-        }
+        // else {
+        //   clearInterval();
+        // }
       }, 1000);
     }
   }
@@ -236,13 +237,9 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (event.which === 80) {
       // p key
       console.log("game paused");
-
-      // console.log(gameFreeze);
-      // gameFreeze = true;
-      // console.log(gameFreeze);
       
-      // document.getElementById("pause-screen").classList.remove("hide-screen");
-      // document.getElementById("pause-screen").classList.add("show-screen");
+      document.getElementById("pause-screen").classList.remove("hide-screen");
+      document.getElementById("pause-screen").classList.add("show-screen");
       
       frameLimiter = 0;
       pauseGame();
