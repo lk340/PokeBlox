@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   // ============================================================ DETAILS MODAL END ============================================================
 
-
+  let gameFreeze = true;
 
   // ============================================================ START GAME START ============================================================
   document.getElementById("start-game").addEventListener("click", () => {
@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let frameRate;
   function playGame() {
+    gameFreeze = false;
     if (frameLimiter === 1) {
       frameRate = setInterval(() => {
         if (currentPiece === "I") {
@@ -133,79 +134,98 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function pauseGame() {
-      clearInterval(frameRate);
+    gameFreeze = true;
+    clearInterval(frameRate);
   }
 
   document.addEventListener("keydown", event => {
-    if (event.which === 87) {
-      // w key
-      // remember to use this for the rotating logic
-      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) >= 30) {
-        document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) - 30}px`;
-      }
-    }
-
-    else if (event.which === 83) {
-      // s key
-      if (currentPiece === "I") {
-        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 540) {
-          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+    if (gameFreeze === false) {
+      if (event.which === 87) {
+        // w key
+        // remember to use this for the rotating logic
+        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) >= 30) {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) - 30}px`;
         }
       }
-      else {
-        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 510) {
-          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+  
+      else if (event.which === 83) {
+        // s key
+        if (currentPiece === "I") {
+          if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 540) {
+            document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+          }
+        }
+        else {
+          if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) <= 510) {
+            document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginTop) + 30}px`;
+          }
         }
       }
-    }
-
-    else if (event.which === 65) {
-      // a key
-      if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginRight) >= 0 && parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) >= 30) {
-        document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginRight) + 30}px`;
-        document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) - 30}px`;
-      }
-    }
-
-    else if (event.which === 68) {
-      // d key
-      if (currentPiece === "O") {
-        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 210 ) {
-          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+  
+      else if (event.which === 65) {
+        // a key
+        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginRight) >= 0 && parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) >= 30) {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginRight) + 30}px`;
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) - 30}px`;
         }
       }
-      else if (currentPiece === "I") {
-        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 150 ) {
-          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+  
+      else if (event.which === 68) {
+        // d key
+        if (currentPiece === "O") {
+          if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 210 ) {
+            document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+          }
+        }
+        else if (currentPiece === "I") {
+          if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 150 ) {
+            document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+          }
+        }
+        else {
+          if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 180 ) {
+            document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+          }
         }
       }
-      else {
-        if (parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) <= 180 ) {
-          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = `${parseInt(document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft) + 30}px`;
+  
+      // else if (event.which === 32 && event.target === document.body) {
+      //   // spacebar key
+      //   event.preventDefault();
+      //   if (currentPiece === "I") {
+      //     document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
+      //   }
+      //   else {
+      //     document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "540px";
+      //   }
+      // }
+  
+      else if (event.which === 81) {
+        // q key
+        if (currentPiece === "I") {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
+        }
+        else {
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "540px";
         }
       }
-    }
-
-    else if (event.which === 32 && event.target === document.body) {
-      // spacebar key
-      event.preventDefault();
-      if (currentPiece === "I") {
-        document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
+  
+      else if (event.which === 16) {
+        // shift key
+        console.log("shift key");
       }
-      else {
-        document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "540px";
-      }
-    }
-
-    else if (event.which === 16) {
-      // shift key
-      console.log("shift key");
     }
 
     else if (event.which === 79) {
       // o key
       console.log("game start");
 
+      // console.log(gameFreeze);
+      // gameFreeze = false;
+      // console.log(gameFreeze);
+
+      document.getElementById("play-screen").classList.remove("show-screen");
+      document.getElementById("play-screen").classList.add("hide-screen");
       document.getElementById("pause-screen").classList.remove("show-screen");
       document.getElementById("pause-screen").classList.add("hide-screen");
       
@@ -216,9 +236,13 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (event.which === 80) {
       // p key
       console.log("game paused");
+
+      // console.log(gameFreeze);
+      // gameFreeze = true;
+      // console.log(gameFreeze);
       
-      document.getElementById("pause-screen").classList.remove("hide-screen");
-      document.getElementById("pause-screen").classList.add("show-screen");
+      // document.getElementById("pause-screen").classList.remove("hide-screen");
+      // document.getElementById("pause-screen").classList.add("show-screen");
       
       frameLimiter = 0;
       pauseGame();
