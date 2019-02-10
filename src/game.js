@@ -217,8 +217,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    else if (event.which === 79) {
-      // o key
+    else if (event.which === 81) {
+      // q key
       console.log("game start");
 
       // console.log(gameFreeze);
@@ -234,8 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
       playGame();
     }
 
-    else if (event.which === 80) {
-      // p key
+    else if (event.which === 69) {
+      // e key
       console.log("game paused");
       
       document.getElementById("pause-screen").classList.remove("hide-screen");
