@@ -219,6 +219,12 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition-duration: 0.4s;
+}
+
+#play-game:hover {
+  color: var(--leafGreen);
 }
 
 #game-paused {
@@ -243,6 +249,11 @@ h1 {
 
 #game-paused span:nth-child(2) {
   font-size: 12px;
+  transition-duration: 0.4s;
+}
+
+#game-paused:hover span:nth-child(2){
+  color: var(--leafGreen);
 }
 
 .hide-screen {
