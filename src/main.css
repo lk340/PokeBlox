@@ -180,6 +180,74 @@ h1 {
   /* border: red solid 2px; */
 }
 
+.play-screen, .pause-screen {
+  position: absolute;
+  height: 600px;
+  width: 300px;
+  z-index: 8;
+  background-color: rgba(0, 0, 0, 0.507);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  /* border: red solid 1px; */
+}
+
+.play-screen {
+  /* display: none; */
+}
+
+.pause-screen {
+  display: none;
+}
+
+#play-game {
+  text-align: center;
+  position: absolute;
+  width: 400px;
+  height: 100px;
+  color: white;
+  background-color: var(--panchamPurple);
+  border-top: white solid 9px;
+  border-bottom: white solid 9px;
+  font-size: 3rem;
+  font-weight: bold;
+  transform: rotate(-20deg);
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-paused {
+  text-align: center;
+  position: absolute;
+  width: 400px;
+  height: 100px;
+  color: white;
+  background-color: var(--panchamPurple);
+  border-top: white solid 9px;
+  border-bottom: white solid 9px;
+  font-size: 3rem;
+  font-weight: bold;
+  transform: rotate(-20deg);
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide-screen {
+  display: none;
+}
+
+.show-screen {
+  display: flex;
+}
+
 #tetronimo-I {
   display: flex;
   position: absolute;

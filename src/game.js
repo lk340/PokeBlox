@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ START GAME START ============================================================
   document.getElementById("start-game").addEventListener("click", () => {
+    document.getElementById("play-screen").classList.add("hide-screen");
+    document.getElementById("pause-screen").classList.remove("show-screen");
+    document.getElementById("pause-screen").classList.add("hide-screen");
     console.log("game start");
     frameLimiter += 1;
     playGame();
@@ -44,12 +47,29 @@ document.addEventListener("DOMContentLoaded", () => {
         // possible work-around: instantiate pieces classes inside of the board itself, rather than here
           // so that we only need to instantiate the board once until the game is over
   });
+
+  document.getElementById("play-game").addEventListener("click", () => {
+    document.getElementById("play-screen").classList.add("hide-screen");
+    
+    console.log("game start");
+    frameLimiter += 1;
+    playGame();
+  });
   // ============================================================ START GAME END ============================================================
 
 
 
   // ============================================================ PAUSE GAME START ============================================================
   document.getElementById("pause-game").addEventListener("click", () => {
+    document.getElementById("pause-screen").classList.add("show-screen");
+    console.log("game paused");
+    frameLimiter = 0;
+    pauseGame();
+  });
+
+  document.getElementById("game-paused").addEventListener("click", () => {
+    document.getElementById("pause-screen").classList.add("show-screen");
+    
     console.log("game paused");
     frameLimiter = 0;
     pauseGame();
