@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Generate random Tetris piece
   const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
   const currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+  const nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   
   // Position of Pieces
   document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";

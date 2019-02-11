@@ -7,7 +7,7 @@
   --lightGray: rgb(206, 206, 206);
   --panchamPurple: #626473;
   --panchamBeige: rgb(211, 217, 169);
-  --scarletRed: rgb(241, 131, 131);
+  --fireRed: rgb(241, 131, 131);
   --skyBlue: rgb(80, 156, 255);
   --leafGreen: rgb(60, 170, 83);
 
@@ -103,7 +103,7 @@ h1 {
 }
 
 #detail-modal #about-modal-spacer {
-  background-color: var(--scarletRed);
+  background-color: var(--fireRed);
   color: white;
   font-size: 3rem;
   padding: 8px 23px 8px 26px;
@@ -115,7 +115,7 @@ h1 {
 }
 
 #detail-modal #about-modal-close {
-  background-color: var(--scarletRed);
+  background-color: var(--fireRed);
   color: white;
   font-size: 3rem;
   padding: 8px 23px 8px 26px;
@@ -298,14 +298,14 @@ h1 {
   z-index: 7;
 }
 
-#tetronimo-T > div,
+/* #tetronimo-T > div,
 #tetronimo-S > div,
 #tetronimo-Z > div,
 #tetronimo-J > div,
 #tetronimo-L > div {
   width: 30px;
   height: 30px;
-}
+} */
 
 #tetronimo-T div:nth-child(2),
 #tetronimo-T div:nth-child(4),
@@ -313,6 +313,8 @@ h1 {
 #tetronimo-T div:nth-child(6) {
   background-color: var(--purple);
   border: white solid 2px;
+  width: 30px;
+  height: 30px;
 }
 
 #tetronimo-S {
@@ -328,6 +330,8 @@ h1 {
 #tetronimo-S div:nth-child(5) {
   background-color: var(--green);
   border: white solid 2px;
+  width: 30px;
+  height: 30px;
 }
 
 #tetronimo-Z {
@@ -343,6 +347,8 @@ h1 {
 #tetronimo-Z div:nth-child(6) {
   background-color: var(--red);
   border: white solid 2px;
+  width: 30px;
+  height: 30px;
 }
 
 #tetronimo-J {
@@ -358,6 +364,8 @@ h1 {
 #tetronimo-J div:nth-child(6) {
   background-color: var(--blue);
   border: white solid 2px;
+  width: 30px;
+  height: 30px;
 }
 
 #tetronimo-L {
@@ -373,6 +381,8 @@ h1 {
 #tetronimo-L div:nth-child(6) {
   background-color: var(--orange);
   border: white solid 2px;
+  width: 30px;
+  height: 30px;
 }
 
 .left-shift {
