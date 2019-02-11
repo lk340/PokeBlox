@@ -102,10 +102,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Generate random Tetris piece
   const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
-  const currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
-  const nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+  let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+
+  let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+
+  // Logic for "Next Piece" box in right sidebar
+  document.getElementById(`tetronimo-${nextPiece}-next`).classList.remove("hide-tetronimo");
+  document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
   
-  // Position of Pieces
+  // Initial position of Pieces
   document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
   document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
   document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = "0px";
@@ -193,12 +198,38 @@ document.addEventListener("DOMContentLoaded", () => {
   
       else if (event.which === 32 && event.target === document.body) {
         // spacebar key
+        console.log("spacebar");
+        
         event.preventDefault();
         if (currentPiece === "I") {
           document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "570px";
+          // document.getElementById(`tetronimo-${currentPiece}`).style.bottom = "0px";
+
+          currentPiece = nextPiece;
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = "0px";
+
+          nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+          document.getElementById(`tetronimo-${currentPiece}-next`).classList.remove("show-tetronimo");
+          document.getElementById(`tetronimo-${currentPiece}-next`).classList.add("hide-tetronimo");
+          document.getElementById(`tetronimo-${nextPiece}-next`).classList.remove("hide-tetronimo");
+          document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
         }
         else {
           document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "540px";
+          // document.getElementById(`tetronimo-${currentPiece}`).style.bottom = "0px";
+
+          currentPiece = nextPiece;
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginTop = "0px";
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginLeft = "90px";
+          document.getElementById(`tetronimo-${currentPiece}`).style.marginRight = "0px";
+
+          nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+          document.getElementById(`tetronimo-${currentPiece}-next`).classList.remove("show-tetronimo");
+          document.getElementById(`tetronimo-${currentPiece}-next`).classList.add("hide-tetronimo");
+          document.getElementById(`tetronimo-${nextPiece}-next`).classList.remove("hide-tetronimo");
+          document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
         }
       }
   
