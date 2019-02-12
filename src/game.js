@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let x = 0; x < gameBoard[y].length; x++) {
         // last row logic
         if (y === gameBoard.length - 1) {
-          
+          c
         }
 
         // piece collision logic
