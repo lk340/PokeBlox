@@ -446,6 +446,63 @@ h1 {
 }
 /* ============================= BOARD END ============================= */
 
+/* ============================= PIECE-BOARD START ============================= */
+#piece-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  position: absolute;
+  z-index: 7;
+
+  /* border: red solid 1px; */
+}
+
+.piece-board-I,
+.piece-board-O,
+.piece-board-T,
+.piece-board-S,
+.piece-board-Z,
+.piece-board-J,
+.piece-board-L {
+  width: 30px;
+  height: 30px;
+  border: white solid 2px;
+}
+
+.piece-board-I {
+  background-color: var(--lightBlue);
+}
+
+.piece-board-O {
+  background-color: var(--yellow);
+}
+
+.piece-board-T {
+  background-color: var(--purple);
+}
+
+.piece-board-S {
+  background-color: var(--green);
+}
+
+.piece-board-Z {
+  background-color: var(--red);
+}
+
+.piece-board-J {
+  background-color: var(--blue);
+}
+
+.piece-board-L {
+  background-color: var(--orange);
+}
+
+.piece-board-empty {
+  width: 30px;
+  height: 30px;
+  border: rgba(255, 255, 255, 0) solid 2px;
+}
+/* ============================= PIECE-BOARD END ============================= */
+
 /* ============================= SOCIAL START ============================= */
 #social {
   display: flex;

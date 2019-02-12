@@ -1,37 +1,57 @@
-export default class Piece {
-  constructor(type) {
-    this.type = type;
+export default (tetronimo) => {
+  if (tetronimo === "I") {
+    return [
+      [1, 1, 1, 1],
+    ];
   }
 
-  piece() {
-    if (this.type === "I") {
-      
-    }
-
-    else if (this.type === "O") {
-
-    }
-
-    else if (this.type === "T") {
-      
-    }
-
-    else if (this.type === "S") {
-      
-    }
-
-    else if (this.type === "Z") {
-      
-    }
-
-    else if (this.type === "J") {
-      
-    }
-
-    else if (this.type === "L") {
-      
-    }
+  else if (tetronimo === "O") {
+    return [
+      [1, 1],
+      [1, 1],
+    ];
   }
+
+  else if (tetronimo === "T") {
+    return [
+      [0, 1, 0],
+      [1, 1, 1],
+    ];
+  }
+
+  else if (tetronimo === "S") {
+    return [
+      [0, 1, 1],
+      [1, 1, 0],
+    ];
+  }
+
+  else if (tetronimo === "Z") {
+    return [
+      [1, 1, 0],
+      [0, 1, 1],
+    ];
+  }
+
+  else if (tetronimo === "J") {
+    return [
+      [1, 0, 0],
+      [1, 1, 1],
+    ];
+  }
+
+  else if (tetronimo === "L") {
+    return [
+      [0, 0, 1],
+      [1, 1, 1],
+    ];
+  }
+};
+
+// export default class Piece {
+  // constructor(type) {
+  //   this.type = type;
+  // }
 
   // piece() {
   //   if (this.type === "I") {
@@ -132,4 +152,4 @@ export default class Piece {
   //     document.getElementById("185").classList.add("L");
   //   }
   // }
-}
+// }
