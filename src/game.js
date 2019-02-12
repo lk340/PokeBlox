@@ -109,6 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   function boardLogic(piece) {
+    // Renders pieces onto the board.
+    // Needs to move piece down every second (frame rate logic).
+    
     // Loops through entire gameBoard array
     for(let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
@@ -124,16 +127,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  boardLogic();
-
   // Logic for pieces hitting the ground
-  function hitLogic() {
+  function collisionLogic() {
     for(let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
-        
+        // last row logic
+        if (y === gameBoard.length - 1) {
+          
+        }
+
+        // piece collision logic
+
       }
     }
   }
+
+  function generateNewPiece() {
+    // Handles logic regarding the creation of a new piece once the conditions have been met in collisionLogic.
+  }
+
+  boardLogic();
 
   document.addEventListener("keydown", event => {
     // ================ GAMEPLAY CONTROLS START ================
