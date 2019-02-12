@@ -85,42 +85,55 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById(`tetronimo-${nextPiece}-next`).classList.remove("hide-tetronimo");
   document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
   
+  const gameBoard = [
+    [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
+
   function boardLogic(piece) {
-    const gameBoard = [
-      [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ];
-  
+    // Loops through entire gameBoard array
     for(let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
         if(gameBoard[y][x] === 1) {
-          document.getElementById("piece-board").innerHTML += `<div class='piece-board-${piece}'></div>`;
-        } else if (gameBoard[y][x] === 0) {
+          // document.getElementById("piece-board").innerHTML += `<div class='piece-board-${piece}'></div>`;
+          document.getElementById("piece-board").innerHTML += `<div class='piece-board-I'></div>`;
+        }
+        
+        else if (gameBoard[y][x] === 0) {
           document.getElementById("piece-board").innerHTML +="<div class='piece-board-empty'></div>";
         }
       }
     }
   }
-  
-  boardLogic(currentPiece);
+
+  boardLogic();
+
+  // Logic for pieces hitting the ground
+  function hitLogic() {
+    for(let y = 0; y < gameBoard.length; y++) {
+      for (let x = 0; x < gameBoard[y].length; x++) {
+        
+      }
+    }
+  }
 
   document.addEventListener("keydown", event => {
     // ================ GAMEPLAY CONTROLS START ================
