@@ -129,6 +129,7 @@ h1 {
 
 #detail-modal #about-modal-close:hover {
   transform: translateX(0);
+  padding: 40px 23px 40px 26px;
 }
 
 /* ============================= DETAIL MODAL END ============================= */
