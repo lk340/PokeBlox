@@ -141,11 +141,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
+
+    gameBoard[0] = ["E", "E", "E", currentPiece.toLowerCase(), currentPiece.toLowerCase(), "E", "E", "E", "E", "E"];
+    gameBoard[1] = ["E", "E", "E", currentPiece.toLowerCase(), currentPiece.toLowerCase(), "E", "E", "E", "E", "E"];
   }
 
   // Logic for pieces hitting the ground
-  let canMove = true;
   function collisionLogic() {
+    let canMove = true;
     for(let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
         // last row logic
@@ -177,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.setInterval(() => {
       collisionLogic();
       boardLogic(currentPiece);
-      console.log(gameBoard);
     }, 1200);
   }
 
