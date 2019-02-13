@@ -118,16 +118,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function boardLogic(curr_Piece) {
     // Renders pieces onto the board.
     console.log(curr_Piece);
+    // console.log(curr_piece.toLowerCase());
     // Loops through entire gameBoard array
     document.getElementById("piece-board").innerHTML = "";
     for (let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
         // if the grid square we're looking at is our moveable piece
-        if(gameBoard[y][x] === curr_Piece.toLowerCase() || gameBoard[y][x] === curr_Piece) {
-          document.getElementById("piece-board").innerHTML += `<div class='piece-board-${curr_Piece}'></div>`;
+        // if(gameBoard[y][x] === curr_Piece.toLowerCase() || gameBoard[y][x] === curr_Piece) {
+        //   document.getElementById("piece-board").innerHTML += `<div class='piece-board-${curr_Piece}'></div>`;
+        // }
+        
+        if (tetronimoes.includes(gameBoard[y][x]) || moveablePieces.includes(gameBoard[y][x])) {
+          document.getElementById("piece-board").innerHTML += `<div class='piece-board-${gameBoard[y][x].toUpperCase()}'></div>`;
         }
         
-        // if the grid square we're looking at is an empty space
+        // // if the grid square we're looking at is an empty space
         else if (gameBoard[y][x] === "E") {
           document.getElementById("piece-board").innerHTML +="<div class='piece-board-empty'></div>";
         }
@@ -145,12 +150,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    gameBoard[0] = ["E", "E", "E", piece, piece, piece, piece, "E", "E", "E"];
-    gameBoard[1] = ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"];
+    // gameBoard[0] = ["E", "E", "E", piece, piece, piece, piece, "E", "E", "E"];
+    // gameBoard[1] = ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"];
 
     currentPiece = nextPiece;
     piece = currentPiece.toLowerCase();
     nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+    
+    console.log(`Current Piece: ${currentPiece}`);
+    console.log(`Next Piece: ${nextPiece}`);
 
     if (currentPiece === "I") {
       gameBoard[0] = ["E", "E", "E", piece, piece, piece, piece, "E", "E", "E"];
