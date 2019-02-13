@@ -86,11 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById(`tetronimo-${nextPiece}-next`).classList.remove("hide-tetronimo");
   document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
   
+  piece = currentPiece.toLowerCase();
   const gameBoard = [
     // E = empty space
     // lower-case letter = moveable piece
     // capital letter = non-moveable piece
-    ["E", "E", "E", currentPiece.toLowerCase(), currentPiece.toLowerCase(), currentPiece.toLowerCase(), currentPiece.toLowerCase(), "E", "E", "E"],
+    ["E", "E", "E", piece, piece, piece, piece, "E", "E", "E"],
     ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
     ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
     ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
@@ -109,20 +110,21 @@ document.addEventListener("DOMContentLoaded", () => {
     ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
     ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
     ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
-    ["E", "E", "E", currentPiece, currentPiece, currentPiece, currentPiece, "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
   ];
 
-  function boardLogic(piece) {
+  window.gameBoard = gameBoard;
+
+  function boardLogic(curr_Piece) {
     // Renders pieces onto the board.
-    // Needs to move piece down every second (frame rate logic).
-    console.log(piece);
+    console.log(curr_Piece);
     // Loops through entire gameBoard array
     document.getElementById("piece-board").innerHTML = "";
-    for(let y = 0; y < gameBoard.length; y++) {
+    for (let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
         // if the grid square we're looking at is our moveable piece
-        if(gameBoard[y][x] === piece.toLowerCase() || gameBoard[y][x] === piece) {
-          document.getElementById("piece-board").innerHTML += `<div class='piece-board-${piece}'></div>`;
+        if(gameBoard[y][x] === curr_Piece.toLowerCase() || gameBoard[y][x] === curr_Piece) {
+          document.getElementById("piece-board").innerHTML += `<div class='piece-board-${curr_Piece}'></div>`;
         }
         
         // if the grid square we're looking at is an empty space
@@ -134,7 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function stopPiece() {
-    for(let y = 0; y < gameBoard.length; y++) {
+    // Stops piece from moving when the collision condition has been met.
+    for (let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
         if (moveablePieces.includes(gameBoard[y][x])) {
           gameBoard[y][x] = gameBoard[y][x].toUpperCase();
@@ -142,30 +145,75 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    gameBoard[0] = ["E", "E", "E", currentPiece.toLowerCase(), currentPiece.toLowerCase(), "E", "E", "E", "E", "E"];
-    gameBoard[1] = ["E", "E", "E", currentPiece.toLowerCase(), currentPiece.toLowerCase(), "E", "E", "E", "E", "E"];
+    gameBoard[0] = ["E", "E", "E", piece, piece, piece, piece, "E", "E", "E"];
+    gameBoard[1] = ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"];
+
+    currentPiece = nextPiece;
+    piece = currentPiece.toLowerCase();
+    nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+
+    if (currentPiece === "I") {
+      gameBoard[0] = ["E", "E", "E", piece, piece, piece, piece, "E", "E", "E"];
+      gameBoard[1] = ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"];
+    }
+
+    else if (currentPiece === "O") {
+      gameBoard[0] = ["E", "E", "E", piece, piece, "E", "E", "E", "E", "E"];
+      gameBoard[1] = ["E", "E", "E", piece, piece, "E", "E", "E", "E", "E"];
+    }
+
+    else if (currentPiece === "T") {
+      gameBoard[0] = ["E", "E", "E", "E", piece, "E", "E", "E", "E", "E"];
+      gameBoard[1] = ["E", "E", "E", piece, piece, piece, "E", "E", "E", "E"];
+    }
+
+    else if (currentPiece === "S") {
+      gameBoard[0] = ["E", "E", "E", "E", piece, piece, "E", "E", "E", "E"];
+      gameBoard[1] = ["E", "E", "E", piece, piece, "E", "E", "E", "E", "E"];
+    }
+
+    else if (currentPiece === "Z") {
+      gameBoard[0] = ["E", "E", "E", piece, piece, "E", "E", "E", "E", "E"];
+      gameBoard[1] = ["E", "E", "E", "E", piece, piece, "E", "E", "E", "E"];
+    }
+
+    else if (currentPiece === "J") {
+      gameBoard[0] = ["E", "E", "E", piece, "E", "E", "E", "E", "E", "E"];
+      gameBoard[1] = ["E", "E", "E", piece, piece, piece, "E", "E", "E", "E"];
+    }
+
+    else if (currentPiece === "L") {
+      gameBoard[0] = ["E", "E", "E", "E", "E", piece, "E", "E", "E", "E"];
+      gameBoard[1] = ["E", "E", "E", piece, piece, piece, "E", "E", "E", "E"];
+    }
+
+
+    document.getElementById(`tetronimo-${currentPiece}-next`).classList.remove("show-tetronimo");
+    document.getElementById(`tetronimo-${currentPiece}-next`).classList.add("hide-tetronimo");
+    document.getElementById(`tetronimo-${nextPiece}-next`).classList.remove("hide-tetronimo");
+    document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
   }
 
   // Logic for pieces hitting the ground
   function collisionLogic() {
-    let canMove = true;
-    for(let y = 0; y < gameBoard.length; y++) {
+    let moveable = true;
+    for (let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
         // last row logic
         if (gameBoard[y][x] === currentPiece.toLowerCase()) {
           if (y === gameBoard.length - 1 || tetronimoes.includes(gameBoard[y + 1][x])) {
-            canMove = false;
+            moveable = false;
             stopPiece();
           }
         }
       }
     }
 
-    if (canMove) {
+    if (moveable) {
       // if there IS a collision...
         // 1. Stop the piece from moving
         // 2. Bring out the next piece
-      for(let y = gameBoard.length - 1; y >= 0; y--) {
+      for (let y = gameBoard.length - 1; y >= 0; y--) {
         for (let x = 0; x < gameBoard[y].length; x++) {
           if (moveablePieces.includes(gameBoard[y][x])) {
             gameBoard[y + 1][x] = gameBoard[y][x];
