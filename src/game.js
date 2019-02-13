@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================ GAME CONTROLS START ============================================================
   // Generate random Tetris piece
   const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
+  const moveablePieces = ["i", "o", "t", "s", "z", "j", "l"];
   let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
 
@@ -86,67 +87,108 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
   
   const gameBoard = [
-    [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    // E = empty space
+    // lower-case letter = moveable piece
+    // capital letter = non-moveable piece
+    ["E", "E", "E", currentPiece.toLowerCase(), currentPiece.toLowerCase(), currentPiece.toLowerCase(), currentPiece.toLowerCase(), "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+    ["E", "E", "E", currentPiece, currentPiece, currentPiece, currentPiece, "E", "E", "E"],
   ];
 
   function boardLogic(piece) {
     // Renders pieces onto the board.
     // Needs to move piece down every second (frame rate logic).
-    
+    console.log(piece);
     // Loops through entire gameBoard array
+    document.getElementById("piece-board").innerHTML = "";
     for(let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
-        if(gameBoard[y][x] === 1) {
-          // document.getElementById("piece-board").innerHTML += `<div class='piece-board-${piece}'></div>`;
-          document.getElementById("piece-board").innerHTML += `<div class='piece-board-I'></div>`;
+        // if the grid square we're looking at is our moveable piece
+        if(gameBoard[y][x] === piece.toLowerCase() || gameBoard[y][x] === piece) {
+          document.getElementById("piece-board").innerHTML += `<div class='piece-board-${piece}'></div>`;
         }
         
-        else if (gameBoard[y][x] === 0) {
+        // if the grid square we're looking at is an empty space
+        else if (gameBoard[y][x] === "E") {
           document.getElementById("piece-board").innerHTML +="<div class='piece-board-empty'></div>";
         }
       }
     }
   }
 
+  function stopPiece() {
+    for(let y = 0; y < gameBoard.length; y++) {
+      for (let x = 0; x < gameBoard[y].length; x++) {
+        if (moveablePieces.includes(gameBoard[y][x])) {
+          gameBoard[y][x] = gameBoard[y][x].toUpperCase();
+        }
+      }
+    }
+  }
+
   // Logic for pieces hitting the ground
+  let canMove = true;
   function collisionLogic() {
     for(let y = 0; y < gameBoard.length; y++) {
       for (let x = 0; x < gameBoard[y].length; x++) {
         // last row logic
-        if (y === gameBoard.length - 1) {
-          c
+        if (gameBoard[y][x] === currentPiece.toLowerCase()) {
+          if (y === gameBoard.length - 1 || tetronimoes.includes(gameBoard[y + 1][x])) {
+            canMove = false;
+            stopPiece();
+          }
         }
-
-        // piece collision logic
-
       }
     }
+
+    if (canMove) {
+      // if there IS a collision...
+        // 1. Stop the piece from moving
+        // 2. Bring out the next piece
+      for(let y = gameBoard.length - 1; y >= 0; y--) {
+        for (let x = 0; x < gameBoard[y].length; x++) {
+          if (moveablePieces.includes(gameBoard[y][x])) {
+            gameBoard[y + 1][x] = gameBoard[y][x];
+            gameBoard[y][x] = "E";
+          }
+        }
+      }
+    }
+  }
+
+  function pieceFrameRate() {
+    window.setInterval(() => {
+      collisionLogic();
+      boardLogic(currentPiece);
+      console.log(gameBoard);
+    }, 1200);
   }
 
   function generateNewPiece() {
     // Handles logic regarding the creation of a new piece once the conditions have been met in collisionLogic.
   }
 
-  boardLogic();
+  // First, render the board
+  // Then, start incrementally moving the pieces down
+  boardLogic(currentPiece);
+  pieceFrameRate();
 
   document.addEventListener("keydown", event => {
     // ================ GAMEPLAY CONTROLS START ================
