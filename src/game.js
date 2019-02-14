@@ -76,14 +76,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ BOARD GENERATION START ============================================================
   const board = [];
-
-  function generateBoard() {
+  
+  function generateEmptyBoard() {
     for ( let y = 0; y < 20; y++ ) {
+      board[y] = [ ];
       for ( let x = 0; x < 10; x++ ) {
-        
+        board[y][x] = "E";
       }
     }
   }
+
+  // PIECE ARRAYS START
+  const I = [
+    [
+      []
+    ],
+    [
+      
+    ],
+    [
+      
+    ],
+    [
+      
+    ],
+  ];
+  // PIECE ARRAYS END
+
+  // CANVAS MANIPULATION START
+  const canvasBoard = document.getElementById("tetris-canvas");
+  const context = canvasBoard.getContext("2d");
+  // CANVAS MANIPULATION END
+
+  function generateGridBlock(x, y, color) {
+    context.fillRect(x, y, 30, 30);
+    context.fillStyle = color;
+    // context.strokeStyle = "white";
+    // context.strokeRect(x, y, 30, 30);
+  }
+
+  generateEmptyBoard();
+  console.log(board);
+  generateGridBlock(30, 0, "red");
   // ============================================================ BOARD GENERATION END ============================================================
 
   // ============================================================ GAME CONTROLS START ============================================================
