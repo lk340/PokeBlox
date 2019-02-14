@@ -266,9 +266,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (x < 10 && y < 20) {
       x_pos = x * 30;
       y_pos = y * 30;
-      context.fillRect(x_pos, y_pos, 30, 30);
-      // debugger;
       context.fillStyle = blockColor;
+      context.fillRect(x_pos, y_pos, 30, 30);
       context.strokeStyle = ash;
       context.strokeRect(x_pos, y_pos, 30, 30);
     }
@@ -277,7 +276,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  
   function canvasDrawBoard() {
     for ( let y = 0; y < 20; y++ ) {
       for ( let x = 0; x < 10; x++ ) {
@@ -298,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     createPiece() {
-      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
+      for ( let y = 0; y < this.currentPiece.length; y++ ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
             generateGridBlock(this.x + x, this.y + y, this.createColor);
@@ -308,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     deletePiece() {
-      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
+      for ( let y = 0; y < this.currentPiece.length; y++ ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
             generateGridBlock(this.x + x, this.y + y, this.deleteColor);
