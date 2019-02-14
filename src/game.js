@@ -287,7 +287,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Class function for tetronimo pieces
   class CurrentPiece {
     constructor(currPiece, color1, color2) {
-      this.currentPiece = currPiece[0];
+      this.currPiece = currPiece;
+      this.currentPieceIndex = 0;
+      this.currentPiece = currPiece[this.currentPieceIndex];
       this.currentPieceType = currPiece.last();
       this.createColor = color1;
       this.deleteColor = color2;
@@ -315,9 +317,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // detectCollision() {
+    detectCollision() {
 
-    // }
+    }
 
     moveLeft(x, y, currentPiece) {
       this.deletePiece();
@@ -390,21 +392,37 @@ document.addEventListener("DOMContentLoaded", () => {
       this.deletePiece();
 
       if (this.currentPieceType === "I") {
-        if (this.y - 1 >= -1) {
-          this.y -= 1;
+        if ( this.currentPieceIndex === 1 ) {
+          this.currentPieceIndex = 0;
+          this.currentPiece = this.currPiece[this.currentPieceIndex];
         }
+        else {
+          this.currentPieceIndex += 1;
+          this.currentPiece = this.currPiece[this.currentPieceIndex];
+        }
+        // if (this.y - 1 >= -1) {
+        //   this.y -= 1;
+        // }
       }
 
-      else if (this.currentPieceType === "O") {
-        if (this.y - 1 > 1) {
-          this.y -= 1;
-        }
-      }
+      // else if (this.currentPieceType === "O") {
+        // if (this.y - 1 > 1) {
+        //   this.y -= 1;
+        // }
+      // }
 
-      else {
-        if (this.y - 1 >= 0) {
-          this.y -= 1;
+      else if (this.currentPieceType !== "O") {
+        if ( this.currentPieceIndex === 3 ) {
+          this.currentPieceIndex = 0;
+          this.currentPiece = this.currPiece[this.currentPieceIndex];
         }
+        else {
+          this.currentPieceIndex += 1;
+          this.currentPiece = this.currPiece[this.currentPieceIndex];
+        }
+        // if (this.y - 1 >= 0) {
+        //   this.y -= 1;
+        // }
       }
 
       this.createPiece();
