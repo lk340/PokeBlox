@@ -1,3 +1,7 @@
+Array.prototype.last = function() {
+  return this[this.length - 1];
+};
+
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {  
   // ============================================================ DETAILS MODAL START ============================================================
@@ -75,19 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================ CHANGE MUSIC END ============================================================
 
   // ============================================================ BOARD GENERATION START ============================================================
-  const board = [];
-  
-  function generateEmptyBoard() {
-    for ( let y = 0; y < 20; y++ ) {
-      board[y] = [ ];
-      for ( let x = 0; x < 10; x++ ) {
-        board[y][x] = "E";
-      }
-    }
-  }
-
-  // PIECE ARRAYS START
-  const I = [
+   // PIECE ARRAYS START
+   const I = [
     [
       [0, 0, 0, 0],
       [1, 1, 1, 1],
@@ -100,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [0, 1, 0, 0],
       [0, 1, 0, 0],
     ],
+    "I",
   ];
 
   const O = [
@@ -109,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [0, 1, 1, 0],
       [0, 0, 0, 0],
     ],
+    "O",
   ];
   
   const T = [
@@ -132,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [1, 1, 0],
       [0, 1, 0],
     ],
+    "T",
   ];
   
   const S = [
@@ -155,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [1, 1, 0],
       [0, 1, 0],
     ],
+    "S",
   ];
   
   const Z = [
@@ -178,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [1, 1, 0],
       [1, 0, 0],
     ],
+    "Z",
   ];
   
   const J = [
@@ -201,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
       [0, 1, 0],
       [1, 1, 0],
     ],
+    "J",
   ];
   
   const L = [
@@ -224,8 +223,19 @@ document.addEventListener("DOMContentLoaded", () => {
       [0, 1, 0],
       [0, 1, 0],
     ],
+    "L",
   ];
   // PIECE ARRAYS END
+  
+  const board = [];
+  function generateEmptyBoard() {
+    for ( let y = 0; y < 20; y++ ) {
+      board[y] = [ ];
+      for ( let x = 0; x < 10; x++ ) {
+        board[y][x] = "rgb(54, 54, 54)";
+      }
+    }
+  } 
 
   // CANVAS MANIPULATION START
   const canvasBoard = document.getElementById("tetris-canvas");
@@ -233,25 +243,42 @@ document.addEventListener("DOMContentLoaded", () => {
   // CANVAS MANIPULATION END
 
   function generateGridBlock(x, y, color) {
-    context.fillRect(x, y, 30, 30);
-    context.fillStyle = color;
-    // context.strokeStyle = "white";
-    // context.strokeRect(x, y, 30, 30);
+    if (x < 10 && y < 20) {
+      x_pos = x * 30;
+      y_pos = y * 30;
+      context.fillRect(x_pos, y_pos, 30, 30);
+      context.fillStyle = color;
+      context.strokeStyle = "rgb(92, 92, 92)";
+      context.strokeRect(x_pos, y_pos, 30, 30);
+    }
+    else {
+      alert("Out of bounds!");
+    }
+  }
+
+  function canvasDrawBoard() {
+    for ( let y = 0; y < 20; y++ ) {
+      for ( let x = 0; x < 10; x++ ) {
+        generateGridBlock(x, y, board[y][x]);
+      }
+    }
   }
 
   generateEmptyBoard();
   console.log(board);
-  generateGridBlock(30, 0, "red");
+  generateGridBlock(4, 19, "red");
+  canvasDrawBoard();
   // ============================================================ BOARD GENERATION END ============================================================
 
   // ============================================================ GAME CONTROLS START ============================================================
   // Generate random Tetris piece
-  const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
+  // const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
+  const tetronimoes = [I, O, T, S, Z, J, L];
   let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
 
-  document.getElementById(`tetronimo-${nextPiece}-next`).classList.remove("hide-tetronimo");
-  document.getElementById(`tetronimo-${nextPiece}-next`).classList.add("show-tetronimo");
+  document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+  document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
   
   // document.getElementById(`tetronimo-${currentPiece}-next`).classList.remove("show-tetronimo");
   // document.getElementById(`tetronimo-${currentPiece}-next`).classList.add("hide-tetronimo");
