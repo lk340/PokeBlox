@@ -411,7 +411,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     frameRate() {
-
+      setInterval(() => {
+        this.moveDown();
+      }, 1200);
     }
   }
   
@@ -426,6 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // generateGridBlock(4, 3, oColor);
   const piece = new CurrentPiece(currentPiece, iColor, charcoal);
   piece.createPiece();
+  piece.frameRate();
   // ============================================================ BOARD GENERATION END ============================================================
 
   // ============================================================ GAME CONTROLS START ============================================================
