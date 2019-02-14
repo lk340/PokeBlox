@@ -103,6 +103,10 @@ document.addEventListener("DOMContentLoaded", () => {
       [0, 1, 1, 0],
       [0, 0, 0, 0],
     ],
+    // [
+    //   [1, 1],
+    //   [1, 1],
+    // ],
     "O",
   ];
   
@@ -272,83 +276,153 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Class function for tetronimo pieces
-  class CurrentPiece {
-    constructor(currPiece, color) {
-      this.currentPiece = currPiece;
-      this.currentPieceIndex = 0;
-      this.currentPieceElement = this.currentPiece[this.currentPieceIndex];
-      this.color = color;
-      // this.x = 3;
-      // this.y = -2;
-      this.x = 3;
-      this.y = 6;
-    }
-    
-    drawPiece() {
-      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
-        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-          if ( this.currentPiece[y][x] === 1 ) {
-            generateGridBlock(this.x + x, this.y + y, this.color);
-          }
-        }
-      }
-    }
-
-    erasePiece() {
-      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
-        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-          if ( this.currentPiece[y][x] === 1 ) {
-            generateGridBlock(this.x + x, this.y + y, charcoal);
-          }
-        }
-      }
-    }
-
-    detectCollision() {
-
-    }
-
-    moveLeft(x, y, currentPiece) {
-      this.erasePiece();
-      this.x -= 1;
-      this.drawPiece();
-    }
-
-    moveRight(x, y, currentPiece) {
-      this.erasePiece();
-      this.x += 1;
-      this.drawPiece();
-    }
-
-    moveDown(x, y, currentPiece) {
-      this.erasePiece();
-      this.y += 1;
-      this.drawPiece();
-    }
-  }
-
-  const piece = new CurrentPiece(currentPiece, iColor);
+  
   function canvasDrawBoard() {
     for ( let y = 0; y < 20; y++ ) {
       for ( let x = 0; x < 10; x++ ) {
         generateGridBlock(x, y, board[y][x]);
-        piece.drawPiece();
       }
     }
   }
 
-  
+  // Class function for tetronimo pieces
+  class CurrentPiece {
+    constructor(currPiece, color1, color2) {
+      this.currentPiece = currPiece[0];
+      this.currentPieceType = currPiece.last();
+      this.createColor = color1;
+      this.deleteColor = color2;
+      this.x = 3;
+      this.y = 6;
+    }
+    
+    createPiece() {
+      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
+        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+          if ( this.currentPiece[y][x] === 1 ) {
+            generateGridBlock(this.x + x, this.y + y, this.createColor);
+          }
+        }
+      }
+    }
 
+    deletePiece() {
+      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
+        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+          if ( this.currentPiece[y][x] === 1 ) {
+            generateGridBlock(this.x + x, this.y + y, this.deleteColor);
+          }
+        }
+      }
+    }
+
+    // detectCollision() {
+
+    // }
+
+    moveLeft(x, y, currentPiece) {
+      this.deletePiece();
+      
+      if (this.currentPieceType === "O") {
+        if (this.x - 1 >= -1) {
+          this.x -= 1;
+        }
+      }
+
+      else {
+        if (this.x - 1 >= 0) {
+          this.x -= 1;
+        }
+      }
+
+      this.createPiece();
+    }
+
+    moveRight(x, y, currentPiece) {
+      this.deletePiece();
+
+      if (this.currentPieceType === "I") {
+        if (this.x + 1 < 7) {
+          this.x += 1;
+        }
+      }
+
+      else if (this.currentPieceType === "O") {
+        if (this.x + 1 < 8) {
+          this.x += 1;
+        }
+      }
+
+      else {
+        if (this.x + 1 < 8) {
+          this.x += 1;
+        }
+      }
+
+      this.createPiece();
+    }
+
+    moveDown(x, y, currentPiece) {
+      this.deletePiece();
+
+      if (this.currentPieceType === "I") {
+        if (this.y + 1 < 19) {
+          this.y += 1;
+        }
+      }
+      
+      else if (this.currentPieceType === "O") {
+        if (this.y + 1 < 18) {
+          this.y += 1;
+        }
+      }
+      
+      else {
+        if (this.y + 1 < 19) {
+          this.y += 1;
+        }
+      }
+      
+
+      this.createPiece();
+    }
+
+    reversePiece(x, y, currentPiece) {
+      this.deletePiece();
+
+      if (this.currentPieceType === "I") {
+        if (this.y - 1 >= -1) {
+          this.y -= 1;
+        }
+      }
+
+      else if (this.currentPieceType === "O") {
+        if (this.y - 1 > 1) {
+          this.y -= 1;
+        }
+      }
+
+      else {
+        if (this.y - 1 >= 0) {
+          this.y -= 1;
+        }
+      }
+
+      this.createPiece();
+    }
+  }
+  
   generateEmptyBoardArray();
   console.log(board);
   console.log(currentPiece);
   canvasDrawBoard();
   generateGridBlock(0, 0, oColor);
-  generateGridBlock(3, 2, oColor);
-  generateGridBlock(3, 3, oColor);
-  generateGridBlock(4, 2, oColor);
-  generateGridBlock(4, 3, oColor);
+  // generateGridBlock(3, 2, oColor);
+  // generateGridBlock(3, 3, oColor);
+  // generateGridBlock(4, 2, oColor);
+  // generateGridBlock(4, 3, oColor);
+  const piece = new CurrentPiece(currentPiece, iColor, charcoal);
+  piece.createPiece();
   // ============================================================ BOARD GENERATION END ============================================================
 
   // ============================================================ GAME CONTROLS START ============================================================
@@ -365,22 +439,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // ================ GAMEPLAY CONTROLS START ================
     if (event.which === 87) {
       // w key
-      reversePiece();
+      piece.reversePiece();
     }
 
     else if (event.which === 83) {
       // s key
-      moveDown();
+      piece.moveDown();
     }
 
     else if (event.which === 65) {
       // a key
-      moveLeft();
+      piece.moveLeft();
     }
 
     else if (event.which === 68) {
       // d key
-      moveRight();
+      piece.moveRight();
     }
 
     else if (event.which === 32 && event.target === document.body) {
