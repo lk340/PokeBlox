@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for ( let y = 0; y < 20; y++ ) {
       board[y] = [ ];
       for ( let x = 0; x < 10; x++ ) {
-        board[y][x] = charcoal;
+        board[y][x] = "E";
       }
     }
   } 
@@ -262,12 +262,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const context = canvasBoard.getContext("2d");
   // CANVAS MANIPULATION END
 
-  function generateGridBlock(x, y, color) {
+  function generateGridBlock(x, y, blockColor) {
     if (x < 10 && y < 20) {
       x_pos = x * 30;
       y_pos = y * 30;
       context.fillRect(x_pos, y_pos, 30, 30);
-      context.fillStyle = color;
+      // debugger;
+      context.fillStyle = blockColor;
       context.strokeStyle = ash;
       context.strokeRect(x_pos, y_pos, 30, 30);
     }
@@ -280,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function canvasDrawBoard() {
     for ( let y = 0; y < 20; y++ ) {
       for ( let x = 0; x < 10; x++ ) {
-        generateGridBlock(x, y, board[y][x]);
+        generateGridBlock(x, y, charcoal);
       }
     }
   }
@@ -410,13 +411,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       this.createPiece();
     }
+
+    frameRate() {
+
+    }
   }
   
   generateEmptyBoardArray();
   console.log(board);
   console.log(currentPiece);
   canvasDrawBoard();
-  generateGridBlock(0, 0, oColor);
+  // generateGridBlock(0, 0, oColor);
   // generateGridBlock(3, 2, oColor);
   // generateGridBlock(3, 3, oColor);
   // generateGridBlock(4, 2, oColor);
