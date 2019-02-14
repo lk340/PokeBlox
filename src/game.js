@@ -227,12 +227,28 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   // PIECE ARRAYS END
   
+  // Generate random Tetris piece
+    // const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
+  const tetronimoes = [I, O, T, S, Z, J, L];
+  let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+  let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+  
+  const charcoal = "rgb(54, 54, 54)";
+  const ash = "rgb(92, 92, 92)"; 
+  const iColor = "rgb(145, 145, 245)";
+  const oColor = "rgb(255, 255, 149)";
+  const tColor = "rgb(204, 129, 204)";
+  const sColor = "rgb(179, 221, 179)";
+  const zColor = "rgb(211, 123, 123)";
+  const jColor = "rgb(73, 73, 172)";
+  const lColor = "rgb(255, 205, 113)";
+  
   const board = [];
-  function generateEmptyBoard() {
+  function generateEmptyBoardArray() {
     for ( let y = 0; y < 20; y++ ) {
       board[y] = [ ];
       for ( let x = 0; x < 10; x++ ) {
-        board[y][x] = "rgb(54, 54, 54)";
+        board[y][x] = charcoal;
       }
     }
   } 
@@ -248,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
       y_pos = y * 30;
       context.fillRect(x_pos, y_pos, 30, 30);
       context.fillStyle = color;
-      context.strokeStyle = "rgb(92, 92, 92)";
+      context.strokeStyle = ash;
       context.strokeRect(x_pos, y_pos, 30, 30);
     }
     else {
@@ -256,26 +272,86 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Class function for tetronimo pieces
+  class CurrentPiece {
+    constructor(currPiece, color) {
+      this.currentPiece = currPiece;
+      this.currentPieceIndex = 0;
+      this.currentPieceElement = this.currentPiece[this.currentPieceIndex];
+      this.color = color;
+      // this.x = 3;
+      // this.y = -2;
+      this.x = 3;
+      this.y = 6;
+    }
+    
+    drawPiece() {
+      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
+        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+          if ( this.currentPiece[y][x] === 1 ) {
+            generateGridBlock(this.x + x, this.y + y, this.color);
+          }
+        }
+      }
+    }
+
+    erasePiece() {
+      for ( let y = 0; y < this.currentPiece.length - 1; y++ ) {
+        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+          if ( this.currentPiece[y][x] === 1 ) {
+            generateGridBlock(this.x + x, this.y + y, charcoal);
+          }
+        }
+      }
+    }
+
+    detectCollision() {
+
+    }
+
+    moveLeft(x, y, currentPiece) {
+      this.erasePiece();
+      this.x -= 1;
+      this.drawPiece();
+    }
+
+    moveRight(x, y, currentPiece) {
+      this.erasePiece();
+      this.x += 1;
+      this.drawPiece();
+    }
+
+    moveDown(x, y, currentPiece) {
+      this.erasePiece();
+      this.y += 1;
+      this.drawPiece();
+    }
+  }
+
+  const piece = new CurrentPiece(currentPiece, iColor);
   function canvasDrawBoard() {
     for ( let y = 0; y < 20; y++ ) {
       for ( let x = 0; x < 10; x++ ) {
         generateGridBlock(x, y, board[y][x]);
+        piece.drawPiece();
       }
     }
   }
 
-  generateEmptyBoard();
+  
+
+  generateEmptyBoardArray();
   console.log(board);
-  generateGridBlock(4, 19, "red");
+  console.log(currentPiece);
   canvasDrawBoard();
+  generateGridBlock(0, 0, oColor);
+  generateGridBlock(3, 2, oColor);
+  generateGridBlock(3, 3, oColor);
+  generateGridBlock(4, 2, oColor);
+  generateGridBlock(4, 3, oColor);
   // ============================================================ BOARD GENERATION END ============================================================
 
   // ============================================================ GAME CONTROLS START ============================================================
-  // Generate random Tetris piece
-  // const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
-  const tetronimoes = [I, O, T, S, Z, J, L];
-  let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
-  let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
 
   document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
   document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
