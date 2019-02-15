@@ -449,11 +449,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Class function for tetronimo pieces
   class CurrentPiece {
-    constructor(currPiece, color1, color2) {
-      this.currPiece = currPiece;
+    constructor(tetronimoes, color1, color2) {
+      this.tetronimoes = tetronimoes;
+      this.currPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+      this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
       this.currentPieceIndex = 0;
-      this.currentPiece = currPiece[this.currentPieceIndex];
-      this.currentPieceType = currPiece.last();
+      this.currentPiece = this.currPiece[this.currentPieceIndex];
+      this.currentPieceType = this.currPiece[this.currPiece.length - 1];
       this.createColor = color1;
       this.deleteColor = color2;
       this.x = 3;
@@ -586,6 +588,9 @@ document.addEventListener("DOMContentLoaded", () => {
             this.verticalCollision = false;
             this.y = 0;
             this.x = 3;
+            this.currPiece = this.nextPiece;
+            this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+            console.log(this.currPiece);
           }
         }, 800);
       }
@@ -603,7 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(currentPiece);
   canvasDrawBoard();
 
-  const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
+  const piece = new CurrentPiece(tetronimoes, pickColor(), charcoal);
   piece.createPiece();
   piece.frameRate();
 
@@ -613,8 +618,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ GAME CONTROLS START ============================================================
 
-  document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
-  document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+  // document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+  // document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+  document.getElementById(`tetronimo-${piece.nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+  document.getElementById(`tetronimo-${piece.nextPiece.last()}-next`).classList.add("show-tetronimo");
   
   // document.getElementById(`tetronimo-${currentPiece}-next`).classList.remove("show-tetronimo");
   // document.getElementById(`tetronimo-${currentPiece}-next`).classList.add("hide-tetronimo");
