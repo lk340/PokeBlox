@@ -347,27 +347,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const lColor = "rgb(255, 205, 113)";
 
   // COLOR-PICKING LOGIC START
-  let pieceColor;
-  if ( currentPiece === I ) {
-    pieceColor = iColor;
-  }
-  else if ( currentPiece === O ) {
-    pieceColor = oColor;
-  }
-  else if ( currentPiece === T ) {
-    pieceColor = tColor;
-  }
-  else if ( currentPiece === S ) {
-    pieceColor = sColor;
-  }
-  else if ( currentPiece === Z ) {
-    pieceColor = zColor;
-  }
-  else if ( currentPiece === J ) {
-    pieceColor = jColor;
-  }
-  else if ( currentPiece === L ) {
-    pieceColor = lColor;
+  function pickColor() {
+    // let pieceColor;
+    if ( currentPiece === I ) {
+      // pieceColor = iColor;
+      return iColor;
+    }
+    else if ( currentPiece === O ) {
+      // pieceColor = oColor;
+      return oColor;
+    }
+    else if ( currentPiece === T ) {
+      // pieceColor = tColor;
+      return tColor;
+    }
+    else if ( currentPiece === S ) {
+      // pieceColor = sColor;
+      return sColor;
+    }
+    else if ( currentPiece === Z ) {
+      // pieceColor = zColor;
+      return zColor;
+    }
+    else if ( currentPiece === J ) {
+      // pieceColor = jColor;
+      return jColor;
+    }
+    else if ( currentPiece === L ) {
+      // pieceColor = lColor;
+      return lColor;
+    }
   }
   // COLOR-PICKING LOGIC END
   
@@ -395,9 +404,6 @@ document.addEventListener("DOMContentLoaded", () => {
       context.strokeStyle = ash;
       context.strokeRect(x_pos, y_pos, 30, 30);
     }
-    // else {
-    //   alert("Out of bounds!");
-    // }
   }
 
   function canvasDrawBoard() {
@@ -462,14 +468,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    detectVerticalCollision() {
-      
-    }
-
-    detectHorizontalCollision() {
-
-    }
-
     moveLeft() {
       this.deletePiece();
       
@@ -483,19 +481,11 @@ document.addEventListener("DOMContentLoaded", () => {
     moveRight() {
       this.deletePiece();
 
-      // if ( this.x + 1 <= 9 && this.verticalCollision === false ) {
-      //   this.x += 1;
-      // }
+      const y = this.currentPiece.length - 1;
+      const lastIndex = this.currentPiece[y].length - 1;
 
-      // debugger;
-      
-      // for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-        const y = this.currentPiece.length - 1;
-        const lastIndex = this.currentPiece[y].length - 1;
-        // debugger;
-        if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
-          this.x += 1;
-        // }
+      if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
+        this.x += 1;
       }
 
       this.createPiece();
@@ -561,13 +551,14 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(currentPiece);
   canvasDrawBoard();
 
-  const piece = new CurrentPiece(currentPiece, pieceColor, charcoal);
+  const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
   piece.createPiece();
   piece.frameRate();
   if ( piece.verticalCollision === true ) {
     currentPiece = nextPiece;
     nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
-    const newPiece = new CurrentPiece(currentPiece, pieceColor, charcoal);
+    // const newPiece = new CurrentPiece(currentPiece, pieceColor, charcoal);
+    const newPiece = new CurrentPiece(currentPiece, pickColor(), charcoal);
     newPiece.createPiece();
     newPiece.frameRate();
   }
