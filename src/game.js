@@ -459,6 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.x = 3;
       this.y = 0;
       this.verticalCollision = false;
+      this.gameOver = false;
     }
     
     createPiece() {
@@ -580,11 +581,13 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           else {
+            // Logic for creating a new piece
             console.log("yes collision");
             this.verticalCollision = false;
             this.y = 0;
+            this.x = 3;
           }
-        }, 1200);
+        }, 800);
       }
     }
 
