@@ -288,25 +288,43 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   
   const L = [
+    // [
+    //   [0, 0, 0],
+    //   [0, 0, 1],
+    //   [1, 1, 1],
+    // ],
+    // [
+    //   [0, 1, 0],
+    //   [0, 1, 0],
+    //   [0, 1, 1],
+    // ],
+    // [
+    //   [0, 0, 0],
+    //   [1, 1, 1],
+    //   [1, 0, 0],
+    // ],
+    // [
+    //   [1, 1, 0],
+    //   [0, 1, 0],
+    //   [0, 1, 0],
+    // ],
     [
-      [0, 0, 0],
       [0, 0, 1],
       [1, 1, 1],
     ],
     [
-      [0, 1, 0],
-      [0, 1, 0],
-      [0, 1, 1],
+      [1, 0],
+      [1, 0],
+      [1, 1],
     ],
     [
-      [0, 0, 0],
       [1, 1, 1],
       [1, 0, 0],
     ],
     [
-      [1, 1, 0],
-      [0, 1, 0],
-      [0, 1, 0],
+      [1, 1],
+      [0, 1],
+      [0, 1],
     ],
     "L",
   ];
@@ -427,8 +445,19 @@ document.addEventListener("DOMContentLoaded", () => {
     moveRight() {
       this.deletePiece();
 
-      if ( this.x + 1 <= 9 && this.verticalCollision === false ) {
-        this.x += 1;
+      // if ( this.x + 1 <= 9 && this.verticalCollision === false ) {
+      //   this.x += 1;
+      // }
+
+      // debugger;
+      
+      // for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+        const y = this.currentPiece.length - 1;
+        const lastIndex = this.currentPiece[y].length - 1;
+        // debugger;
+        if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
+          this.x += 1;
+        // }
       }
 
       this.createPiece();
@@ -444,7 +473,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     reversePiece() {
-      if ( this.verticalCollision === false ) {
+      const y = this.currentPiece.length - 1;
+      const lastIndex = this.currentPiece[y].length - 1;
+
+      if ( () && this.verticalCollision === false ) {
         this.deletePiece();
 
         if (this.currentPieceType === "I") {
