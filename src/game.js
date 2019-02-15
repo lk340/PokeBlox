@@ -599,7 +599,9 @@ document.addEventListener("DOMContentLoaded", () => {
       
       event.preventDefault();
 
-      instantFall();
+      while ( piece.verticalCollision === false ) {
+        piece.moveDown();
+      }
     }
 
     else if (event.which === 16) {
