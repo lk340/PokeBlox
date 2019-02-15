@@ -345,6 +345,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const zColor = "rgb(211, 123, 123)";
   const jColor = "rgb(73, 73, 172)";
   const lColor = "rgb(255, 205, 113)";
+
+  // COLOR-PICKING LOGIC START
+  let pieceColor;
+  if ( currentPiece === I ) {
+    pieceColor = iColor;
+  }
+  else if ( currentPiece === O ) {
+    pieceColor = oColor;
+  }
+  else if ( currentPiece === T ) {
+    pieceColor = tColor;
+  }
+  else if ( currentPiece === S ) {
+    pieceColor = sColor;
+  }
+  else if ( currentPiece === Z ) {
+    pieceColor = zColor;
+  }
+  else if ( currentPiece === J ) {
+    pieceColor = jColor;
+  }
+  else if ( currentPiece === L ) {
+    pieceColor = lColor;
+  }
+  // COLOR-PICKING LOGIC END
   
   const board = [];
   function generateEmptyBoardArray() {
@@ -535,7 +560,8 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(board);
   console.log(currentPiece);
   canvasDrawBoard();
-  let piece = new CurrentPiece(currentPiece, iColor, charcoal);
+
+  let piece = new CurrentPiece(currentPiece, pieceColor, charcoal);
   piece.createPiece();
   piece.frameRate();
   
