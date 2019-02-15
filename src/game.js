@@ -476,6 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if ( this.y + y === 19 ) {
               this.verticalCollision = true;
+              // console.log(board);
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
           }
@@ -571,16 +572,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     frameRate() {
-      let interval;
       if ( this.verticalCollision === false ) {
-        interval = setInterval(() => {
-          console.log("whoa, calm down there, buddy. Calm dowwwwn.");
-          this.moveDown();
-        }, 1200);
-      }
+        setInterval(() => {
+          if ( this.verticalCollision === false ) {
+            console.log("no collision");
+            this.moveDown();
+          }
 
-      else if ( this.verticalCollision === true ) {
-        clearInterval(interval);
+          else {
+            console.log("yes collision");
+            this.verticalCollision = false;
+            this.y = 0;
+          }
+        }, 1200);
       }
     }
 
@@ -599,14 +603,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
   piece.createPiece();
   piece.frameRate();
-  if ( piece.verticalCollision === true ) {
-    currentPiece = nextPiece;
-    nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
-    // const newPiece = new CurrentPiece(currentPiece, pieceColor, charcoal);
-    const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
-    piece.createPiece();
-    piece.frameRate();
-  }
+
+ 
   
   // ============================================================ BOARD GENERATION END ============================================================
 
