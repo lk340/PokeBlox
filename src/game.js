@@ -402,6 +402,12 @@ document.addEventListener("DOMContentLoaded", () => {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
             // debugger;
+            const y_val = this.currentPiece.length - 1;
+            const lastIndex = this.currentPiece[y_val].length - 1;
+            if ( this.x + lastIndex > 9 ) {
+              this.x -= 1;
+            }
+            
             if ( this.y + y === 19 ) {
               this.verticalCollision = true;
             }
@@ -415,6 +421,13 @@ document.addEventListener("DOMContentLoaded", () => {
       for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
+
+            const y_val = this.currentPiece.length - 1;
+            const lastIndex = this.currentPiece[y_val].length - 1;
+            if ( this.x + lastIndex > 9 ) {
+              this.x -= 1;
+            }
+
             if ( this.y + y === 19 ) {
               this.verticalCollision = true;
             }
@@ -473,10 +486,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     reversePiece() {
-      const y = this.currentPiece.length - 1;
-      const lastIndex = this.currentPiece[y].length - 1;
+      // if ( this.x - 1 >= 0 && (this.x + lastIndex + 1 < 10) && this.verticalCollision === false ) {
+      if ( this.verticalCollision === false ) {
+        // debugger;
 
-      if ( () && this.verticalCollision === false ) {
         this.deletePiece();
 
         if (this.currentPieceType === "I") {
