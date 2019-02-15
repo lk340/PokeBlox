@@ -299,7 +299,9 @@ document.addEventListener("DOMContentLoaded", () => {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
             // debugger;
-            if ( this.y + y === 19 && ( this.x + x > 0 )) {
+            if ( 
+              this.y + y === 19 
+              ) {
               this.collision = true;
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
@@ -312,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for ( let y = 0; y < this.currentPiece.length; y++ ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
-            if ( this.y + y === 19 && ( this.x + x > 0 )) {
+            if ( this.y + y === 19 ) {
               this.collision = true;
             }
             generateGridBlock(this.x + x, this.y + y, this.deleteColor);
@@ -435,6 +437,11 @@ document.addEventListener("DOMContentLoaded", () => {
         this.moveDown();
       }, 1200);
     }
+
+    freeze() {
+      // freezes the current piece
+      // generates new piece afterwards
+    }
   }
   
   generateEmptyBoardArray();
@@ -446,9 +453,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // generateGridBlock(3, 3, oColor);
   // generateGridBlock(4, 2, oColor);
   // generateGridBlock(4, 3, oColor);
-  const piece = new CurrentPiece(currentPiece, iColor, charcoal);
+  let piece = new CurrentPiece(currentPiece, iColor, charcoal);
   piece.createPiece();
   piece.frameRate();
+  
   // ============================================================ BOARD GENERATION END ============================================================
 
   // ============================================================ GAME CONTROLS START ============================================================
