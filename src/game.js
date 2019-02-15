@@ -348,33 +348,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // COLOR-PICKING LOGIC START
   function pickColor() {
-    // let pieceColor;
     if ( currentPiece === I ) {
-      // pieceColor = iColor;
       return iColor;
     }
     else if ( currentPiece === O ) {
-      // pieceColor = oColor;
       return oColor;
     }
     else if ( currentPiece === T ) {
-      // pieceColor = tColor;
       return tColor;
     }
     else if ( currentPiece === S ) {
-      // pieceColor = sColor;
       return sColor;
     }
     else if ( currentPiece === Z ) {
-      // pieceColor = zColor;
       return zColor;
     }
     else if ( currentPiece === J ) {
-      // pieceColor = jColor;
       return jColor;
     }
     else if ( currentPiece === L ) {
-      // pieceColor = lColor;
       return lColor;
     }
   }
@@ -436,7 +428,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const y_val = this.currentPiece.length - 1;
             const lastIndex = this.currentPiece[y_val].length - 1;
             if ( this.x + lastIndex > 9 ) {
-              this.x -= 1;
+              while ( this.x + lastIndex > 9 ) {
+                this.x -= 1;
+              }
             }
             
             if ( this.y + y === 19 ) {
@@ -456,7 +450,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const y_val = this.currentPiece.length - 1;
             const lastIndex = this.currentPiece[y_val].length - 1;
             if ( this.x + lastIndex > 9 ) {
-              this.x -= 1;
+              while ( this.x + lastIndex > 9 ) {
+                this.x -= 1;
+              }
             }
 
             if ( this.y + y === 19 ) {
