@@ -103,10 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
       [0, 1, 1, 0],
       [0, 0, 0, 0],
     ],
-    // [
-    //   [1, 1],
-    //   [1, 1],
-    // ],
     "O",
   ];
   
@@ -271,9 +267,9 @@ document.addEventListener("DOMContentLoaded", () => {
       context.strokeStyle = ash;
       context.strokeRect(x_pos, y_pos, 30, 30);
     }
-    else {
-      alert("Out of bounds!");
-    }
+    // else {
+    //   alert("Out of bounds!");
+    // }
   }
 
   function canvasDrawBoard() {
@@ -295,12 +291,17 @@ document.addEventListener("DOMContentLoaded", () => {
       this.deleteColor = color2;
       this.x = 3;
       this.y = 6;
+      this.collision = false;
     }
     
     createPiece() {
-      for ( let y = 0; y < this.currentPiece.length; y++ ) {
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
+            // debugger;
+            if ( this.y + y === 19) {
+              this.collision = true;
+            }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
           }
         }
@@ -311,13 +312,20 @@ document.addEventListener("DOMContentLoaded", () => {
       for ( let y = 0; y < this.currentPiece.length; y++ ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
+            if ( this.y + y === 19) {
+              this.collision = true;
+            }
             generateGridBlock(this.x + x, this.y + y, this.deleteColor);
           }
         }
       }
     }
 
-    detectCollision() {
+    detectVerticalCollision() {
+      
+    }
+
+    detectHorizontalCollision() {
 
     }
 
@@ -366,23 +374,27 @@ document.addEventListener("DOMContentLoaded", () => {
     moveDown(x, y, currentPiece) {
       this.deletePiece();
 
-      if (this.currentPieceType === "I") {
-        if (this.y + 1 < 19) {
-          this.y += 1;
-        }
-      }
+      // if (this.currentPieceType === "I") {
+        // if (this.y + 1 < 19) {
+          // console.log(this.y + 1);
+          if ( this.collision === false) {
+            console.log(this.collision);
+            this.y += 1;
+          }
+        // }
+      // }
       
-      else if (this.currentPieceType === "O") {
-        if (this.y + 1 < 18) {
-          this.y += 1;
-        }
-      }
+      // else if (this.currentPieceType === "O") {
+      //   if (this.y + 1 < 18) {
+      //     this.y += 1;
+      //   }
+      // }
       
-      else {
-        if (this.y + 1 < 19) {
-          this.y += 1;
-        }
-      }
+      // else {
+      //   if (this.y + 1 < 19) {
+      //     this.y += 1;
+      //   }
+      // }
       
 
       this.createPiece();
@@ -400,16 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
           this.currentPieceIndex += 1;
           this.currentPiece = this.currPiece[this.currentPieceIndex];
         }
-        // if (this.y - 1 >= -1) {
-        //   this.y -= 1;
-        // }
       }
-
-      // else if (this.currentPieceType === "O") {
-        // if (this.y - 1 > 1) {
-        //   this.y -= 1;
-        // }
-      // }
 
       else if (this.currentPieceType !== "O") {
         if ( this.currentPieceIndex === 3 ) {
@@ -420,9 +423,6 @@ document.addEventListener("DOMContentLoaded", () => {
           this.currentPieceIndex += 1;
           this.currentPiece = this.currPiece[this.currentPieceIndex];
         }
-        // if (this.y - 1 >= 0) {
-        //   this.y -= 1;
-        // }
       }
 
       this.createPiece();
