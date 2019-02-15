@@ -5,21 +5,62 @@ Array.prototype.last = function() {
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {  
   // ============================================================ DETAILS MODAL START ============================================================
-  const detailModal = document.getElementById("detail-modal");
+  const detailModal = document.getElementById("detail-modal-background");
+
+  detailModal.addEventListener("click", () => {
+    if (document.getElementById("detail-modal-information").classList.contains("show-about")) {
+      document.getElementById("detail-modal-information").classList.remove("show-about");
+      document.getElementById("detail-modal-information").classList.add("hide-about");
+    }
+  });
 
   document.getElementById("details").addEventListener("click", () => {
     // Open About Modal
     if (detailModal.classList.contains("hide-about-modal")) {
+      document.getElementById("detail-modal").classList.remove("hide-detail-modal");
+      document.getElementById("detail-modal").classList.add("show-detail-modal");
+      
       detailModal.classList.remove("hide-about-modal");
       detailModal.classList.add("about-modal");
+
+      document.getElementById("detail-modal-information").classList.remove("hide-about");
+      document.getElementById("detail-modal-information").classList.add("show-about");
+
+      document.getElementById("about-modal-close").classList.remove("about-modal-x-hide");
+      document.getElementById("about-modal-close").classList.add("about-modal-x-show");
     }
   });
 
   // Close About Modal
+  detailModal.addEventListener("click", () => {
+    if (detailModal.classList.contains("about-modal")) {
+      detailModal.classList.remove("about-modal");
+      detailModal.classList.add("hide-about-modal");
+
+      document.getElementById("detail-modal").classList.remove("show-detail-modal");
+      document.getElementById("detail-modal").classList.add("hide-detail-modal");
+
+      document.getElementById("detail-modal-information").classList.remove("show-about");
+      document.getElementById("detail-modal-information").classList.add("hide-about");
+
+      document.getElementById("about-modal-close").classList.remove("about-modal-x-show");
+      document.getElementById("about-modal-close").classList.add("about-modal-x-hide");
+    }
+  });
+  
   document.getElementById("about-modal-close").addEventListener("click", () => {
     if (detailModal.classList.contains("about-modal")) {
       detailModal.classList.remove("about-modal");
       detailModal.classList.add("hide-about-modal");
+
+      document.getElementById("detail-modal").classList.remove("show-detail-modal");
+      document.getElementById("detail-modal").classList.add("hide-detail-modal");
+
+      document.getElementById("about-modal-close").classList.remove("about-modal-x-show");
+      document.getElementById("about-modal-close").classList.add("about-modal-x-hide");
+
+      document.getElementById("detail-modal-information").classList.remove("show-about");
+      document.getElementById("detail-modal-information").classList.add("hide-about");
     }
   });
   // ============================================================ DETAILS MODAL END ============================================================
@@ -530,9 +571,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     frameRate() {
-      setInterval(() => {
-        this.moveDown();
-      }, 1200);
+      let interval;
+      if ( this.verticalCollision === false ) {
+        interval = setInterval(() => {
+          console.log("whoa, calm down there, buddy. Calm dowwwwn.");
+          this.moveDown();
+        }, 1200);
+      }
+
+      else if ( this.verticalCollision === true ) {
+        clearInterval(interval);
+      }
     }
 
     freeze() {
@@ -554,9 +603,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentPiece = nextPiece;
     nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
     // const newPiece = new CurrentPiece(currentPiece, pieceColor, charcoal);
-    const newPiece = new CurrentPiece(currentPiece, pickColor(), charcoal);
-    newPiece.createPiece();
-    newPiece.frameRate();
+    const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
+    piece.createPiece();
+    piece.frameRate();
   }
   
   // ============================================================ BOARD GENERATION END ============================================================
