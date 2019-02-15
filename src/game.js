@@ -204,9 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const L = [
     [
+      [0, 0, 0],
       [0, 0, 1],
       [1, 1, 1],
-      [0, 0, 0],
     ],
     [
       [0, 1, 0],
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
             // debugger;
-            if ( this.y + y === 19) {
+            if ( this.y + y === 19 && ( this.x + x > 0 )) {
               this.collision = true;
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for ( let y = 0; y < this.currentPiece.length; y++ ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
-            if ( this.y + y === 19) {
+            if ( this.y + y === 19 && ( this.x + x > 0 )) {
               this.collision = true;
             }
             generateGridBlock(this.x + x, this.y + y, this.deleteColor);
@@ -401,31 +401,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     reversePiece(x, y, currentPiece) {
-      this.deletePiece();
+      if ( this.collision === false ) {
+        this.deletePiece();
 
-      if (this.currentPieceType === "I") {
-        if ( this.currentPieceIndex === 1 ) {
-          this.currentPieceIndex = 0;
-          this.currentPiece = this.currPiece[this.currentPieceIndex];
+        if (this.currentPieceType === "I") {
+          if ( this.currentPieceIndex === 1 ) {
+            this.currentPieceIndex = 0;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+          else {
+            this.currentPieceIndex += 1;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
         }
-        else {
-          this.currentPieceIndex += 1;
-          this.currentPiece = this.currPiece[this.currentPieceIndex];
+
+        else if (this.currentPieceType !== "O") {
+          if ( this.currentPieceIndex === 3 ) {
+            this.currentPieceIndex = 0;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+          else {
+            this.currentPieceIndex += 1;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
         }
+
+        this.createPiece();
       }
-
-      else if (this.currentPieceType !== "O") {
-        if ( this.currentPieceIndex === 3 ) {
-          this.currentPieceIndex = 0;
-          this.currentPiece = this.currPiece[this.currentPieceIndex];
-        }
-        else {
-          this.currentPieceIndex += 1;
-          this.currentPiece = this.currPiece[this.currentPieceIndex];
-        }
-      }
-
-      this.createPiece();
     }
 
     frameRate() {
