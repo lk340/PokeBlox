@@ -81,123 +81,208 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================ BOARD GENERATION START ============================================================
    // PIECE ARRAYS START
    const I = [
+  //   [
+  //     [0, 0, 0, 0],
+  //     [1, 1, 1, 1],
+  //     [0, 0, 0, 0],
+  //     [0, 0, 0, 0],
+  //   ],
+  //   [
+  //     [0, 1, 0, 0],
+  //     [0, 1, 0, 0],
+  //     [0, 1, 0, 0],
+  //     [0, 1, 0, 0],
+  //   ],
     [
-      [0, 0, 0, 0],
       [1, 1, 1, 1],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
     ],
     [
-      [0, 1, 0, 0],
-      [0, 1, 0, 0],
-      [0, 1, 0, 0],
-      [0, 1, 0, 0],
+      [1],
+      [1],
+      [1],
+      [1],
     ],
     "I",
   ];
 
   const O = [
+    // [
+    //   [0, 0, 0, 0],
+    //   [0, 1, 1, 0],
+    //   [0, 1, 1, 0],
+    //   [0, 0, 0, 0],
+    // ],
     [
-      [0, 0, 0, 0],
-      [0, 1, 1, 0],
-      [0, 1, 1, 0],
-      [0, 0, 0, 0],
+      [1, 1],
+      [1, 1],
     ],
     "O",
   ];
   
   const T = [
+    // [
+    //   [0, 1, 0],
+    //   [1, 1, 1],
+    //   [0, 0, 0],
+    // ],
+    // [
+    //   [0, 1, 0],
+    //   [0, 1, 1],
+    //   [0, 1, 0],
+    // ],
+    // [
+    //   [0, 0, 0],
+    //   [1, 1, 1],
+    //   [0, 1, 0],
+    // ],
+    // [
+    //   [0, 1, 0],
+    //   [1, 1, 0],
+    //   [0, 1, 0],
+    // ],
     [
       [0, 1, 0],
       [1, 1, 1],
-      [0, 0, 0],
     ],
     [
-      [0, 1, 0],
-      [0, 1, 1],
-      [0, 1, 0],
+      [1, 0],
+      [1, 1],
+      [1, 0],
     ],
     [
-      [0, 0, 0],
       [1, 1, 1],
       [0, 1, 0],
     ],
     [
-      [0, 1, 0],
-      [1, 1, 0],
-      [0, 1, 0],
+      [0, 1],
+      [1, 1],
+      [0, 1],
     ],
     "T",
   ];
   
   const S = [
+    // [
+    //   [0, 1, 1],
+    //   [1, 1, 0],
+    //   [0, 0, 0],
+    // ],
+    // [
+    //   [0, 1, 0],
+    //   [0, 1, 1],
+    //   [0, 0, 1],
+    // ],
+    // [
+    //   [0, 0, 0],
+    //   [0, 1, 1],
+    //   [1, 1, 0],
+    // ],
+    // [
+    //   [1, 0, 0],
+    //   [1, 1, 0],
+    //   [0, 1, 0],
+    // ],
     [
       [0, 1, 1],
       [1, 1, 0],
-      [0, 0, 0],
     ],
     [
-      [0, 1, 0],
-      [0, 1, 1],
-      [0, 0, 1],
+      [1, 0],
+      [1, 1],
+      [0, 1],
     ],
     [
-      [0, 0, 0],
       [0, 1, 1],
       [1, 1, 0],
     ],
     [
-      [1, 0, 0],
-      [1, 1, 0],
-      [0, 1, 0],
+      [1, 0],
+      [1, 1],
+      [0, 1],
     ],
     "S",
   ];
   
   const Z = [
+    // [
+    //   [1, 1, 0],
+    //   [0, 1, 1],
+    //   [0, 0, 0],
+    // ],
+    // [
+    //   [0, 0, 1],
+    //   [0, 1, 1],
+    //   [0, 1, 0],
+    // ],
+    // [
+    //   [0, 0, 0],
+    //   [1, 1, 0],
+    //   [0, 1, 1],
+    // ],
+    // [
+    //   [0, 1, 0],
+    //   [1, 1, 0],
+    //   [1, 0, 0],
+    // ],
     [
       [1, 1, 0],
       [0, 1, 1],
-      [0, 0, 0],
     ],
     [
-      [0, 0, 1],
-      [0, 1, 1],
-      [0, 1, 0],
+      [0, 1],
+      [1, 1],
+      [1, 0],
     ],
     [
-      [0, 0, 0],
       [1, 1, 0],
       [0, 1, 1],
     ],
     [
-      [0, 1, 0],
-      [1, 1, 0],
-      [1, 0, 0],
+      [0, 1],
+      [1, 1],
+      [1, 0],
     ],
     "Z",
   ];
   
   const J = [
+    // [
+    //   [1, 0, 0],
+    //   [1, 1, 1],
+    //   [0, 0, 0],
+    // ],
+    // [
+    //   [0, 1, 1],
+    //   [0, 1, 0],
+    //   [0, 1, 0],
+    // ],
+    // [
+    //   [0, 0, 0],
+    //   [1, 1, 1],
+    //   [0, 0, 1],
+    // ],
+    // [
+    //   [0, 1, 0],
+    //   [0, 1, 0],
+    //   [1, 1, 0],
+    // ],
     [
       [1, 0, 0],
       [1, 1, 1],
-      [0, 0, 0],
     ],
     [
-      [0, 1, 1],
-      [0, 1, 0],
-      [0, 1, 0],
+      [1, 1],
+      [1, 0],
+      [1, 0],
     ],
     [
-      [0, 0, 0],
       [1, 1, 1],
       [0, 0, 1],
     ],
     [
-      [0, 1, 0],
-      [0, 1, 0],
-      [1, 1, 0],
+      [0, 1],
+      [0, 1],
+      [1, 1],
     ],
     "J",
   ];
@@ -290,8 +375,8 @@ document.addEventListener("DOMContentLoaded", () => {
       this.createColor = color1;
       this.deleteColor = color2;
       this.x = 3;
-      this.y = 6;
-      this.collision = false;
+      this.y = 0;
+      this.verticalCollision = false;
     }
     
     createPiece() {
@@ -299,10 +384,8 @@ document.addEventListener("DOMContentLoaded", () => {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
             // debugger;
-            if ( 
-              this.y + y === 19 
-              ) {
-              this.collision = true;
+            if ( this.y + y === 19 ) {
+              this.verticalCollision = true;
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
           }
@@ -311,11 +394,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     deletePiece() {
-      for ( let y = 0; y < this.currentPiece.length; y++ ) {
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
             if ( this.y + y === 19 ) {
-              this.collision = true;
+              this.verticalCollision = true;
             }
             generateGridBlock(this.x + x, this.y + y, this.deleteColor);
           }
@@ -331,79 +414,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    moveLeft(x, y, currentPiece) {
+    moveLeft() {
       this.deletePiece();
       
-      if (this.currentPieceType === "O") {
-        if (this.x - 1 >= -1) {
-          this.x -= 1;
-        }
-      }
-
-      else {
-        if (this.x - 1 >= 0) {
-          this.x -= 1;
-        }
+      if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
+        this.x -= 1;
       }
 
       this.createPiece();
     }
 
-    moveRight(x, y, currentPiece) {
+    moveRight() {
       this.deletePiece();
 
-      if (this.currentPieceType === "I") {
-        if (this.x + 1 < 7) {
-          this.x += 1;
-        }
-      }
-
-      else if (this.currentPieceType === "O") {
-        if (this.x + 1 < 8) {
-          this.x += 1;
-        }
-      }
-
-      else {
-        if (this.x + 1 < 8) {
-          this.x += 1;
-        }
+      if ( this.x + 1 <= 9 && this.verticalCollision === false ) {
+        this.x += 1;
       }
 
       this.createPiece();
     }
 
-    moveDown(x, y, currentPiece) {
+    moveDown() {
       this.deletePiece();
-
-      // if (this.currentPieceType === "I") {
-        // if (this.y + 1 < 19) {
-          // console.log(this.y + 1);
-          if ( this.collision === false) {
-            console.log(this.collision);
-            this.y += 1;
-          }
-        // }
-      // }
-      
-      // else if (this.currentPieceType === "O") {
-      //   if (this.y + 1 < 18) {
-      //     this.y += 1;
-      //   }
-      // }
-      
-      // else {
-      //   if (this.y + 1 < 19) {
-      //     this.y += 1;
-      //   }
-      // }
-      
+      if ( this.verticalCollision === false ) {
+        this.y += 1;
+      }
 
       this.createPiece();
     }
 
-    reversePiece(x, y, currentPiece) {
-      if ( this.collision === false ) {
+    reversePiece() {
+      if ( this.verticalCollision === false ) {
         this.deletePiece();
 
         if (this.currentPieceType === "I") {
@@ -440,6 +481,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     freeze() {
       // freezes the current piece
+        // doesn't let the current piece move left, right, down, or rotate
       // generates new piece afterwards
     }
   }
@@ -448,11 +490,6 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(board);
   console.log(currentPiece);
   canvasDrawBoard();
-  // generateGridBlock(0, 0, oColor);
-  // generateGridBlock(3, 2, oColor);
-  // generateGridBlock(3, 3, oColor);
-  // generateGridBlock(4, 2, oColor);
-  // generateGridBlock(4, 3, oColor);
   let piece = new CurrentPiece(currentPiece, iColor, charcoal);
   piece.createPiece();
   piece.frameRate();

@@ -1,155 +1,164 @@
-export default (tetronimo) => {
-  if (tetronimo === "I") {
-    return [
-      [1, 1, 1, 1],
-    ];
+  // Class function for tetronimo pieces
+  export default class Piece {
+    constructor(currPiece, color1, color2) {
+      this.currPiece = currPiece;
+      this.currentPieceIndex = 0;
+      this.currentPiece = currPiece[this.currentPieceIndex];
+      this.currentPieceType = currPiece.last();
+      this.createColor = color1;
+      this.deleteColor = color2;
+      this.x = 3;
+      this.y = 6;
+      this.collision = false;
+    }
+    
+    createPiece() {
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+          if ( this.currentPiece[y][x] === 1 ) {
+            // debugger;
+            if ( 
+              this.y + y === 19 
+              ) {
+              this.collision = true;
+            }
+            generateGridBlock(this.x + x, this.y + y, this.createColor);
+          }
+        }
+      }
+    }
+
+    deletePiece() {
+      for ( let y = 0; y < this.currentPiece.length; y++ ) {
+        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+          if ( this.currentPiece[y][x] === 1 ) {
+            if ( this.y + y === 19 ) {
+              this.collision = true;
+            }
+            generateGridBlock(this.x + x, this.y + y, this.deleteColor);
+          }
+        }
+      }
+    }
+
+    detectVerticalCollision() {
+      
+    }
+
+    detectHorizontalCollision() {
+
+    }
+
+    moveLeft(x, y, currentPiece) {
+      this.deletePiece();
+      
+      if (this.currentPieceType === "O") {
+        if (this.x - 1 >= -1) {
+          this.x -= 1;
+        }
+      }
+
+      else {
+        if (this.x - 1 >= 0) {
+          this.x -= 1;
+        }
+      }
+
+      this.createPiece();
+    }
+
+    moveRight(x, y, currentPiece) {
+      this.deletePiece();
+
+      if (this.currentPieceType === "I") {
+        if (this.x + 1 < 7) {
+          this.x += 1;
+        }
+      }
+
+      else if (this.currentPieceType === "O") {
+        if (this.x + 1 < 8) {
+          this.x += 1;
+        }
+      }
+
+      else {
+        if (this.x + 1 < 8) {
+          this.x += 1;
+        }
+      }
+
+      this.createPiece();
+    }
+
+    moveDown(x, y, currentPiece) {
+      this.deletePiece();
+
+      // if (this.currentPieceType === "I") {
+        // if (this.y + 1 < 19) {
+          // console.log(this.y + 1);
+          if ( this.collision === false) {
+            console.log(this.collision);
+            this.y += 1;
+          }
+        // }
+      // }
+      
+      // else if (this.currentPieceType === "O") {
+      //   if (this.y + 1 < 18) {
+      //     this.y += 1;
+      //   }
+      // }
+      
+      // else {
+      //   if (this.y + 1 < 19) {
+      //     this.y += 1;
+      //   }
+      // }
+      
+
+      this.createPiece();
+    }
+
+    reversePiece(x, y, currentPiece) {
+      if ( this.collision === false ) {
+        this.deletePiece();
+
+        if (this.currentPieceType === "I") {
+          if ( this.currentPieceIndex === 1 ) {
+            this.currentPieceIndex = 0;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+          else {
+            this.currentPieceIndex += 1;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+        }
+
+        else if (this.currentPieceType !== "O") {
+          if ( this.currentPieceIndex === 3 ) {
+            this.currentPieceIndex = 0;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+          else {
+            this.currentPieceIndex += 1;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+        }
+
+        this.createPiece();
+      }
+    }
+
+    frameRate() {
+      setInterval(() => {
+        this.moveDown();
+      }, 1200);
+    }
+
+    freeze() {
+      // freezes the current piece
+      // generates new piece afterwards
+    }
   }
-
-  else if (tetronimo === "O") {
-    return [
-      [1, 1],
-      [1, 1],
-    ];
-  }
-
-  else if (tetronimo === "T") {
-    return [
-      [0, 1, 0],
-      [1, 1, 1],
-    ];
-  }
-
-  else if (tetronimo === "S") {
-    return [
-      [0, 1, 1],
-      [1, 1, 0],
-    ];
-  }
-
-  else if (tetronimo === "Z") {
-    return [
-      [1, 1, 0],
-      [0, 1, 1],
-    ];
-  }
-
-  else if (tetronimo === "J") {
-    return [
-      [1, 0, 0],
-      [1, 1, 1],
-    ];
-  }
-
-  else if (tetronimo === "L") {
-    return [
-      [0, 0, 1],
-      [1, 1, 1],
-    ];
-  }
-};
-
-// export default class Piece {
-  // constructor(type) {
-  //   this.type = type;
-  // }
-
-  // piece() {
-  //   if (this.type === "I") {
-  //     document.getElementById("197").classList.remove("board-grid");
-  //     document.getElementById("197").classList.add("I");
-
-  //     document.getElementById("196").classList.remove("board-grid");
-  //     document.getElementById("196").classList.add("I");
-
-  //     document.getElementById("195").classList.remove("board-grid");
-  //     document.getElementById("195").classList.add("I");
-
-  //     document.getElementById("194").classList.remove("board-grid");
-  //     document.getElementById("194").classList.add("I");
-  //   }
-
-  //   else if (this.type === "O") {
-  //     document.getElementById("196").classList.remove("board-grid");
-  //     document.getElementById("196").classList.add("O");
-
-  //     document.getElementById("195").classList.remove("board-grid");
-  //     document.getElementById("195").classList.add("O");
-
-  //     document.getElementById("186").classList.remove("board-grid");
-  //     document.getElementById("186").classList.add("O");
-
-  //     document.getElementById("185").classList.remove("board-grid");
-  //     document.getElementById("185").classList.add("O");
-  //   }
-
-  //   else if (this.type === "T") {
-  //     document.getElementById("196").classList.remove("board-grid");
-  //     document.getElementById("196").classList.add("T");
-
-  //     document.getElementById("187").classList.remove("board-grid");
-  //     document.getElementById("187").classList.add("T");
-
-  //     document.getElementById("186").classList.remove("board-grid");
-  //     document.getElementById("186").classList.add("T");
-
-  //     document.getElementById("185").classList.remove("board-grid");
-  //     document.getElementById("185").classList.add("T");
-  //   }
-
-  //   else if (this.type === "S") {
-  //     document.getElementById("196").classList.remove("board-grid");
-  //     document.getElementById("196").classList.add("S");
-
-  //     document.getElementById("195").classList.remove("board-grid");
-  //     document.getElementById("195").classList.add("S");
-
-  //     document.getElementById("187").classList.remove("board-grid");
-  //     document.getElementById("187").classList.add("S");
-
-  //     document.getElementById("186").classList.remove("board-grid");
-  //     document.getElementById("186").classList.add("S");
-  //   }
-
-  //   else if (this.type === "Z") {
-  //     document.getElementById("197").classList.remove("board-grid");
-  //     document.getElementById("197").classList.add("Z");
-
-  //     document.getElementById("196").classList.remove("board-grid");
-  //     document.getElementById("196").classList.add("Z");
-
-  //     document.getElementById("186").classList.remove("board-grid");
-  //     document.getElementById("186").classList.add("Z");
-
-  //     document.getElementById("185").classList.remove("board-grid");
-  //     document.getElementById("185").classList.add("Z");
-  //   }
-
-  //   else if (this.type === "J") {
-  //     document.getElementById("197").classList.remove("board-grid");
-  //     document.getElementById("197").classList.add("J");
-
-  //     document.getElementById("187").classList.remove("board-grid");
-  //     document.getElementById("187").classList.add("J");
-
-  //     document.getElementById("186").classList.remove("board-grid");
-  //     document.getElementById("186").classList.add("J");
-
-  //     document.getElementById("185").classList.remove("board-grid");
-  //     document.getElementById("185").classList.add("J");
-  //   }
-
-  //   else if (this.type === "L") {
-  //     document.getElementById("195").classList.remove("board-grid");
-  //     document.getElementById("195").classList.add("L");
-
-  //     document.getElementById("187").classList.remove("board-grid");
-  //     document.getElementById("187").classList.add("L");
-
-  //     document.getElementById("186").classList.remove("board-grid");
-  //     document.getElementById("186").classList.add("L");
-
-  //     document.getElementById("185").classList.remove("board-grid");
-  //     document.getElementById("185").classList.add("L");
-  //   }
-  // }
-// }
+  
