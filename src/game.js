@@ -561,9 +561,16 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(currentPiece);
   canvasDrawBoard();
 
-  let piece = new CurrentPiece(currentPiece, pieceColor, charcoal);
+  const piece = new CurrentPiece(currentPiece, pieceColor, charcoal);
   piece.createPiece();
   piece.frameRate();
+  if ( piece.verticalCollision === true ) {
+    currentPiece = nextPiece;
+    nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+    const newPiece = new CurrentPiece(currentPiece, pieceColor, charcoal);
+    newPiece.createPiece();
+    newPiece.frameRate();
+  }
   
   // ============================================================ BOARD GENERATION END ============================================================
 
