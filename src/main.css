@@ -99,9 +99,9 @@ h1 {
 }
 
 #detail-modal .show-about {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
+  align-items: center;
   z-index: 10;
 
   position: fixed;
@@ -113,8 +113,6 @@ h1 {
   /* text-align: center; */
 
   border-radius: 20px;
-
-  margin: auto;
 }
 
 #detail-modal .show-about h3 {
