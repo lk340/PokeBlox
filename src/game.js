@@ -460,7 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.createColor = color1;
       this.deleteColor = color2;
       this.x = 3;
-      this.y = 0;
+      this.y = -1;
       this.verticalCollision = false;
       this.gameOver = false;
     }
@@ -493,7 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
               // console.log(board[this.y + y][this.x + lastIndex]);
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
-            console.log(board);
+            // console.log(board);
           }
         }
       }
@@ -508,7 +508,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const lastIndex = this.currentPiece[y_val].length - 1;
             if ( this.x + lastIndex > 9 ) {
               while ( this.x + lastIndex > 9 ) {
-                this.x -= 1;
+                if ( this.currentPiece[y][x] === 1 ) {
+                  this.x -= 1;
+                }
               }
             }
 
@@ -531,10 +533,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     moveLeft() {
       this.deletePiece();
+      let x_shift = 0;
       
-      if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
-        this.x -= 1;
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+          // debugger;
+          if ( (this.x - 1 > 0 || board[this.y + y][this.x - x - 1] !== charcoal) ) {
+            if ( this.verticalCollision === false ) {
+              x_shift = -1;
+            }
+          }
+        }
       }
+
+      this.x += x_shift;
 
       this.createPiece();
     }
@@ -653,7 +665,7 @@ document.addEventListener("DOMContentLoaded", () => {
         piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
         piece.createColor = pickColor();
         piece.x = 3;
-        piece.y = 0;
+        piece.y = -1;
         piece.verticalCollision = false;
         console.log(currentPiece);
         console.log(nextPiece);
