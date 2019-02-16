@@ -466,6 +466,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     createPiece() {
+      // console.log(this.currPiece);
+      console.log(this.currentPieceType);
       for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
@@ -486,6 +488,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   }
                 }
               }
+              // console.log(board);
+              
               this.verticalCollision = true;
               // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
               // console.log(this.y + y);
@@ -493,7 +497,6 @@ document.addEventListener("DOMContentLoaded", () => {
               // console.log(board[this.y + y][this.x + lastIndex]);
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
-            // console.log(board);
           }
         }
       }
@@ -533,20 +536,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     moveLeft() {
       this.deletePiece();
-      let x_shift = 0;
-      
-      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-        for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-          // debugger;
-          if ( (this.x - 1 > 0 || board[this.y + y][this.x - x - 1] !== charcoal) ) {
-            if ( this.verticalCollision === false ) {
-              x_shift = -1;
-            }
-          }
-        }
-      }
 
-      this.x += x_shift;
+
+
+      if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
+        this.x -= 1;
+      }
 
       this.createPiece();
     }
@@ -663,6 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
         piece.currPiece = currentPiece;
         piece.currentPieceIndex = 0;
         piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+        piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
         piece.createColor = pickColor();
         piece.x = 3;
         piece.y = -1;
