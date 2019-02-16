@@ -585,12 +585,16 @@ document.addEventListener("DOMContentLoaded", () => {
           else {
             // Logic for creating a new piece
             console.log("yes collision");
-            this.verticalCollision = false;
-            this.y = 0;
-            this.x = 3;
             this.currPiece = this.nextPiece;
             this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+            this.currentPieceIndex = 0;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+            this.x = 3;
+            this.y = 0;
+            this.verticalCollision = false;
             console.log(this.currPiece);
+            console.log(this.nextPiece);
+            console.log(this.currentPieceIndex);
           }
         }, 800);
       }
