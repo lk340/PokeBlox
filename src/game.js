@@ -460,7 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.createColor = color1;
       this.deleteColor = color2;
       this.x = 3;
-      this.y = -2;
+      this.y = 0;
       this.verticalCollision = false;
       this.gameOver = false;
     }
@@ -477,8 +477,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.x -= 1;
               }
             }
-            
-            if ( this.y + y === 19 || board[this.y + y][this.x + x] !== charcoal ) {
+
+            if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
               for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
                 for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
                   if ( this.currentPiece[y][x] === 1 ) {
@@ -512,7 +512,14 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
 
-            if ( this.y + y === 19 ) {
+            if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
+              for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                  if ( this.currentPiece[y][x] === 1 ) {
+                    board[this.y + y][this.x + x] = this.createColor;
+                  }
+                }
+              }
               this.verticalCollision = true;
               // board[this.y + y][this.x + x] = this.createColor;
             }
