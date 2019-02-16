@@ -478,14 +478,19 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
             
-            // if ( this.y + y === 19 || context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3) !== [54, 54, 54]) {
-            if ( this.y + y === 19 ) {
+            if ( this.y + y === 19 || board[this.y + y][this.x + x] !== charcoal ) {
+              for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                  if ( this.currentPiece[y][x] === 1 ) {
+                    board[this.y + y][this.x + x] = this.createColor;
+                  }
+                }
+              }
               this.verticalCollision = true;
               // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
-              console.log(this.y + y);
-              console.log(this.x + lastIndex);
-              console.log(board[this.y + y][this.x + lastIndex]);
-              board[this.y + y][this.x + x] = this.createColor;
+              // console.log(this.y + y);
+              // console.log(this.x + lastIndex);
+              // console.log(board[this.y + y][this.x + lastIndex]);
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
             console.log(board);
@@ -507,10 +512,9 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
 
-            // if ( this.y + y === 19 || context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3) !== [54, 54, 54]) {
             if ( this.y + y === 19 ) {
               this.verticalCollision = true;
-              board[this.y + y][this.x + x] = this.createColor;
+              // board[this.y + y][this.x + x] = this.createColor;
             }
             generateGridBlock(this.x + x, this.y + y, this.deleteColor);
           }
