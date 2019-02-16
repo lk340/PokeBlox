@@ -536,11 +536,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     moveLeft() {
       this.deletePiece();
+      let shift = 0;
+      let counter = 0;
 
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+      // for ( let y = 0; y < this.currentPiece.length; y++ ) {
+        if ( this.currentPiece[y][0] === 1 ) {
+          if ( board[this.y + y][this.x - 1] === charcoal ) {
+            // counter += 1;
+            shift = 1;
+          }
+        }
+      }
 
+      // if ( counter === this.currentPiece.length ) {
+      //   shift = 1;
+      //   counter = 0;
+      // }
+      // else {
+      //   shift = 0;
+      //   counter = 0;
+      // }
 
       if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
-        this.x -= 1;
+        this.x -= shift;
       }
 
       this.createPiece();
@@ -654,6 +673,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Logic for creating a new piece
         console.log("yes collision");
         currentPiece = nextPiece;
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
         nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
         piece.currPiece = currentPiece;
         piece.currentPieceIndex = 0;
@@ -663,6 +684,8 @@ document.addEventListener("DOMContentLoaded", () => {
         piece.x = 3;
         piece.y = -1;
         piece.verticalCollision = false;
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
         console.log(currentPiece);
         console.log(nextPiece);
       }
@@ -676,8 +699,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
   // document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
-  document.getElementById(`tetronimo-${piece.nextPiece.last()}-next`).classList.remove("hide-tetronimo");
-  document.getElementById(`tetronimo-${piece.nextPiece.last()}-next`).classList.add("show-tetronimo");
+  document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+  document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
   
   // document.getElementById(`tetronimo-${currentPiece}-next`).classList.remove("show-tetronimo");
   // document.getElementById(`tetronimo-${currentPiece}-next`).classList.add("hide-tetronimo");
