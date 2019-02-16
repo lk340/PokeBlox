@@ -467,7 +467,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     createPiece() {
       // console.log(this.currPiece);
-      console.log(this.currentPieceType);
+      // console.log(this.currentPieceType);
       for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
         for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
           if ( this.currentPiece[y][x] === 1 ) {
@@ -665,8 +665,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   generateEmptyBoardArray();
-  console.log(board);
-  console.log(currentPiece);
+  // console.log(board);
+  // console.log(currentPiece);
   canvasDrawBoard();
 
   // const piece = new CurrentPiece(tetronimoes, pickColor(), charcoal);
@@ -676,13 +676,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if ( piece.verticalCollision === false ) {
     setInterval(() => {
       if ( piece.verticalCollision === false ) {
-        console.log("no collision");
+        // console.log("no collision");
         piece.moveDown();
       }
 
       else {
         // Logic for creating a new piece
-        console.log("yes collision");
+        // console.log("yes collision");
         currentPiece = nextPiece;
         document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
         document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
@@ -697,8 +697,8 @@ document.addEventListener("DOMContentLoaded", () => {
         piece.verticalCollision = false;
         document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
         document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
-        console.log(currentPiece);
-        console.log(nextPiece);
+        // console.log(currentPiece);
+        // console.log(nextPiece);
       }
     }, 800);
   }
