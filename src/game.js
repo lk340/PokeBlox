@@ -418,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for ( let y = 0; y < 20; y++ ) {
       board[y] = [ ];
       for ( let x = 0; x < 10; x++ ) {
-        board[y][x] = "E";
+        board[y][x] = charcoal;
       }
     }
   } 
@@ -442,16 +442,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function canvasDrawBoard() {
     for ( let y = 0; y < 20; y++ ) {
       for ( let x = 0; x < 10; x++ ) {
-        generateGridBlock(x, y, charcoal);
+        generateGridBlock(x, y, board[y][x]);
       }
     }
   }
 
   // Class function for tetronimo pieces
   class CurrentPiece {
-    constructor(tetronimoes, color1, color2) {
+    constructor(currentPiece, color1, color2) {
       this.tetronimoes = tetronimoes;
-      this.currPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+      this.currPiece = currentPiece;
+      // this.currPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
       this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
       this.currentPieceIndex = 0;
       this.currentPiece = this.currPiece[this.currentPieceIndex];
@@ -459,7 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.createColor = color1;
       this.deleteColor = color2;
       this.x = 3;
-      this.y = 0;
+      this.y = -2;
       this.verticalCollision = false;
       this.gameOver = false;
     }
@@ -477,11 +478,17 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
             
+            // if ( this.y + y === 19 || context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3) !== [54, 54, 54]) {
             if ( this.y + y === 19 ) {
               this.verticalCollision = true;
-              // console.log(board);
+              // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
+              console.log(this.y + y);
+              console.log(this.x + lastIndex);
+              console.log(board[this.y + y][this.x + lastIndex]);
+              board[this.y + y][this.x + x] = this.createColor;
             }
             generateGridBlock(this.x + x, this.y + y, this.createColor);
+            console.log(board);
           }
         }
       }
@@ -500,8 +507,10 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
 
+            // if ( this.y + y === 19 || context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3) !== [54, 54, 54]) {
             if ( this.y + y === 19 ) {
               this.verticalCollision = true;
+              board[this.y + y][this.x + x] = this.createColor;
             }
             generateGridBlock(this.x + x, this.y + y, this.deleteColor);
           }
@@ -574,31 +583,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    frameRate() {
-      if ( this.verticalCollision === false ) {
-        setInterval(() => {
-          if ( this.verticalCollision === false ) {
-            console.log("no collision");
-            this.moveDown();
-          }
+    // frameRate() {
+    //   if ( this.verticalCollision === false ) {
+    //     setInterval(() => {
+    //       if ( this.verticalCollision === false ) {
+    //         console.log("no collision");
+    //         this.moveDown();
+    //       }
 
-          else {
-            // Logic for creating a new piece
-            console.log("yes collision");
-            this.currPiece = this.nextPiece;
-            this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
-            this.currentPieceIndex = 0;
-            this.currentPiece = this.currPiece[this.currentPieceIndex];
-            this.x = 3;
-            this.y = 0;
-            this.verticalCollision = false;
-            console.log(this.currPiece);
-            console.log(this.nextPiece);
-            console.log(this.currentPieceIndex);
-          }
-        }, 800);
-      }
-    }
+    //       else {
+    //         // Logic for creating a new piece
+    //         console.log("yes collision");
+    //         this.currPiece = this.nextPiece;
+    //         this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+    //         this.currentPieceIndex = 0;
+    //         this.currentPiece = this.currPiece[this.currentPieceIndex];
+    //         this.x = 3;
+    //         this.y = 0;
+    //         this.verticalCollision = false;
+    //         console.log(this.currPiece);
+    //         console.log(this.nextPiece);
+    //         console.log(this.currentPieceIndex);
+    //       }
+    //     }, 800);
+    //   }
+    // }
 
     freeze() {
       // freezes the current piece
@@ -612,10 +621,34 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(currentPiece);
   canvasDrawBoard();
 
-  const piece = new CurrentPiece(tetronimoes, pickColor(), charcoal);
+  // const piece = new CurrentPiece(tetronimoes, pickColor(), charcoal);
+  const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
   piece.createPiece();
-  piece.frameRate();
+  // piece.frameRate();
+  if ( piece.verticalCollision === false ) {
+    setInterval(() => {
+      if ( piece.verticalCollision === false ) {
+        console.log("no collision");
+        piece.moveDown();
+      }
 
+      else {
+        // Logic for creating a new piece
+        console.log("yes collision");
+        currentPiece = nextPiece;
+        nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+        piece.currPiece = currentPiece;
+        piece.currentPieceIndex = 0;
+        piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+        piece.createColor = pickColor();
+        piece.x = 3;
+        piece.y = 0;
+        piece.verticalCollision = false;
+        console.log(currentPiece);
+        console.log(nextPiece);
+      }
+    }, 800);
+  }
  
   
   // ============================================================ BOARD GENERATION END ============================================================
