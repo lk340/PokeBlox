@@ -568,11 +568,22 @@ document.addEventListener("DOMContentLoaded", () => {
     moveRight() {
       this.deletePiece();
 
-      const y = this.currentPiece.length - 1;
-      const lastIndex = this.currentPiece[y].length - 1;
+      const y_offset = this.currentPiece.length - 1;
+      const lastIndex = this.currentPiece[y_offset].length - 1;
+
+      let shift = 0;
+
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+      // for ( let y = 0; y < this.currentPiece.length; y++ ) {
+        if ( this.currentPiece[y][this.currentPiece[y].length - 1] === 1 ) {
+          if ( board[this.y + y][this.x + this.currentPiece[y].length - 1 + 1] === charcoal ) {
+            shift = 1;
+          }
+        }
+      }
 
       if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
-        this.x += 1;
+        this.x += shift;
       }
 
       this.createPiece();
