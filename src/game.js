@@ -723,12 +723,14 @@ document.addEventListener("DOMContentLoaded", () => {
   canvasDrawBoard();
 
   // const piece = new CurrentPiece(tetronimoes, pickColor(), charcoal);
-  const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
-  piece.createPiece();
+  let piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
+  // piece.createPiece();
   // piece.frameRate();
+  let frameRate;
   function startGame() {
     if ( piece.verticalCollision === false ) {
-      const frameRate = setInterval(() => {
+      piece.createPiece();
+      frameRate = setInterval(() => {
         if (piece.gameOver === false) {
           if ( piece.verticalCollision === false ) {
             // console.log("no collision");
@@ -761,13 +763,26 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           clearInterval(frameRate);
           console.log("framerate dead");
+          console.log(piece.verticalCollision);
+          console.log(piece.gameOver);
         }
       }, 800);
     }
   }
 
-  window.startgame = startGame;
+  function restartGame() {
+    piece.verticalCollision = false;
+    piece.gameOver = false;
+    startGame();
+  }
 
+  function pauseGame() {
+    clearInterval(frameRate);
+  }
+
+  window.startgame = startGame;
+  window.restartgame = restartGame;
+  window.pausegame = pauseGame;
   // startGame();
  
   // ============================================================ BOARD GENERATION END ============================================================
