@@ -189,7 +189,7 @@ h1 {
 /* ============================= DETAIL MODAL END ============================= */
 
 /* ============================= GUIDE MODAL START ============================= */
-#controls-modal {
+#guide-modal {
   /* display: none; */
 }
 
@@ -198,6 +198,30 @@ h1 {
   z-index: 9;
   position: fixed;
 } */
+
+#close-guide-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  z-index: 11;
+  position: absolute;
+
+  border: red solid 1px;
+  border-radius: 50%;
+  background-color: red;
+  width: 4rem;
+  height: 4rem;
+
+  transition-duration: 0.3s;
+}
+
+#close-guide-modal:hover {
+  transform: rotate(180deg);
+}
 
 #guide-modal-information {
   position: fixed;
