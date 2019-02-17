@@ -427,6 +427,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   // COLOR-PICKING LOGIC END
+
+  const emptyRow = [charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal];
   
   let board = [];
   function generateEmptyBoardArray() {
@@ -482,17 +484,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     createPiece() {
-      // if (this.y === 0) {
+      if (this.y === 0) {
         board[0].forEach(grid => {
           if ( grid !== charcoal ) {
-            // alert("You lose!");
             this.gameOver = true;
-            // board = [];
-            // generateEmptyBoardArray();
-            // canvasDrawBoard();
           }
         });
-      // }
+        }
+        // if ( !board[0].includes(charcoal) ) this.gameOver = true;
 
       // else {
         // console.log(this.currPiece);
@@ -545,35 +544,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     deletePiece() {
-      // if (this.y === 0) {
+      
+      if (this.y === 0) {
         board[0].forEach(grid => {
           if ( grid !== charcoal ) {
-            // alert("You lose!");
             this.gameOver = true;
-            // board = [];
-            // generateEmptyBoardArray();
-            // canvasDrawBoard();
           }
         });
-      // }
+        }
+        // if ( !board[0].includes(charcoal) ) this.gameOver = true;
 
       // else {
-        // if (this.gameOver === false) {
+        // console.log(this.currPiece);
+        // console.log(this.currentPieceType);
+        if (this.gameOver === false) {
           for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
             for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
               if ( this.currentPiece[y][x] === 1 ) {
-    
+                // debugger;
                 const y_val = this.currentPiece.length - 1;
                 const lastIndex = this.currentPiece[y_val].length - 1;
                 if ( this.x + lastIndex > 9 ) {
                   while ( this.x + lastIndex > 9 ) {
-                    if ( this.currentPiece[y][x] === 1 ) {
-                      this.x -= 1;
-                    }
+                    this.x -= 1;
                   }
                 }
-    
-                // if ( this.y + y >= 0 && board[this.y + y + 1][this.x + x] !== charcoal ) {
+                
+                // if ( this.y + y <= 0 && board[this.y + y + 1][this.x + x] !== charcoal ) {
+                //   debugger;
                 //   alert("you lose!");
                 // }
     
@@ -581,21 +579,28 @@ document.addEventListener("DOMContentLoaded", () => {
                   if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
                     for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
                       for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-                        if ( this.currentPiece[y][x] === 1 && this.y >= 0 ) {
-                          board[this.y + y][this.x + x] = this.createColor;
+                        if ( this.currentPiece[y][x] === 1 ) {
+                          board[this.y + y][this.x + x] = this.deleteColor;
                         }
                       }
                     }
+      
                     this.verticalCollision = true;
-                    // board[this.y + y][this.x + x] = this.createColor;
+      
+                    // console.log(board);
+                    // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
+                    // console.log(this.y + y);
+                    // console.log(this.x + lastIndex);
+                    // console.log(board[this.y + y][this.x + lastIndex]);
                   }
                 }
     
                 generateGridBlock(this.x + x, this.y + y, this.deleteColor);
+                // console.log(board);
               }
             }
           }
-        // }
+        }
       // }
       
     }
@@ -752,7 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.moveDown();
           }
     
-          else {
+          else if (piece.verticalCollision === true) {
             // Logic for creating a new piece
             // console.log("yes collision");
             currentPiece = nextPiece;
@@ -772,6 +777,33 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
             // console.log(currentPiece);
             // console.log(nextPiece);
+
+            const newBoard = [];
+            let count = 0;
+
+            for (let y = board.length - 1; y >= 0; y--) {
+              if ( board[y].includes(charcoal) ) {
+                newBoard.unshift(board[y]);
+              }
+              else {
+                count += 1;
+              }
+            }
+
+            for (i = 0; i < count; i++) {
+              newBoard.unshift(emptyRow);
+            }
+
+            console.log(board);
+            console.log(newBoard);
+
+            board = newBoard;
+
+            console.log(board);
+            console.log(newBoard);
+
+            // debugger;
+            canvasDrawBoard();
           }
         }
   
@@ -780,6 +812,8 @@ document.addEventListener("DOMContentLoaded", () => {
           clearInterval(frameRate);
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
+
+          console.log(board);
           // console.log("game over!");
           // console.log("framerate dead");
           // console.log(piece.verticalCollision);
@@ -802,11 +836,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function pauseGame() {
     clearInterval(frameRate);
   }
-
-  window.startgame = startGame;
-  window.restartgame = restartGame;
-  window.pausegame = pauseGame;
-  // startGame();
  
   // ============================================================ BOARD GENERATION END ============================================================
 
