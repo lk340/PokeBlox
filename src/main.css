@@ -300,15 +300,64 @@ h1 {
 
 #one-hand {
   background-color: var(--skyBlue);
+  border-top-left-radius: 20px;
 }
 
 #two-hand {
   background-color: var(--fireRed);
+  border-top-right-radius: 20px;
 }
 
 #universal-controls {
   background-color: var(--leafGreen);
+  color: white;
   width: 100%;
+  height: 185px;
+  margin-top: 5px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+#shift, #spacebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+#shift > div, #spacebar > div {
+  border: white solid 1px;
+  width: 80%;
+  text-align: center;
+  padding: 10px 0;
+
+  transition-duration: 0.3s;
+}
+
+#shift > div:hover, #spacebar > div:hover {
+  background-color: rgba(255, 255, 255, 0.267);
+}
+
+#shift span, #spacebar span {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 7px;
+  width: 80%;
+}
+
+#shift {
+  border-bottom-left-radius: 20px;
+  /* border: red solid 1px; */
+}
+
+#spacebar {
+  border-bottom-right-radius: 20px;
+  /* border: red solid 1px; */
 }
 
 /* ============================= GUIDE MODAL END ============================= */
