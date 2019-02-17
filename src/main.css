@@ -188,6 +188,131 @@ h1 {
 
 /* ============================= DETAIL MODAL END ============================= */
 
+/* ============================= GUIDE MODAL START ============================= */
+#controls-modal {
+  /* display: none; */
+}
+
+/* #guide-modal-background {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  position: fixed;
+} */
+
+#guide-modal-information {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#guide-modal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+
+  position: fixed;
+  
+  background-color: white;
+  height: 500px;
+  width: 500px;
+  padding: 20px 30px;
+  /* text-align: center; */
+
+  border-radius: 20px;
+}
+
+#guide-modal-info h3 {
+  padding: 0;
+  margin: 0;
+  color: var(--ash);
+  font-size: 2rem;
+}
+
+#guide-modal-info .information {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  width: 100%;
+  justify-content: center;
+
+  cursor: default;
+}
+
+#one-hand, #two-hand {
+  margin-top: 10px;
+  text-align: center;
+  color: white;
+
+  padding-bottom: 1.33em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#one-hand > div, #two-hand > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+
+  width: 200px;
+}
+
+#one-hand > div div:nth-child(2), 
+#one-hand > div div:nth-child(4), 
+#one-hand > div div:nth-child(5), 
+#one-hand > div div:nth-child(6), 
+#two-hand > div div:nth-child(2), 
+#two-hand > div div:nth-child(4), 
+#two-hand > div div:nth-child(5), 
+#two-hand > div div:nth-child(6) {
+  width: 63.33px;
+  height: 63.33px;
+
+  border: white solid 1px;
+
+  display: grid;
+  justify-content: center;
+  align-content: center;
+
+  transition-duration: 0.3s;
+}
+
+#one-hand > div div:nth-child(2):hover, 
+#one-hand > div div:nth-child(4):hover, 
+#one-hand > div div:nth-child(5):hover, 
+#one-hand > div div:nth-child(6):hover, 
+#two-hand > div div:nth-child(2):hover, 
+#two-hand > div div:nth-child(4):hover, 
+#two-hand > div div:nth-child(5):hover, 
+#two-hand > div div:nth-child(6):hover {
+  background-color: rgba(255, 255, 255, 0.267);
+}
+
+#one-hand {
+  background-color: var(--skyBlue);
+}
+
+#two-hand {
+  background-color: var(--fireRed);
+}
+
+#universal-controls {
+  background-color: var(--leafGreen);
+  width: 100%;
+}
+
+/* ============================= GUIDE MODAL END ============================= */
+
 /* ============================= GAME CONTAINER START ============================= */
 #game-container {
   display: block;
@@ -667,25 +792,6 @@ h1 {
   transform: rotate(360deg);
 }
 
-#details {
-  text-align: center;
-  font-size: 1.4rem;
-  height: 50px;
-  width: 130px;
-  margin: 15px auto;
-  border: white solid 1px;
-  background-color: var(--panchamPurple);
-  color: white;
-  transition-duration: 0.3s;
-  cursor: pointer;
-}
-
-#details:hover {
-  background-color: var(--ash);
-  color: var(--charcoal);
-  border: var(--charcoal) solid 1px;
-}
-
 /* ============================= SOCIAL END ============================= */
 
 /* ============================= PIECE-OPTIONS START ============================= */
@@ -730,7 +836,7 @@ h1 {
   font-size: 1.4rem;
   height: 50px;
   width: 130px;
-  margin: 15px auto;
+  margin: 14px auto 8px;
   border: white solid 1px;
   background-color: var(--panchamPurple);
   color: white;
@@ -740,6 +846,45 @@ h1 {
 
 #current-song:hover {
   background-color: var(--leafGreen);
+}
+
+#guide {
+  text-align: center;
+  font-size: 1.4rem;
+  height: 50px;
+  width: 130px;
+  margin: 8px auto;
+  border: white solid 1px;
+  background-color: var(--panchamPurple);
+  color: white;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+#guide:hover {
+  background-color: var(--skyBlue);
+  border: white solid 1px;
+}
+
+#details {
+  text-align: center;
+  font-size: 1.4rem;
+  height: 50px;
+  width: 130px;
+  margin: 8px auto;
+  border: white solid 1px;
+  background-color: var(--panchamPurple);
+  color: white;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+#details:hover {
+  /* background-color: var(--ash);
+  color: var(--charcoal);
+  border: var(--charcoal) solid 1px; */
+  background-color: var(--fireRed);
+  border: white solid 1px;
 }
 
 /* ============================= TETRONIMO-I START ============================= */
