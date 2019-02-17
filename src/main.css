@@ -324,6 +324,19 @@ h1 {
 }
 
 #game-over {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#game-over:hover span {
+  color: var(--leafGreen);
+  color: white;
+}
+
+#game-over span:first-child {
   color: var(--fireRed);
   font-weight: 600;
   font-size: 2.4rem;
@@ -343,6 +356,14 @@ h1 {
   100% {
     transform: scale(1);
   }
+}
+
+#game-over span:nth-child(2) {
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+
+  animation: gameOver 0.5s linear;
 }
 
 #tetronimo-I {

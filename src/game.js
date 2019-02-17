@@ -111,7 +111,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   // ============================================================ PAUSE GAME END ============================================================
 
+  // ============================================================ REPLAY GAME START ============================================================
+  document.getElementById("game-over").addEventListener("click", () => {
+    document.getElementById("game-over-screen").classList.remove("game-over-screen");
+    document.getElementById("game-over-screen").classList.add("game-over-screen-close");
 
+    restartGame();
+  });
+  // ============================================================ REPLAY GAME END ============================================================
 
   // ============================================================ MUTE MUSIC START ============================================================
   document.getElementById("mute-music").addEventListener("click", () => {
@@ -543,9 +550,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if ( grid !== charcoal ) {
             // alert("You lose!");
             this.gameOver = true;
-            board = [];
-            generateEmptyBoardArray();
-            canvasDrawBoard();
+            // board = [];
+            // generateEmptyBoardArray();
+            // canvasDrawBoard();
           }
         });
       // }
@@ -773,9 +780,6 @@ document.addEventListener("DOMContentLoaded", () => {
           clearInterval(frameRate);
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
-          board = [];
-          generateEmptyBoardArray();
-          canvasDrawBoard();
           // console.log("game over!");
           // console.log("framerate dead");
           // console.log(piece.verticalCollision);
@@ -788,6 +792,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function restartGame() {
     piece.verticalCollision = false;
     piece.gameOver = false;
+    piece.y = this.currentPieceType === "I" ? -1 : -2;
+    board = [];
+    generateEmptyBoardArray();
+    canvasDrawBoard();
     startGame();
   }
 
