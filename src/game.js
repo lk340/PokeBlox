@@ -761,10 +761,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
   
         else {
+          // Game Over
           clearInterval(frameRate);
-          console.log("framerate dead");
-          console.log(piece.verticalCollision);
-          console.log(piece.gameOver);
+          console.log("game over!");
+          // console.log("framerate dead");
+          // console.log(piece.verticalCollision);
+          // console.log(piece.gameOver);
         }
       }, 800);
     }
