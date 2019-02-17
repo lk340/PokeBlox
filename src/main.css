@@ -331,9 +331,9 @@ h1 {
   cursor: pointer;
 }
 
-#game-over:hover span {
+#game-over:hover span:first-child, #game-over:hover span:nth-child(2) {
   color: var(--leafGreen);
-  color: white;
+  transition-duration: 0.4s;
 }
 
 #game-over span:first-child {
