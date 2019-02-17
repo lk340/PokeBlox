@@ -191,6 +191,7 @@ h1 {
 /* ============================= GUIDE MODAL START ============================= */
 #guide-modal {
   /* display: none; */
+  position: relative;
 }
 
 /* #guide-modal-background {
@@ -199,28 +200,36 @@ h1 {
   position: fixed;
 } */
 
+#guide-modal-info {
+  position: relative;
+}
+
 #close-guide-modal {
   display: flex;
   justify-content: center;
   align-items: center;
   
-  color: white;
+  color: var(--charcoal);
   font-size: 3rem;
   cursor: pointer;
   z-index: 11;
   position: absolute;
 
-  border: red solid 1px;
   border-radius: 50%;
-  background-color: red;
+  background-color: var(--ash);
   width: 4rem;
   height: 4rem;
+  padding: 0;
+  margin: 0;
+  left: 92.5%;
+  top: -5.3%;
 
   transition-duration: 0.3s;
 }
 
 #close-guide-modal:hover {
-  transform: rotate(180deg);
+  transform: rotate(180deg) scale(1.2);
+  color: white;
 }
 
 #guide-modal-information {
@@ -340,6 +349,8 @@ h1 {
   margin-top: 5px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+
+  cursor: default;
 
   display: grid;
   grid-template-columns: 1fr 2fr;
