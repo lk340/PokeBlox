@@ -471,6 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
         board[0].forEach(grid => {
           if ( grid !== charcoal ) {
             // alert("You lose!");
+            this.gameOver = true;
             board = [];
             generateEmptyBoardArray();
             canvasDrawBoard();
@@ -519,7 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
               }
   
               generateGridBlock(this.x + x, this.y + y, this.createColor);
-              console.log(board);
+              // console.log(board);
             }
           }
         }
@@ -531,6 +532,7 @@ document.addEventListener("DOMContentLoaded", () => {
         board[0].forEach(grid => {
           if ( grid !== charcoal ) {
             // alert("You lose!");
+            this.gameOver = true;
             board = [];
             generateEmptyBoardArray();
             canvasDrawBoard();
@@ -709,12 +711,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //     }, 800);
     //   }
     // }
-
-    freeze() {
-      // freezes the current piece
-        // doesn't let the current piece move left, right, down, or rotate
-      // generates new piece afterwards
-    }
   }
   
   generateEmptyBoardArray();
@@ -727,32 +723,39 @@ document.addEventListener("DOMContentLoaded", () => {
   piece.createPiece();
   // piece.frameRate();
   if ( piece.verticalCollision === false ) {
-    setInterval(() => {
-      if ( piece.verticalCollision === false ) {
-        // console.log("no collision");
-        piece.moveDown();
+    const frameRate = setInterval(() => {
+      if (piece.gameOver === false) {
+        if ( piece.verticalCollision === false ) {
+          // console.log("no collision");
+          piece.moveDown();
+        }
+  
+        else {
+          // Logic for creating a new piece
+          // console.log("yes collision");
+          currentPiece = nextPiece;
+          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+          nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+          piece.currPiece = currentPiece;
+          piece.currentPieceIndex = 0;
+          piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+          piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+          piece.createColor = pickColor();
+          piece.x = 3;
+          // piece.y = -2;
+          piece.y = piece.currentPieceType === "I" ? -1 : -2;
+          piece.verticalCollision = false;
+          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+          // console.log(currentPiece);
+          // console.log(nextPiece);
+        }
       }
 
       else {
-        // Logic for creating a new piece
-        // console.log("yes collision");
-        currentPiece = nextPiece;
-        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
-        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
-        nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
-        piece.currPiece = currentPiece;
-        piece.currentPieceIndex = 0;
-        piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
-        piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
-        piece.createColor = pickColor();
-        piece.x = 3;
-        // piece.y = -2;
-        piece.y = piece.currentPieceType === "I" ? -1 : -2;
-        piece.verticalCollision = false;
-        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
-        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
-        // console.log(currentPiece);
-        // console.log(nextPiece);
+        window.clearInterval(frameRate);
+        console.log("framerate dead");
       }
     }, 800);
   }
