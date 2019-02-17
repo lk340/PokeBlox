@@ -328,7 +328,7 @@ h1 {
   font-weight: 600;
   font-size: 2.4rem;
 
-  animation: gameOver 0.7s linear;
+  animation: gameOver 0.5s linear;
 }
 
 @keyframes gameOver {

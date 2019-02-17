@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("play-screen").classList.add("hide-screen");
     document.getElementById("pause-screen").classList.remove("show-screen");
     document.getElementById("pause-screen").classList.add("hide-screen");
+
+    startGame();
   });
 
   document.getElementById("play-game").addEventListener("click", () => {
@@ -80,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("play-screen").classList.remove("show-screen");
     document.getElementById("play-screen").classList.add("hide-screen");
+
+    startGame();
   });
 
   document.getElementById("game-paused").addEventListener("click", () => {
@@ -90,6 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("play-screen").classList.remove("show-screen");
     document.getElementById("play-screen").classList.add("hide-screen");
+
+    startGame();
   });
   // ============================================================ START GAME END ============================================================
 
@@ -100,6 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pause-screen").classList.remove("hide-screen");
     document.getElementById("pause-screen").classList.add("show-screen");
     console.log("pause game");
+
+    pauseGame();
   });
   // ============================================================ PAUSE GAME END ============================================================
 
@@ -472,9 +480,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if ( grid !== charcoal ) {
             // alert("You lose!");
             this.gameOver = true;
-            board = [];
-            generateEmptyBoardArray();
-            canvasDrawBoard();
+            // board = [];
+            // generateEmptyBoardArray();
+            // canvasDrawBoard();
           }
         });
       // }
@@ -763,7 +771,12 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           // Game Over
           clearInterval(frameRate);
-          console.log("game over!");
+          document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
+          document.getElementById("game-over-screen").classList.add("game-over-screen");
+          board = [];
+          generateEmptyBoardArray();
+          canvasDrawBoard();
+          // console.log("game over!");
           // console.log("framerate dead");
           // console.log(piece.verticalCollision);
           // console.log(piece.gameOver);
@@ -848,6 +861,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("play-screen").classList.add("hide-screen");
       document.getElementById("pause-screen").classList.remove("show-screen");
       document.getElementById("pause-screen").classList.add("hide-screen");
+
+      startGame();
     }
 
     else if (event.which === 69) {
@@ -856,6 +871,8 @@ document.addEventListener("DOMContentLoaded", () => {
       
       document.getElementById("pause-screen").classList.remove("hide-screen");
       document.getElementById("pause-screen").classList.add("show-screen");
+
+      pauseGame();
     }
 
     else if (event.which === 85) {
