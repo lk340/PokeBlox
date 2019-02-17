@@ -482,45 +482,47 @@ document.addEventListener("DOMContentLoaded", () => {
       // else {
         // console.log(this.currPiece);
         // console.log(this.currentPieceType);
-        for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-          for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-            if ( this.currentPiece[y][x] === 1 ) {
-              // debugger;
-              const y_val = this.currentPiece.length - 1;
-              const lastIndex = this.currentPiece[y_val].length - 1;
-              if ( this.x + lastIndex > 9 ) {
-                while ( this.x + lastIndex > 9 ) {
-                  this.x -= 1;
+        if (this.gameOver === false) {
+          for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+            for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+              if ( this.currentPiece[y][x] === 1 ) {
+                // debugger;
+                const y_val = this.currentPiece.length - 1;
+                const lastIndex = this.currentPiece[y_val].length - 1;
+                if ( this.x + lastIndex > 9 ) {
+                  while ( this.x + lastIndex > 9 ) {
+                    this.x -= 1;
+                  }
                 }
-              }
-              
-              // if ( this.y + y <= 0 && board[this.y + y + 1][this.x + x] !== charcoal ) {
-              //   debugger;
-              //   alert("you lose!");
-              // }
-  
-              if (this.y > -1) {
-                if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
-                  for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-                    for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-                      if ( this.currentPiece[y][x] === 1 ) {
-                        board[this.y + y][this.x + x] = this.createColor;
+                
+                // if ( this.y + y <= 0 && board[this.y + y + 1][this.x + x] !== charcoal ) {
+                //   debugger;
+                //   alert("you lose!");
+                // }
+    
+                if (this.y > -1) {
+                  if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
+                    for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                      for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                        if ( this.currentPiece[y][x] === 1 ) {
+                          board[this.y + y][this.x + x] = this.createColor;
+                        }
                       }
                     }
+      
+                    this.verticalCollision = true;
+      
+                    // console.log(board);
+                    // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
+                    // console.log(this.y + y);
+                    // console.log(this.x + lastIndex);
+                    // console.log(board[this.y + y][this.x + lastIndex]);
                   }
-    
-                  this.verticalCollision = true;
-    
-                  // console.log(board);
-                  // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
-                  // console.log(this.y + y);
-                  // console.log(this.x + lastIndex);
-                  // console.log(board[this.y + y][this.x + lastIndex]);
                 }
+    
+                generateGridBlock(this.x + x, this.y + y, this.createColor);
+                // console.log(board);
               }
-  
-              generateGridBlock(this.x + x, this.y + y, this.createColor);
-              // console.log(board);
             }
           }
         }
@@ -541,42 +543,44 @@ document.addEventListener("DOMContentLoaded", () => {
       // }
 
       // else {
-        for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-          for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-            if ( this.currentPiece[y][x] === 1 ) {
-  
-              const y_val = this.currentPiece.length - 1;
-              const lastIndex = this.currentPiece[y_val].length - 1;
-              if ( this.x + lastIndex > 9 ) {
-                while ( this.x + lastIndex > 9 ) {
-                  if ( this.currentPiece[y][x] === 1 ) {
-                    this.x -= 1;
-                  }
-                }
-              }
-  
-              // if ( this.y + y >= 0 && board[this.y + y + 1][this.x + x] !== charcoal ) {
-              //   alert("you lose!");
-              // }
-  
-              if (this.y > -1) {
-                if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
-                  for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-                    for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-                      if ( this.currentPiece[y][x] === 1 && this.y >= 0 ) {
-                        board[this.y + y][this.x + x] = this.createColor;
-                      }
+        // if (this.gameOver === false) {
+          for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+            for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+              if ( this.currentPiece[y][x] === 1 ) {
+    
+                const y_val = this.currentPiece.length - 1;
+                const lastIndex = this.currentPiece[y_val].length - 1;
+                if ( this.x + lastIndex > 9 ) {
+                  while ( this.x + lastIndex > 9 ) {
+                    if ( this.currentPiece[y][x] === 1 ) {
+                      this.x -= 1;
                     }
                   }
-                  this.verticalCollision = true;
-                  // board[this.y + y][this.x + x] = this.createColor;
                 }
+    
+                // if ( this.y + y >= 0 && board[this.y + y + 1][this.x + x] !== charcoal ) {
+                //   alert("you lose!");
+                // }
+    
+                if (this.y > -1) {
+                  if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
+                    for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                      for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                        if ( this.currentPiece[y][x] === 1 && this.y >= 0 ) {
+                          board[this.y + y][this.x + x] = this.createColor;
+                        }
+                      }
+                    }
+                    this.verticalCollision = true;
+                    // board[this.y + y][this.x + x] = this.createColor;
+                  }
+                }
+    
+                generateGridBlock(this.x + x, this.y + y, this.deleteColor);
               }
-  
-              generateGridBlock(this.x + x, this.y + y, this.deleteColor);
             }
           }
-        }
+        // }
       // }
       
     }
@@ -722,45 +726,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
   piece.createPiece();
   // piece.frameRate();
-  if ( piece.verticalCollision === false ) {
-    const frameRate = setInterval(() => {
-      if (piece.gameOver === false) {
-        if ( piece.verticalCollision === false ) {
-          // console.log("no collision");
-          piece.moveDown();
+  function startGame() {
+    if ( piece.verticalCollision === false ) {
+      const frameRate = setInterval(() => {
+        if (piece.gameOver === false) {
+          if ( piece.verticalCollision === false ) {
+            // console.log("no collision");
+            piece.moveDown();
+          }
+    
+          else {
+            // Logic for creating a new piece
+            // console.log("yes collision");
+            currentPiece = nextPiece;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+            nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+            piece.currPiece = currentPiece;
+            piece.currentPieceIndex = 0;
+            piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+            piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+            piece.createColor = pickColor();
+            piece.x = 3;
+            // piece.y = -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.verticalCollision = false;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+            // console.log(currentPiece);
+            // console.log(nextPiece);
+          }
         }
   
         else {
-          // Logic for creating a new piece
-          // console.log("yes collision");
-          currentPiece = nextPiece;
-          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
-          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
-          nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
-          piece.currPiece = currentPiece;
-          piece.currentPieceIndex = 0;
-          piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
-          piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
-          piece.createColor = pickColor();
-          piece.x = 3;
-          // piece.y = -2;
-          piece.y = piece.currentPieceType === "I" ? -1 : -2;
-          piece.verticalCollision = false;
-          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
-          document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
-          // console.log(currentPiece);
-          // console.log(nextPiece);
+          clearInterval(frameRate);
+          console.log("framerate dead");
         }
-      }
-
-      else {
-        window.clearInterval(frameRate);
-        console.log("framerate dead");
-      }
-    }, 800);
+      }, 800);
+    }
   }
+
+  window.startgame = startGame;
+
+  // startGame();
  
-  
   // ============================================================ BOARD GENERATION END ============================================================
 
   // ============================================================ GAME CONTROLS START ============================================================
