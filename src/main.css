@@ -235,7 +235,7 @@ h1 {
   /* border: red solid 2px; */
 }
 
-.play-screen, .pause-screen {
+.play-screen, .pause-screen, .game-over-screen {
   position: absolute;
   height: 600px;
   width: 300px;
@@ -254,6 +254,10 @@ h1 {
 }
 
 .pause-screen {
+  display: none;
+}
+
+.game-over-screen-close {
   display: none;
 }
 
@@ -317,6 +321,28 @@ h1 {
 
 .show-screen {
   display: flex;
+}
+
+#game-over {
+  color: var(--fireRed);
+  font-weight: 600;
+  font-size: 2.4rem;
+
+  animation: gameOver 0.7s linear;
+}
+
+@keyframes gameOver {
+  0% {
+    transform: scale(0);
+  }
+
+  70% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 #tetronimo-I {
