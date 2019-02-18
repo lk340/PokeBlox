@@ -2,6 +2,20 @@ Array.prototype.last = function() {
   return this[this.length - 1];
 };
 
+Array.prototype.countColors = function(color) {
+  let count = 0;
+  this.forEach(element => {
+    if (element === color) {
+      count++;
+    }
+  });
+
+  if (count === this.length) {
+    return true;
+  }
+  return false;
+};
+
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {  
   // ============================================================ DETAILS MODAL START ============================================================
@@ -821,29 +835,41 @@ document.addEventListener("DOMContentLoaded", () => {
             // console.log(currentPiece);
             // console.log(nextPiece);
 
-            const newBoard = [];
-            let count = 0;
+            // const newBoard = [];
+            // let count = 0;
 
-            for (let y = board.length - 1; y >= 0; y--) {
-              if ( board[y].includes(charcoal) ) {
-                newBoard.unshift(board[y]);
+            // for (let y = board.length - 1; y >= 0; y--) {
+            //   if ( board[y].includes(charcoal) ) {
+            //     newBoard.unshift(board[y]);
+            //   }
+            //   else {
+            //     count += 1;
+            //   }
+            // }
+
+            // for (i = 0; i < count; i++) {
+            //   newBoard.unshift(emptyRow);
+            // }
+
+            // console.log(board);
+            // console.log(newBoard);
+
+            // board = newBoard;
+
+            // console.log(board);
+            // console.log(newBoard);
+
+            let last = board.length - 1;
+            while (board[last].countColors(charcoal) === false) {
+              // debugger;
+              if (!board[last].includes(charcoal)) {
+                board.splice(last, 1);
+                board.unshift(emptyRow);
               }
               else {
-                count += 1;
+                last -= 1;
               }
             }
-
-            for (i = 0; i < count; i++) {
-              newBoard.unshift(emptyRow);
-            }
-
-            console.log(board);
-            console.log(newBoard);
-
-            board = newBoard;
-
-            console.log(board);
-            console.log(newBoard);
 
             // debugger;
             canvasDrawBoard();
