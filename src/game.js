@@ -445,10 +445,12 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Generate random Tetris piece
     // const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
-  const tetronimoes = [I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L];
+  // const tetronimoes = [I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L];
+  const tetronimoes = [I];
   let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let savedPiece = null;
+  let freeze = false;
   
   const charcoal = "rgb(54, 54, 54)";
   const ash = "rgb(92, 92, 92)"; 
@@ -583,7 +585,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                       }
                     }
-      
+                    
                     this.verticalCollision = true;
       
                     // console.log(board);
@@ -644,7 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                       }
                     }
-      
+                    
                     this.verticalCollision = true;
                     pieceCounter++;
       
@@ -809,6 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // piece.frameRate();
   let frameRate;
   function startGame() {
+    freeze = false;
     if ( piece.verticalCollision === false ) {
       // piece.createPiece();
       frameRate = setInterval(() => {
@@ -910,6 +913,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function pauseGame() {
+    freeze = true;
     clearInterval(frameRate);
   }
  
@@ -929,125 +933,129 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", event => {
     // ================ GAMEPLAY CONTROLS START ================
-    if (event.which === 87) {
-      // w key
-      piece.reversePiece();
-    }
-
-    else if (event.which === 83) {
-      // s key
-      piece.moveDown();
-    }
-
-    else if (event.which === 65) {
-      // a key
-      piece.moveLeft();
-    }
-
-    else if (event.which === 68) {
-      // d key
-      piece.moveRight();
-    }
-
-    else if (event.which === 38) {
-      // up key
-      console.log("up key");
-      event.preventDefault();
-      piece.reversePiece();
-    }
-
-    else if (event.which === 40) {
-      // down key
-      console.log("down key");
-      event.preventDefault();
-      piece.moveDown();
-    }
-
-    else if (event.which === 37) {
-      // left key
-      console.log("left key");
-      event.preventDefault();
-      piece.moveLeft();
-    }
-
-    else if (event.which === 39) {
-      // right key
-      console.log("right key");
-      event.preventDefault();
-      piece.moveRight();
-    }
-
-    else if (event.which === 32 && event.target === document.body) {
-      // spacebar key
-      console.log("spacebar");
-      
-      event.preventDefault();
-
-      while ( piece.verticalCollision === false ) {
+    if (freeze === false) {
+      if (event.which === 87) {
+        // w key
+        piece.reversePiece();
+      }
+  
+      else if (event.which === 83) {
+        // s key
         piece.moveDown();
       }
+  
+      else if (event.which === 65) {
+        // a key
+        piece.moveLeft();
+      }
+  
+      else if (event.which === 68) {
+        // d key
+        piece.moveRight();
+      }
+  
+      else if (event.which === 38) {
+        // up key
+        console.log("up key");
+        event.preventDefault();
+        piece.reversePiece();
+      }
+  
+      else if (event.which === 40) {
+        // down key
+        console.log("down key");
+        event.preventDefault();
+        piece.moveDown();
+      }
+  
+      else if (event.which === 37) {
+        // left key
+        console.log("left key");
+        event.preventDefault();
+        piece.moveLeft();
+      }
+  
+      else if (event.which === 39) {
+        // right key
+        console.log("right key");
+        event.preventDefault();
+        piece.moveRight();
+      }
+  
+      else if (event.which === 32 && event.target === document.body) {
+        // spacebar key
+        console.log("spacebar");
+        
+        event.preventDefault();
+  
+        while ( piece.verticalCollision === false ) {
+          piece.moveDown();
+        }
+      }
+  
+      else if (event.which === 16) {
+        // shift key
+        console.log("shift key");
+  
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+        
+        if (savedPiece) {
+          document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.remove("show-tetronimo");
+          document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.add("hide-tetronimo");
+        }
+  
+        if (savedPiece === null) {
+          // debugger;
+          // console.log(savedPiece);
+          // console.log(piece.currPiece);
+          // console.log(piece.nextPiece);
+          savedPiece = piece.currPiece;
+          piece.currPiece = nextPiece;
+          piece.nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+          nextPiece = piece.nextPiece;
+          // debugger;
+          // console.log(savedPiece);
+          // console.log(piece.currPiece);
+          // console.log(piece.nextPiece);
+        }
+  
+        else {
+          // console.log(savedPiece);
+          // console.log(piece.currPiece);
+          // console.log(piece.nextPiece);
+          const temp = savedPiece;
+          savedPiece = piece.currPiece;
+          piece.currPiece = temp;
+          // console.log(savedPiece);
+          // console.log(piece.currPiece);
+          // console.log(piece.nextPiece);
+        }
+  
+        currentPiece = piece.currPiece;
+        // piece.currPiece = currentPiece;
+        piece.currentPieceIndex = 0;
+        piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+        piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+        piece.createColor = pickColor();
+        piece.x = 3;
+        // piece.y = -2;
+        piece.y = piece.currentPieceType === "I" ? -1 : -2;
+        piece.verticalCollision = false;
+  
+        canvasDrawBoard();
+  
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+        document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+        
+        document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.remove("hide-tetronimo");
+        document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.add("show-tetronimo");
+      }
     }
-
-    else if (event.which === 16) {
-      // shift key
-      console.log("shift key");
-
-      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
-      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
-      
-      if (savedPiece) {
-        document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.remove("show-tetronimo");
-        document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.add("hide-tetronimo");
-      }
-
-      if (savedPiece === null) {
-        // debugger;
-        // console.log(savedPiece);
-        // console.log(piece.currPiece);
-        // console.log(piece.nextPiece);
-        savedPiece = piece.currPiece;
-        piece.currPiece = piece.nextPiece;
-        piece.nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
-        // debugger;
-        // console.log(savedPiece);
-        // console.log(piece.currPiece);
-        // console.log(piece.nextPiece);
-      }
-
-      else {
-        // console.log(savedPiece);
-        // console.log(piece.currPiece);
-        // console.log(piece.nextPiece);
-        const temp = savedPiece;
-        savedPiece = piece.currPiece;
-        piece.currPiece = temp;
-        // console.log(savedPiece);
-        // console.log(piece.currPiece);
-        // console.log(piece.nextPiece);
-      }
-
-      currentPiece = piece.currPiece;
-      // piece.currPiece = currentPiece;
-      piece.currentPieceIndex = 0;
-      piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
-      piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
-      piece.createColor = pickColor();
-      piece.x = 3;
-      // piece.y = -2;
-      piece.y = piece.currentPieceType === "I" ? -1 : -2;
-      piece.verticalCollision = false;
-
-      canvasDrawBoard();
-
-      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
-      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
-      
-      document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.remove("hide-tetronimo");
-      document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.add("show-tetronimo");
-    }
+  });
     // ================ GAMEPLAY CONTROLS END ================
-
-    else if (event.which === 81) {
+    document.addEventListener("keydown", event => {
+    if (event.which === 81) {
       // q key
       console.log("game start");
 
