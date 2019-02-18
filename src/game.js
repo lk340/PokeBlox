@@ -995,33 +995,35 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
       document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
       
-      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.remove("show-tetronimo");
-      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.add("hide-tetronimo");
+      if (savedPiece) {
+        document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.remove("show-tetronimo");
+        document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.add("hide-tetronimo");
+      }
 
       if (savedPiece === null) {
         // debugger;
-        console.log(savedPiece);
-        console.log(piece.currPiece);
-        console.log(piece.nextPiece);
+        // console.log(savedPiece);
+        // console.log(piece.currPiece);
+        // console.log(piece.nextPiece);
         savedPiece = piece.currPiece;
         piece.currPiece = piece.nextPiece;
         piece.nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
         // debugger;
-        console.log(savedPiece);
-        console.log(piece.currPiece);
-        console.log(piece.nextPiece);
+        // console.log(savedPiece);
+        // console.log(piece.currPiece);
+        // console.log(piece.nextPiece);
       }
 
       else {
-        console.log(savedPiece);
-        console.log(piece.currPiece);
-        console.log(piece.nextPiece);
+        // console.log(savedPiece);
+        // console.log(piece.currPiece);
+        // console.log(piece.nextPiece);
         const temp = savedPiece;
         savedPiece = piece.currPiece;
         piece.currPiece = temp;
-        console.log(savedPiece);
-        console.log(piece.currPiece);
-        console.log(piece.nextPiece);
+        // console.log(savedPiece);
+        // console.log(piece.currPiece);
+        // console.log(piece.nextPiece);
       }
 
       // piece.currPiece = currentPiece;
@@ -1039,8 +1041,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
       document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
       
-      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.remove("hide-tetronimo");
-      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.add("show-tetronimo");
+      document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.remove("hide-tetronimo");
+      document.getElementById(`tetronimo-${savedPiece.last()}-saved`).classList.add("show-tetronimo");
     }
     // ================ GAMEPLAY CONTROLS END ================
 
