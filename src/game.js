@@ -445,9 +445,10 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Generate random Tetris piece
     // const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
-  const tetronimoes = [I, O, T, S, Z, J, L];
+  const tetronimoes = [I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L];
   let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+  let savedPiece = null;
   
   const charcoal = "rgb(54, 54, 54)";
   const ash = "rgb(92, 92, 92)"; 
@@ -458,6 +459,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const zColor = "rgb(211, 123, 123)";
   const jColor = "rgb(73, 73, 172)";
   const lColor = "rgb(255, 205, 113)";
+
+  let pieceCounter = 0;
 
   // COLOR-PICKING LOGIC START
   function pickColor() {
@@ -514,8 +517,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function canvasDrawBoard() {
-    for ( let y = 0; y < 20; y++ ) {
-      for ( let x = 0; x < 10; x++ ) {
+    for ( let y = 0; y < board.length; y++ ) {
+      for ( let x = 0; x < board[y].length; x++ ) {
         generateGridBlock(x, y, board[y][x]);
       }
     }
@@ -643,6 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
       
                     this.verticalCollision = true;
+                    pieceCounter++;
       
                     // console.log(board);
                     // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
@@ -801,19 +805,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // const piece = new CurrentPiece(tetronimoes, pickColor(), charcoal);
   let piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
-  // piece.createPiece();
+  piece.createPiece();
   // piece.frameRate();
   let frameRate;
   function startGame() {
     if ( piece.verticalCollision === false ) {
-      piece.createPiece();
+      // piece.createPiece();
       frameRate = setInterval(() => {
         if (piece.gameOver === false) {
           if ( piece.verticalCollision === false ) {
             // console.log("no collision");
             piece.moveDown();
           }
-    
+
           else if (piece.verticalCollision === true) {
             // Logic for creating a new piece
             // console.log("yes collision");
@@ -821,6 +825,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
             nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+
             piece.currPiece = currentPiece;
             piece.currentPieceIndex = 0;
             piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
@@ -832,6 +837,20 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.verticalCollision = false;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+
+            let last = board.length - 1;
+            while (board[last].countColors(charcoal) === false) {
+              // debugger;
+              if (!board[last].includes(charcoal)) {
+                board.splice(last, 1);
+                board.unshift(emptyRow);
+              }
+              else {
+                last -= 1;
+              }
+            }
+
+            canvasDrawBoard();
             // console.log(currentPiece);
             // console.log(nextPiece);
 
@@ -859,20 +878,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // console.log(board);
             // console.log(newBoard);
 
-            let last = board.length - 1;
-            while (board[last].countColors(charcoal) === false) {
-              // debugger;
-              if (!board[last].includes(charcoal)) {
-                board.splice(last, 1);
-                board.unshift(emptyRow);
-              }
-              else {
-                last -= 1;
-              }
-            }
-
             // debugger;
-            canvasDrawBoard();
           }
         }
   
@@ -883,12 +889,13 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("game-over-screen").classList.add("game-over-screen");
 
           console.log(board);
+          console.log(pieceCounter);
           // console.log("game over!");
           // console.log("framerate dead");
           // console.log(piece.verticalCollision);
           // console.log(piece.gameOver);
         }
-      }, 800);
+      }, 600);
     }
   }
 
@@ -942,6 +949,34 @@ document.addEventListener("DOMContentLoaded", () => {
       piece.moveRight();
     }
 
+    else if (event.which === 38) {
+      // up key
+      console.log("up key");
+      event.preventDefault();
+      piece.reversePiece();
+    }
+
+    else if (event.which === 40) {
+      // down key
+      console.log("down key");
+      event.preventDefault();
+      piece.moveDown();
+    }
+
+    else if (event.which === 37) {
+      // left key
+      console.log("left key");
+      event.preventDefault();
+      piece.moveLeft();
+    }
+
+    else if (event.which === 39) {
+      // right key
+      console.log("right key");
+      event.preventDefault();
+      piece.moveRight();
+    }
+
     else if (event.which === 32 && event.target === document.body) {
       // spacebar key
       console.log("spacebar");
@@ -956,6 +991,56 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (event.which === 16) {
       // shift key
       console.log("shift key");
+
+      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+      
+      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.remove("show-tetronimo");
+      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.add("hide-tetronimo");
+
+      if (savedPiece === null) {
+        // debugger;
+        console.log(savedPiece);
+        console.log(piece.currPiece);
+        console.log(piece.nextPiece);
+        savedPiece = piece.currPiece;
+        piece.currPiece = piece.nextPiece;
+        piece.nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
+        // debugger;
+        console.log(savedPiece);
+        console.log(piece.currPiece);
+        console.log(piece.nextPiece);
+      }
+
+      else {
+        console.log(savedPiece);
+        console.log(piece.currPiece);
+        console.log(piece.nextPiece);
+        const temp = savedPiece;
+        savedPiece = piece.currPiece;
+        piece.currPiece = temp;
+        console.log(savedPiece);
+        console.log(piece.currPiece);
+        console.log(piece.nextPiece);
+      }
+
+      // piece.currPiece = currentPiece;
+      piece.currentPieceIndex = 0;
+      piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+      piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+      piece.createColor = pickColor();
+      piece.x = 3;
+      // piece.y = -2;
+      piece.y = piece.currentPieceType === "I" ? -1 : -2;
+      piece.verticalCollision = false;
+
+      canvasDrawBoard();
+
+      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+      document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+      
+      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.remove("hide-tetronimo");
+      document.getElementById(`tetronimo-${nextPiece.last()}-saved`).classList.add("show-tetronimo");
     }
     // ================ GAMEPLAY CONTROLS END ================
 
