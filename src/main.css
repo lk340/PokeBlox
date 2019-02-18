@@ -951,7 +951,7 @@ h1 {
 }
 
 #website a:hover {
-  /* transform: translateY(-25px) translateX(25px); */
+  color: var(--panchamPurple);
   animation: websiteHover 1s linear;
 }
 
