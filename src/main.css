@@ -940,7 +940,7 @@ h1 {
 }
 
 #website a {
-  color: pink;
+  color: var(--ash);
 }
 
 #linkedIn a:hover, #github a:hover {
