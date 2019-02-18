@@ -1037,6 +1037,8 @@ h1 {
   color: white;
   transition-duration: 0.3s;
   cursor: pointer;
+
+  position: relative;
 }
 
 #current-song:hover {
@@ -1081,6 +1083,53 @@ h1 {
   background-color: var(--fireRed);
   border: white solid 1px;
 }
+
+/* ============================= SOUNDTRACK START ============================= */
+#audio {
+  display: flex;
+}
+
+#music-divider {
+  position: absolute;
+  background-color: white;
+  width: 40px;
+  height: 15px;
+  left: 135px;
+  top: 12px;
+}
+
+#music-player {
+  position: absolute;
+  background-color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  color: black;
+  width: 300px;
+  left: 140px;
+  top: -143px;
+}
+
+#music-player div span {
+  width: 100%;
+  display: block;
+  transition-duration: 0.3s;
+}
+
+#music-player div:first-child span {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+#music-player div:last-child span {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+#music-player div span:hover {
+  background-color: var(--charcoal);
+  color: white;
+}
+/* ============================= SOUNDTRACK END ============================= */
 
 /* ============================= TETRONIMO-I START ============================= */
 .tetronimo-I {
