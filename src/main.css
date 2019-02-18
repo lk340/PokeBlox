@@ -943,11 +943,38 @@ h1 {
   color: pink;
 }
 
-#linkedIn a:hover, #github a:hover, #website a:hover {
+#linkedIn a:hover, #github a:hover {
   opacity: 0.7;
   color: var(--panchamPurple);
   font-size: 6.5rem;
   transform: rotate(360deg);
+}
+
+#website a:hover {
+  /* transform: translateY(-25px) translateX(25px); */
+  animation: websiteHover 1s linear;
+}
+
+@keyframes websiteHover {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translateY(-80px) translateX(80px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(80px) translateX(-80px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
 }
 
 /* ============================= SOCIAL END ============================= */
