@@ -435,7 +435,7 @@ h1 {
   padding-top: 30px;
 }
 
-#shift > div, #spacebar > div {
+#shift > div, #spacebar > div:first-child {
   border: white solid 1px;
   width: 80%;
   text-align: center;
@@ -463,6 +463,16 @@ h1 {
 #spacebar {
   border-bottom-right-radius: 20px;
   /* border: red solid 1px; */
+}
+
+#hotkeys {
+  border: white solid 1px;
+  width: 80%;
+  text-align: left;
+  padding: 2px 0;
+  padding-left: 43px;
+
+  transition-duration: 0.3s;
 }
 
 /* ============================= GUIDE MODAL END ============================= */
