@@ -1026,6 +1026,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // console.log(piece.nextPiece);
       }
 
+      currentPiece = piece.currPiece;
       // piece.currPiece = currentPiece;
       piece.currentPieceIndex = 0;
       piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
