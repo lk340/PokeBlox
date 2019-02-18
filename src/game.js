@@ -65,6 +65,49 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   // ============================================================ DETAILS MODAL END ============================================================
 
+  // ============================================================ DIRECTIONS MODAL START ============================================================
+  document.getElementById("guide-modal-background").addEventListener("click", () => {
+    document.getElementById("guide-modal").classList.remove("show-guide");
+    document.getElementById("guide-modal").classList.add("hide-guide");
+
+    document.getElementById("guide-modal-information").classList.remove("show-guide-modal");
+    document.getElementById("guide-modal-information").classList.add("hide-guide-modal");
+
+    document.getElementById("guide-modal-background").classList.remove("show-guide-background");
+    document.getElementById("guide-modal-background").classList.add("hide-guide-background");
+
+    document.getElementById("guide-modal-info").classList.remove("show-guide-modal-info");
+    document.getElementById("guide-modal-info").classList.add("hide-guide-modal-info");
+  });
+
+  document.getElementById("close-guide-modal").addEventListener("click", () => {
+    document.getElementById("guide-modal").classList.remove("show-guide");
+    document.getElementById("guide-modal").classList.add("hide-guide");
+
+    document.getElementById("guide-modal-information").classList.remove("show-guide-modal");
+    document.getElementById("guide-modal-information").classList.add("hide-guide-modal");
+
+    document.getElementById("guide-modal-background").classList.remove("show-guide-background");
+    document.getElementById("guide-modal-background").classList.add("hide-guide-background");
+
+    document.getElementById("guide-modal-info").classList.remove("show-guide-modal-info");
+    document.getElementById("guide-modal-info").classList.add("hide-guide-modal-info");
+  });
+
+  document.getElementById("guide").addEventListener("click", () => {
+    document.getElementById("guide-modal").classList.remove("hide-guide");
+    document.getElementById("guide-modal").classList.add("show-guide");
+
+    document.getElementById("guide-modal-information").classList.remove("hide-guide-modal");
+    document.getElementById("guide-modal-information").classList.add("show-guide-modal");
+
+    document.getElementById("guide-modal-background").classList.remove("hide-guide-background");
+    document.getElementById("guide-modal-background").classList.add("show-guide-background");
+
+    document.getElementById("guide-modal-info").classList.remove("hide-guide-modal-info");
+    document.getElementById("guide-modal-info").classList.add("show-guide-modal-info");
+  });
+  // ============================================================ DIRECTIONS MODAL END ============================================================
 
   // ============================================================ START GAME START ============================================================
   document.getElementById("start-game").addEventListener("click", () => {

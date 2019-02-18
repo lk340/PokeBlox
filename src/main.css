@@ -190,15 +190,50 @@ h1 {
 
 /* ============================= GUIDE MODAL START ============================= */
 #guide-modal {
-  /* display: none; */
-  position: relative;
 }
 
-/* #guide-modal-background {
+#guide-modal .show-guide {
+  position: fixed;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: 10;
+}
+
+#guide-modal .hide-guide {
+  display: none;
+}
+
+#guide-modal-background {
+  /* background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; */
+}
+
+.show-guide-background {
+  display: flex;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9;
   position: fixed;
-} */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.hide-guide-background {
+  display: none;
+}
 
 #guide-modal-info {
   position: relative;
@@ -233,17 +268,44 @@ h1 {
 }
 
 #guide-modal-information {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto;
+  
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  z-index: 10;
-  background-color: rgba(0, 0, 0, 0.5);
+  left: 0; 
+  z-index: 50;
+  height: 500px;
+  width: 500px; */
 
+  /* border: red solid 1px; */
+}
+
+.show-guide-modal {
+  /* display: flex; */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin: auto;
+  
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+  z-index: 50;
+  height: 500px;
+  width: 500px;
+}
+
+.hide-guide-modal {
+  display: none;
 }
 
 #guide-modal-info {
@@ -258,9 +320,17 @@ h1 {
   height: 500px;
   width: 500px;
   padding: 20px 30px;
-  /* text-align: center; */
-
+  
   border-radius: 20px;
+  /* text-align: center; */
+}
+
+#guide-modal-info .show-guide-modal-info {
+  display: flex;
+}
+
+#guide-modal-info .hide-guide-modal-info {
+  display: none;
 }
 
 #guide-modal-info h3 {
@@ -821,7 +891,7 @@ h1 {
   align-items: center;
 }
 
-#linkedIn, #github {
+#linkedIn, #github, #website {
   width: 150px;
   height: 150px;
   /* margin-left: 5%; */
@@ -836,7 +906,7 @@ h1 {
   align-items: center;
 }
 
-#linkedIn:hover, #github:hover {
+#linkedIn:hover, #github:hover, #website:hover {
   background-color: var(--charcoal);
 }
 
@@ -848,7 +918,7 @@ h1 {
   cursor: default;
 }
 
-#linkedIn a, #github a {
+#linkedIn a, #github a, #website a {
   display: block;
   text-decoration: none;
   font-size: 5rem;
@@ -869,7 +939,11 @@ h1 {
   color: #23292D;
 }
 
-#linkedIn a:hover, #github a:hover {
+#website a {
+  color: pink;
+}
+
+#linkedIn a:hover, #github a:hover, #website a:hover {
   opacity: 0.7;
   color: var(--panchamPurple);
   font-size: 6.5rem;
