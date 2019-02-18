@@ -445,8 +445,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Generate random Tetris piece
     // const tetronimoes = ["I", "O", "T", "S", "Z", "J", "L"];
-  // const tetronimoes = [I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L];
-  const tetronimoes = [I];
+  const tetronimoes = [I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L, I, O, T, S, Z, J, L];
+  // const tetronimoes = [I];
   let currentPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let savedPiece = null;
@@ -586,6 +586,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       }
                     }
                     
+                    
                     this.verticalCollision = true;
       
                     // console.log(board);
@@ -646,6 +647,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                       }
                     }
+                    
                     
                     this.verticalCollision = true;
                     pieceCounter++;
