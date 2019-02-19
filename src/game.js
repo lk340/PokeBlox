@@ -870,8 +870,8 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
 
-          console.log(board);
-          console.log(pieceCounter);
+          // console.log(board);
+          // console.log(pieceCounter);
           // console.log("game over!");
           // console.log("framerate dead");
           // console.log(piece.verticalCollision);
