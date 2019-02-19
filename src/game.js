@@ -573,6 +573,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const lastIndex = this.currentPiece[y_val].length - 1;
                 if ( this.x + lastIndex > 9 ) {
                   while ( this.x + lastIndex > 9 ) {
+                    console.log(" WHILE AT X + LAST INDEX CREATE PIECE");
                     this.x -= 1;
                   }
                 }
@@ -635,6 +636,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const lastIndex = this.currentPiece[y_val].length - 1;
                 if ( this.x + lastIndex > 9 ) {
                   while ( this.x + lastIndex > 9 ) {
+                    console.log(" WHILE AT X + LAST INDEX DELETE PIECE");
                     this.x -= 1;
                   }
                 }
@@ -851,6 +853,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let last = board.length - 1;
             while (board[last] && board[last].countColors(charcoal) === false) {
+              console.log(" WHILE AT COUNT COLORS");
               // debugger;
               if (!board[last].includes(charcoal)) {
                 board.splice(last, 1);
@@ -870,9 +873,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   }
                 }
               }
-              console.log(`LAST: ${last}`);
             }
-            console.log("--------------------------------------------------");
 
             canvasDrawBoard();
 
@@ -957,7 +958,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
 
             let last = board.length - 1;
-            while (board[last].countColors(charcoal) === false) {
+            while (board[last] && board[last].countColors(charcoal) === false) {
               // debugger;
               if (!board[last].includes(charcoal)) {
                 board.splice(last, 1);
@@ -966,7 +967,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 rowsDeleted += 1;
               }
               else {
-                last -= 1;
+                if (last > 0) {            
+                  console.log(last);
+                  if (last - 1 === 0) {
+                    break;
+                  }
+
+                  else {
+                    last -= 1;  
+                  }
+                }
               }
             }
 
@@ -1053,7 +1063,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
 
             let last = board.length - 1;
-            while (board[last].countColors(charcoal) === false) {
+            while (board[last] && board[last].countColors(charcoal) === false) {
               // debugger;
               if (!board[last].includes(charcoal)) {
                 board.splice(last, 1);
@@ -1062,7 +1072,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 rowsDeleted += 1;
               }
               else {
-                last -= 1;
+                if (last > 0) {            
+                  console.log(last);
+                  if (last - 1 === 0) {
+                    break;
+                  }
+
+                  else {
+                    last -= 1;  
+                  }
+                }
               }
             }
 
@@ -1199,7 +1218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         event.preventDefault();
   
-        while ( piece.verticalCollision === false ) {
+        while ( piece.verticalCollision === false && piece.y > 0 ) {
           piece.moveDown();
         }
       }
