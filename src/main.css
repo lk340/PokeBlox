@@ -1187,11 +1187,97 @@ h1 {
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-end;  
+}
 
+.song-title-background-tears-of-life {
+  background-image: url(../public/playlist_images/mewtwo.jpg);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-johto-opening {
+  background-image: url(../public/playlist_images/johto_journeys.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-viridian-city {
+  background-image: url(../public/playlist_images/viridian_city.jpg);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-viridian-forest {
+  background-image: url(../public/playlist_images/viridian-forest.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-team-rocket {
   background-image: url(../public/playlist_images/team_rocket.jpg);
   background-size: cover;
   /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-gsc-champion {
+  background-image: url(../public/playlist_images/champion_lance.png);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-route-47 {
+  background-image: url(../public/playlist_images/pikachu.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-dpp-champion {
+  background-image: url(../public/playlist_images/champion_cynthia.png);
+  background-size: cover;
+  background-position-y: -20px;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-n-theme {
+  background-image: url(../public/playlist_images/n.png);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-snowbelle-city {
+  background-image: url(../public/playlist_images/snowbelle_city.png);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-usum-theme {
+  background-image: url(../public/playlist_images/alola.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-tetris-original {
+  background-image: url(../public/playlist_images/61Wvdn29vZL.png);
+  background-size: cover;
+  background-position-y: -30px;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-tetris99 {
+  background-image: url(../public/playlist_images/tetris99.jpeg);
+  background-size: cover;
+  background-position-y: -15px;
   background-repeat: no-repeat;
 }
 

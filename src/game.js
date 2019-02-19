@@ -16,6 +16,8 @@ Array.prototype.countColors = function(color) {
   return false;
 };
 
+let pauseSong = false;
+
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {  
   // ============================================================ DETAILS MODAL START ============================================================
@@ -191,14 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   // ============================================================ REPLAY GAME END ============================================================
 
-  // ============================================================ MUTE MUSIC START ============================================================
-  document.getElementById("mute-music").addEventListener("click", () => {
-    alert("mute-music");
-  });
-  // ============================================================ MUTE MUSIC END ============================================================
-
-
-
   // ============================================================ CHANGE MUSIC START ============================================================
   document.getElementById("change-music").addEventListener("click", () => {
     const audio2 = document.getElementById("audio").classList[0];
@@ -240,6 +234,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "Mewtwo - Tears of Life";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-tears-of-life");
   });
 
   document.getElementById("johto-opening").addEventListener("click", () => {
@@ -248,6 +245,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "Pokémon Johto Opening";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-johto-opening");
   });
 
   document.getElementById("viridian-city").addEventListener("click", () => {
@@ -256,6 +256,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "RBY Viridian City";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-viridian-city");
   });
 
   document.getElementById("viridian-forest").addEventListener("click", () => {
@@ -264,6 +267,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "RBY Viridian Forest";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-viridian-forest");
   });
 
   document.getElementById("team-rocket").addEventListener("click", () => {
@@ -272,6 +278,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "Battle! Team Rocket";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-team-rocket");
   });
 
   document.getElementById("gsc-champion").addEventListener("click", () => {
@@ -280,6 +289,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "GSC Champion";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-gsc-champion");
   });
 
   document.getElementById("route-47").addEventListener("click", () => {
@@ -288,6 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "GSC Route 47";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-route-47");
   });
 
   document.getElementById("dpp-champion").addEventListener("click", () => {
@@ -296,6 +311,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "DPP Champion";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-dpp-champion");
   });
 
   document.getElementById("n-theme").addEventListener("click", () => {
@@ -304,6 +322,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "BW N's Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-n-theme");
   });
 
   document.getElementById("snowbelle-city").addEventListener("click", () => {
@@ -312,6 +333,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "XY Snowbelle City";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-snowbelle-city");
   });
 
   document.getElementById("usum-theme").addEventListener("click", () => {
@@ -320,6 +344,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "USUM Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-usum-theme");
   });
 
   document.getElementById("tetris-original").addEventListener("click", () => {
@@ -328,6 +355,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "Tetris Original Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-tetris-original");
   });
 
   document.getElementById("tetris99").addEventListener("click", () => {
@@ -336,8 +366,25 @@ document.addEventListener("DOMContentLoaded", () => {
     currentSong.play();
     currentSong.loop = true;
     document.getElementById("now-playing").innerHTML = "Tetris99 Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-tetris99");
   });
   // ============================================================ AUDIO LOGIC END ============================================================
+
+
+  // ============================================================ MUTE MUSIC START ============================================================
+  document.getElementById("mute-music").addEventListener("click", () => {
+    if (pauseSong === false) {
+      pauseSong = true;
+      currentSong.pause();
+    }
+    else {
+      pauseSong = false;
+      currentSong.play();
+    }
+  });
+  // ============================================================ MUTE MUSIC END ============================================================
 
   // ============================================================ BOARD GENERATION START ============================================================
    // PIECE ARRAYS START
