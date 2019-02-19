@@ -1146,7 +1146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     piece.gameOver = false;
     piece.y = this.currentPieceType === "I" ? -1 : -2;
     points = 0;
-    document.getElementById("points-counter").innerHTML = points;e
+    document.getElementById("points-counter").innerHTML = points;
     board = [];
     generateEmptyBoardArray();
     canvasDrawBoard();
