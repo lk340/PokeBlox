@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("detail-modal-information").classList.add("hide-about");
     }
 
-    pauseGame();
+    // pauseGame();
   });
 
   document.getElementById("details").addEventListener("click", () => {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about-modal-close").classList.add("about-modal-x-show");
     }
 
-    pauseGame();
+    // pauseGame();
   });
 
   // Close About Modal
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about-modal-close").classList.add("about-modal-x-hide");
     }
 
-    startGame();
+    // startGame();
   });
   
   document.getElementById("about-modal-close").addEventListener("click", () => {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("detail-modal-information").classList.add("hide-about");
     }
 
-    startGame();
+    // startGame();
   });
   // ============================================================ DETAILS MODAL END ============================================================
 
@@ -206,7 +206,118 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================ CHANGE MUSIC END ============================================================
 
   // ============================================================ AUDIO LOGIC START ============================================================
+  // const audio = new Audio("gsc_battle_team_rocket.mp3");
+  // audio.play();
 
+  // const song = document.getElementById("song");
+  // song.play();
+  let currentSong = document.getElementById("005");
+  currentSong.play();
+  currentSong.loop = true;
+
+  document.getElementById("tears-of-life").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("001");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Mewtwo - Tears of Life";
+  });
+
+  document.getElementById("johto-opening").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("002");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Pokémon Johto Opening";
+  });
+
+  document.getElementById("viridian-city").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("003");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "RBY Viridian City";
+  });
+
+  document.getElementById("viridian-forest").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("004");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "RBY Viridian Forest";
+  });
+
+  document.getElementById("team-rocket").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("005");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Battle! Team Rocket";
+  });
+
+  document.getElementById("gsc-champion").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("006");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "GSC Champion";
+  });
+
+  document.getElementById("route-47").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("007");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "GSC Route 47";
+  });
+
+  document.getElementById("dpp-champion").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("008");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "DPP Champion";
+  });
+
+  document.getElementById("n-theme").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("009");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "BW N's Theme";
+  });
+
+  document.getElementById("snowbelle-city").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("010");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "XY Snowbelle City";
+  });
+
+  document.getElementById("usum-theme").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("011");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "USUM Theme";
+  });
+
+  document.getElementById("tetris-original").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("012");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Tetris Original Theme";
+  });
+
+  document.getElementById("tetris99").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("013");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Tetris99 Theme";
+  });
   // ============================================================ AUDIO LOGIC END ============================================================
 
   // ============================================================ BOARD GENERATION START ============================================================
