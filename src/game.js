@@ -16,6 +16,8 @@ Array.prototype.countColors = function(color) {
   return false;
 };
 
+let pauseSong = false;
+
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {  
   // ============================================================ DETAILS MODAL START ============================================================
@@ -26,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("detail-modal-information").classList.remove("show-about");
       document.getElementById("detail-modal-information").classList.add("hide-about");
     }
+
+    // pauseGame();
   });
 
   document.getElementById("details").addEventListener("click", () => {
@@ -43,6 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about-modal-close").classList.remove("about-modal-x-hide");
       document.getElementById("about-modal-close").classList.add("about-modal-x-show");
     }
+
+    // pauseGame();
   });
 
   // Close About Modal
@@ -60,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about-modal-close").classList.remove("about-modal-x-show");
       document.getElementById("about-modal-close").classList.add("about-modal-x-hide");
     }
+
+    // startGame();
   });
   
   document.getElementById("about-modal-close").addEventListener("click", () => {
@@ -76,6 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("detail-modal-information").classList.remove("show-about");
       document.getElementById("detail-modal-information").classList.add("hide-about");
     }
+
+    // startGame();
   });
   // ============================================================ DETAILS MODAL END ============================================================
 
@@ -92,6 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("guide-modal-info").classList.remove("show-guide-modal-info");
     document.getElementById("guide-modal-info").classList.add("hide-guide-modal-info");
+
+    // startGame();
   });
 
   document.getElementById("close-guide-modal").addEventListener("click", () => {
@@ -106,6 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("guide-modal-info").classList.remove("show-guide-modal-info");
     document.getElementById("guide-modal-info").classList.add("hide-guide-modal-info");
+
+    // startGame();
   });
 
   document.getElementById("guide").addEventListener("click", () => {
@@ -120,6 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("guide-modal-info").classList.remove("hide-guide-modal-info");
     document.getElementById("guide-modal-info").classList.add("show-guide-modal-info");
+
+    // pauseGame();
   });
   // ============================================================ DIRECTIONS MODAL END ============================================================
 
@@ -177,23 +193,198 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   // ============================================================ REPLAY GAME END ============================================================
 
-  // ============================================================ MUTE MUSIC START ============================================================
-  document.getElementById("mute-music").addEventListener("click", () => {
-    alert("mute-music");
-  });
-  // ============================================================ MUTE MUSIC END ============================================================
-
-
-
   // ============================================================ CHANGE MUSIC START ============================================================
   document.getElementById("change-music").addEventListener("click", () => {
-    alert("change-music");
+    const audio2 = document.getElementById("audio").classList[0];
+    
+    if (audio2.includes("audio-hidden")) {
+      document.getElementById("audio").classList.remove("audio-hidden");
+      document.getElementById("audio").classList.add("audio");
+    }
+    else {
+      document.getElementById("audio").classList.remove("audio");
+      document.getElementById("audio").classList.add("audio-hidden");
+    }
   });
   // ============================================================ CHANGE MUSIC END ============================================================
 
-  // ============================================================ AUDIO LOGIC START ============================================================
+  // ============================================================ MUSIC PLAYER START ============================================================
+  document.getElementById("current-song").addEventListener("click", () => {
+    const audio = document.getElementById("audio").classList[0];
+    
+    if (audio.includes("audio-hidden")) {
+      document.getElementById("audio").classList.remove("audio-hidden");
+      document.getElementById("audio").classList.add("audio");
+    }
+    else {
+      document.getElementById("audio").classList.remove("audio");
+      document.getElementById("audio").classList.add("audio-hidden");
+    }
+  });
+  // ============================================================ MUSIC PLAYER END ============================================================
 
+  // ============================================================ AUDIO LOGIC START ============================================================
+  let currentSong = document.getElementById("005");
+  currentSong.play();
+  currentSong.loop = true;
+
+  document.getElementById("tears-of-life").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("001");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Mewtwo - Tears of Life";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-tears-of-life");
+  });
+
+  document.getElementById("johto-opening").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("002");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Pokémon Johto Opening";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-johto-opening");
+  });
+
+  document.getElementById("viridian-city").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("003");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "RBY Viridian City";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-viridian-city");
+  });
+
+  document.getElementById("viridian-forest").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("004");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "RBY Viridian Forest";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-viridian-forest");
+  });
+
+  document.getElementById("team-rocket").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("005");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Battle! Team Rocket";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-team-rocket");
+  });
+
+  document.getElementById("gsc-champion").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("006");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "GSC Champion";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-gsc-champion");
+  });
+
+  document.getElementById("route-47").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("007");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "GSC Route 47";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-route-47");
+  });
+
+  document.getElementById("dpp-champion").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("008");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "DPP Champion";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-dpp-champion");
+  });
+
+  document.getElementById("n-theme").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("009");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "BW N's Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-n-theme");
+  });
+
+  document.getElementById("snowbelle-city").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("010");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "XY Snowbelle City";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-snowbelle-city");
+  });
+
+  document.getElementById("usum-theme").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("011");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "USUM Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-usum-theme");
+  });
+
+  document.getElementById("tetris-original").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("012");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Tetris Original Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-tetris-original");
+  });
+
+  document.getElementById("tetris99").addEventListener("click", () => {
+    currentSong.pause();
+    currentSong = document.getElementById("013");
+    currentSong.play();
+    currentSong.loop = true;
+    document.getElementById("now-playing").innerHTML = "Tetris99 Theme";
+
+    document.getElementById("song-title").classList.remove(document.getElementById("song-title").classList[0]);
+    document.getElementById("song-title").classList.add("song-title-background-tetris99");
+  });
   // ============================================================ AUDIO LOGIC END ============================================================
+
+
+  // ============================================================ MUTE MUSIC START ============================================================
+  document.getElementById("mute-music").addEventListener("click", () => {
+    if (pauseSong === false) {
+      pauseSong = true;
+      currentSong.pause();
+    }
+    else {
+      pauseSong = false;
+      currentSong.play();
+    }
+  });
+  // ============================================================ MUTE MUSIC END ============================================================
 
   // ============================================================ BOARD GENERATION START ============================================================
    // PIECE ARRAYS START
@@ -455,6 +646,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let savedPiece = null;
   let freeze = false;
+  let rowsDeleted = 0;
+  let points = 0;
   
   const charcoal = "rgb(54, 54, 54)";
   const ash = "rgb(92, 92, 92)"; 
@@ -547,6 +740,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.y = this.currentPieceType === "I" ? -1 : -2;
       this.verticalCollision = false;
       this.gameOver = false;
+      this.fallDown = true;
     }
     
     createPiece() {
@@ -571,6 +765,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const lastIndex = this.currentPiece[y_val].length - 1;
                 if ( this.x + lastIndex > 9 ) {
                   while ( this.x + lastIndex > 9 ) {
+                    console.log(" WHILE AT X + LAST INDEX CREATE PIECE");
                     this.x -= 1;
                   }
                 }
@@ -590,8 +785,11 @@ document.addEventListener("DOMContentLoaded", () => {
                       }
                     }
                     
-                    
-                    this.verticalCollision = true;
+                    // this.fallDown = false;
+                    // setTimeout(() => {
+                    //   this.fallDown = true;
+                      this.verticalCollision = true;
+                    // }, 500);
       
                     // console.log(board);
                     // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
@@ -633,6 +831,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const lastIndex = this.currentPiece[y_val].length - 1;
                 if ( this.x + lastIndex > 9 ) {
                   while ( this.x + lastIndex > 9 ) {
+                    console.log(" WHILE AT X + LAST INDEX DELETE PIECE");
                     this.x -= 1;
                   }
                 }
@@ -653,8 +852,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     
                     
+                    // this.fallDown = false;
+                    // setTimeout(() => {
+                    //   this.fallDown = true;
+                    //   this.verticalCollision = true;
+                    // }, 3000);
+
                     this.verticalCollision = true;
-                    pieceCounter++;
       
                     // console.log(board);
                     // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
@@ -738,12 +942,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     moveDown() {
-      this.deletePiece();
-      if ( this.verticalCollision === false ) {
-        this.y += 1;
-      }
+      if (this.fallDown === true) {
+        this.deletePiece();
+        if ( this.verticalCollision === false ) {
+          this.y += 1;
+        }
 
-      this.createPiece();
+        this.createPiece();
+      }
     }
 
     reversePiece() {
@@ -848,19 +1054,52 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
 
             let last = board.length - 1;
-            while (board[last].countColors(charcoal) === false) {
+            while (board[last] && board[last].countColors(charcoal) === false) {
+              console.log(" WHILE AT COUNT COLORS");
               // debugger;
               if (!board[last].includes(charcoal)) {
                 board.splice(last, 1);
                 // board.unshift(emptyRow);
                 board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
+                rowsDeleted += 1;
               }
               else {
-                last -= 1;
+                if (last > 0) {            
+                  console.log(last);
+                  if (last - 1 === 0) {
+                    break;
+                  }
+
+                  else {
+                    last -= 1;  
+                  }
+                }
               }
             }
 
             canvasDrawBoard();
+
+            switch(rowsDeleted) {
+              case 1:
+                points += (rowsDeleted * 10);
+                rowsDeleted = 0;
+                break;
+              case 2:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 3:
+                points += (rowsDeleted * 10) + 20;
+                rowsDeleted = 0;
+                break;
+              case 4:
+                points += (rowsDeleted * 10) + 30;
+                rowsDeleted = 0;
+                break;
+            }
+
+
+            document.getElementById("points-counter").innerHTML = points;
           }
         }
   
@@ -877,7 +1116,219 @@ document.addEventListener("DOMContentLoaded", () => {
           // console.log(piece.verticalCollision);
           // console.log(piece.gameOver);
         }
-      }, 600);
+
+        if (parseInt(document.getElementById("points-counter").innerHTML) > 250) {
+          clearInterval(frameRate);
+          startGame2();
+        }
+
+      }, 400);
+    }
+  }
+
+
+  let frameRate2;
+  function startGame2() {
+    freeze = false;
+    if ( piece.verticalCollision === false ) {
+      // piece.createPiece();
+      frameRate2 = setInterval(() => {
+        if (piece.gameOver === false) {
+          if ( piece.verticalCollision === false ) {
+            // console.log("no collision");
+            piece.moveDown();
+          }
+
+          else if (piece.verticalCollision === true) {
+            // Logic for creating a new piece
+            // console.log("yes collision");
+            currentPiece = nextPiece;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+            nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+
+            piece.currPiece = currentPiece;
+            piece.currentPieceIndex = 0;
+            piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+            piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+            piece.createColor = pickColor();
+            piece.x = 3;
+            // piece.y = -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.verticalCollision = false;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+
+            let last = board.length - 1;
+            while (board[last] && board[last].countColors(charcoal) === false) {
+              // debugger;
+              if (!board[last].includes(charcoal)) {
+                board.splice(last, 1);
+                // board.unshift(emptyRow);
+                board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
+                rowsDeleted += 1;
+              }
+              else {
+                if (last > 0) {            
+                  console.log(last);
+                  if (last - 1 === 0) {
+                    break;
+                  }
+
+                  else {
+                    last -= 1;  
+                  }
+                }
+              }
+            }
+
+            canvasDrawBoard();
+
+            console.log(rowsDeleted);
+
+            switch(rowsDeleted) {
+              case 1:
+                points += (rowsDeleted * 10);
+                rowsDeleted = 0;
+                break;
+              case 2:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 3:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 4:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+            }
+
+
+            document.getElementById("points-counter").innerHTML = points;
+          }
+        }
+  
+        else {
+          // Game Over
+          clearInterval(frameRate2);
+          document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
+          document.getElementById("game-over-screen").classList.add("game-over-screen");
+
+          // console.log(board);
+          // console.log(pieceCounter);
+          // console.log("game over!");
+          // console.log("framerate dead");
+          // console.log(piece.verticalCollision);
+          // console.log(piece.gameOver);
+        }
+
+        if (parseInt(document.getElementById("points-counter").innerHTML) > 500) {
+          clearInterval(frameRate2);
+          startGame3();
+        }
+      }, 250);
+    }
+  }
+
+  let frameRate3;
+  function startGame3() {
+    freeze = false;
+    if ( piece.verticalCollision === false ) {
+      // piece.createPiece();
+      frameRate3 = setInterval(() => {
+        if (piece.gameOver === false) {
+          if ( piece.verticalCollision === false ) {
+            // console.log("no collision");
+            piece.moveDown();
+          }
+
+          else if (piece.verticalCollision === true) {
+            // Logic for creating a new piece
+            // console.log("yes collision");
+            currentPiece = nextPiece;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+            nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+
+            piece.currPiece = currentPiece;
+            piece.currentPieceIndex = 0;
+            piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+            piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+            piece.createColor = pickColor();
+            piece.x = 3;
+            // piece.y = -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.verticalCollision = false;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+
+            let last = board.length - 1;
+            while (board[last] && board[last].countColors(charcoal) === false) {
+              // debugger;
+              if (!board[last].includes(charcoal)) {
+                board.splice(last, 1);
+                // board.unshift(emptyRow);
+                board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
+                rowsDeleted += 1;
+              }
+              else {
+                if (last > 0) {            
+                  console.log(last);
+                  if (last - 1 === 0) {
+                    break;
+                  }
+
+                  else {
+                    last -= 1;  
+                  }
+                }
+              }
+            }
+
+            canvasDrawBoard();
+
+            console.log(rowsDeleted);
+
+            switch(rowsDeleted) {
+              case 1:
+                points += (rowsDeleted * 10);
+                rowsDeleted = 0;
+                break;
+              case 2:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 3:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 4:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+            }
+
+
+            document.getElementById("points-counter").innerHTML = points;
+          }
+        }
+  
+        else {
+          // Game Over
+          clearInterval(frameRate3);
+          document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
+          document.getElementById("game-over-screen").classList.add("game-over-screen");
+
+          // console.log(board);
+          // console.log(pieceCounter);
+          // console.log("game over!");
+          // console.log("framerate dead");
+          // console.log(piece.verticalCollision);
+          // console.log(piece.gameOver);
+        }
+      }, 150);
     }
   }
 
@@ -885,6 +1336,8 @@ document.addEventListener("DOMContentLoaded", () => {
     piece.verticalCollision = false;
     piece.gameOver = false;
     piece.y = this.currentPieceType === "I" ? -1 : -2;
+    points = 0;
+    document.getElementById("points-counter").innerHTML = points;
     board = [];
     generateEmptyBoardArray();
     canvasDrawBoard();
@@ -894,6 +1347,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function pauseGame() {
     freeze = true;
     clearInterval(frameRate);
+    clearInterval(frameRate2);
+    clearInterval(frameRate3);
   }
  
   // ============================================================ BOARD GENERATION END ============================================================
@@ -967,7 +1422,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         event.preventDefault();
   
-        while ( piece.verticalCollision === false ) {
+        while ( piece.verticalCollision === false && piece.y > 0 ) {
           piece.moveDown();
         }
       }

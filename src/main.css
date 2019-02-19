@@ -27,6 +27,7 @@ body, html {
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 
 body {
@@ -482,7 +483,7 @@ h1 {
   display: block;
   width: 100%;
   /* height: 606px; */
-  padding: 20px 0 60px;
+  padding: 20px 0 40px;
   margin-bottom: 80px;
   background-image: url('../public/img/pancham.png');
   background-position: center;
@@ -1089,63 +1090,194 @@ h1 {
   /* display: none; */
 }
 
-#audio {
+.audio {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   margin-left: 260px;
-  margin-top: 295px;
-  border-radius: 15px;
+  top: 18%;
 
-  display: none;
+  transform: translateX(0);
+  opacity: 1;
+  transition-duration: 0.3s;
+  /* margin-top: 295px; */
 
-  /* animation: floatEffect 1s linear infinite; */
+  /* display: none; */
 
-  border: red solid 1px;
+  /* animation: floatEffect 3s linear infinite; */
+
+  /* border: red solid 1px; */
+}
+
+.audio-hidden {
+  position: fixed;
+  top: 18%;
+  /* display: none; */
+
+  transform: translateX(500px);
+  opacity: 0;
+  transition-duration: 0.3s;
 }
 
 @keyframes floatEffect {
   0%, 100% {
-    transform: translateY(5px);
+    transform: translateY(15px);
   }
 
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-15px);
   }
 }
 
 #music-title {
-  background-color: var(--panchamPurple);
+  background-color: var(--ash);
   width: 300px;
   height: 50px;
+  /* border-top: black solid 2px;
+  border-bottom: black solid 2px; */
 
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  overflow: hidden;
+
+  border-bottom: var(--charcoal) solid 2px;
 
   /* background: linear-gradient(217deg, white, #626473); */
 }
 
-#music-title span {
+#now-playing {
   color: white;
   display: block;
   font-size: 1.4rem;
+  cursor: default;
+  transition-duration: 0.2s;
+
+  text-shadow: 0 0 5px white;
+  /* animation: musicTitle 3s linear infinite; */
+}
+
+@keyframes musicTitle {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translateX(250px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(-250px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 #song-title {
   width: 300px;
   height: 120px;
   background-color: white;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-end;  
+}
 
-  background-image: url(../public/img/pancham.png);
+.song-title-background-tears-of-life {
+  background-image: url(../public/playlist_images/mewtwo.jpg);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-johto-opening {
+  background-image: url(../public/playlist_images/johto_journeys.jpg);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-viridian-city {
+  background-image: url(../public/playlist_images/viridian_city.jpg);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-viridian-forest {
+  background-image: url(../public/playlist_images/viridian-forest.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-team-rocket {
+  background-image: url(../public/playlist_images/team_rocket.jpg);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-gsc-champion {
+  background-image: url(../public/playlist_images/champion_lance.png);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-route-47 {
+  background-image: url(../public/playlist_images/pikachu.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-dpp-champion {
+  background-image: url(../public/playlist_images/champion_cynthia.png);
+  background-size: cover;
+  background-position-y: -20px;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-n-theme {
+  background-image: url(../public/playlist_images/n.png);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-snowbelle-city {
+  background-image: url(../public/playlist_images/snowbelle_city.png);
+  background-size: cover;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.song-title-background-usum-theme {
+  background-image: url(../public/playlist_images/alola.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-tetris-original {
+  background-image: url(../public/playlist_images/61Wvdn29vZL.png);
+  background-size: cover;
+  background-position-y: -30px;
+  background-repeat: no-repeat;
+}
+
+.song-title-background-tetris99 {
+  background-image: url(../public/playlist_images/tetris99.jpeg);
+  background-size: cover;
+  background-position-y: -15px;
   background-repeat: no-repeat;
 }
 
@@ -1167,15 +1299,13 @@ h1 {
 
 #music-player {
   /* position: absolute; */
-  background-color: white;
+  background-color: var(--ash);
   font-size: 14px;
   color: black;
   width: 300px;
-  height: 120px;
+  height: 450px;
   overflow: auto;
   text-align: center;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
 }
 
 #music-player div span {
@@ -1184,11 +1314,20 @@ h1 {
   transition-duration: 0.3s;
   padding: 12px 0;
   cursor: pointer;
+  color: var(--charcoal);
 }
 
 #music-player div span:hover {
   background-color: var(--ash);
   color: white;
+  text-shadow: 0 0 3px white;
+}
+
+#music-player #song-list .song-list-spacer {
+  height: 1px;
+  width: 200px;
+  background-color: rgb(233, 233, 233);
+  margin: auto;
 }
 /* ============================= SOUNDTRACK END ============================= */
 
@@ -1420,3 +1559,31 @@ h1 {
   border: var(--charcoal) solid 1px;
 }
 /* ============================= MUSIC OPTIONS END ============================= */
+
+/* ============================= POINT COUNTER START ============================= */
+.point-counter {
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  cursor: default;
+}
+
+.point-spacer {
+  margin: 10px 0;
+}
+
+#points {
+  font-size: 2rem;
+}
+
+#points span {
+  border: white solid 1px;
+  padding: 5px 10px;
+}
+
+#points-counter {
+  padding-top: 10px;
+  font-size: 1.5rem;
+}
+
+/* ============================= POINT COUNTER END ============================= */
