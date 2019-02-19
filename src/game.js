@@ -549,6 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.y = this.currentPieceType === "I" ? -1 : -2;
       this.verticalCollision = false;
       this.gameOver = false;
+      this.fallDown = true;
     }
     
     createPiece() {
@@ -593,8 +594,11 @@ document.addEventListener("DOMContentLoaded", () => {
                       }
                     }
                     
-                    
-                    this.verticalCollision = true;
+                    // this.fallDown = false;
+                    // setTimeout(() => {
+                    //   this.fallDown = true;
+                      this.verticalCollision = true;
+                    // }, 500);
       
                     // console.log(board);
                     // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
@@ -657,8 +661,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     
                     
+                    // this.fallDown = false;
+                    // setTimeout(() => {
+                    //   this.fallDown = true;
+                    //   this.verticalCollision = true;
+                    // }, 3000);
+
                     this.verticalCollision = true;
-                    pieceCounter++;
       
                     // console.log(board);
                     // console.log(context.getImageData(this.x + lastIndex, this.y + y, 30, 30).data.slice(0, 3));
@@ -742,12 +751,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     moveDown() {
-      this.deletePiece();
-      if ( this.verticalCollision === false ) {
-        this.y += 1;
-      }
+      if (this.fallDown === true) {
+        this.deletePiece();
+        if ( this.verticalCollision === false ) {
+          this.y += 1;
+        }
 
-      this.createPiece();
+        this.createPiece();
+      }
     }
 
     reversePiece() {
@@ -1134,6 +1145,8 @@ document.addEventListener("DOMContentLoaded", () => {
     piece.verticalCollision = false;
     piece.gameOver = false;
     piece.y = this.currentPieceType === "I" ? -1 : -2;
+    points = 0;
+    document.getElementById("points-counter").innerHTML = points;e
     board = [];
     generateEmptyBoardArray();
     canvasDrawBoard();
