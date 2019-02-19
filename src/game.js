@@ -858,10 +858,6 @@ document.addEventListener("DOMContentLoaded", () => {
               else {
                 last -= 1;
               }
-
-              console.log(`LAST: ${last}`);
-              console.log(`EMPTYROW: ${emptyRow}`);
-              console.log(`BOARD: ${board}`);
             }
 
             canvasDrawBoard();
