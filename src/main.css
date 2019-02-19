@@ -1114,7 +1114,7 @@ h1 {
 }
 
 #music-title {
-  background-color: var(--panchamPurple);
+  background-color: var(--ash);
   width: 300px;
   height: 50px;
   /* border-top: black solid 2px;
@@ -1126,6 +1126,8 @@ h1 {
   
   overflow: hidden;
 
+  border-bottom: var(--charcoal) solid 2px;
+
   /* background: linear-gradient(217deg, white, #626473); */
 }
 
@@ -1134,7 +1136,7 @@ h1 {
   display: block;
   font-size: 1.4rem;
 
-  animation: musicTitle 3s linear infinite;
+  /* animation: musicTitle 2s linear infinite; */
 }
 
 @keyframes musicTitle {
@@ -1168,9 +1170,9 @@ h1 {
   justify-content: center;
   align-items: flex-end;
 
-  background-image: url(../public/img/pancham.png);
+  background-image: url(../public/playlist_images/cb130f0f39a97caab98e4c28f921e6f2.jpg);
   background-size: cover;
-  background-position: center;
+  /* background-position: center; */
   background-repeat: no-repeat;
 }
 
@@ -1192,7 +1194,7 @@ h1 {
 
 #music-player {
   /* position: absolute; */
-  background-color: white;
+  background-color: var(--ash);
   font-size: 14px;
   color: black;
   width: 300px;
@@ -1207,6 +1209,7 @@ h1 {
   transition-duration: 0.3s;
   padding: 12px 0;
   cursor: pointer;
+  color: var(--charcoal);
 }
 
 #music-player div span:hover {
