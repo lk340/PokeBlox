@@ -17,6 +17,7 @@ Array.prototype.countColors = function(color) {
 };
 
 let pauseSong = false;
+let clearSound = false;
 
 // Button Logic
 document.addEventListener("DOMContentLoaded", () => {  
@@ -964,6 +965,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 board.splice(last, 1);
                 board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
                 rowsDeleted += 1;
+                clearSound = true;
               }
               else {
                 if (last > 0) {            
@@ -977,6 +979,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
               }
             }
+            if (clearSound === true) {
+              document.getElementById("soundeffect04").play();
+            }
+            clearSound = false;
 
             canvasDrawBoard();
 
@@ -1007,6 +1013,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           // Game Over
           clearInterval(frameRate);
+          document.getElementById("soundeffect05").play();
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
         }
@@ -1055,6 +1062,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 board.splice(last, 1);
                 board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
                 rowsDeleted += 1;
+                clearSound = true;
               }
               else {
                 if (last > 0) {            
@@ -1068,6 +1076,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
               }
             }
+
+            if (clearSound === true) {
+              document.getElementById("soundeffect04").play();
+            }
+            clearSound = false;
 
             canvasDrawBoard();
 
@@ -1098,6 +1111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           // Game Over
           clearInterval(frameRate2);
+          document.getElementById("soundeffect05").play();
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
         }
@@ -1144,6 +1158,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 board.splice(last, 1);
                 board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
                 rowsDeleted += 1;
+                clearSound = true;
               }
               else {
                 if (last > 0) {            
@@ -1157,6 +1172,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
               }
             }
+
+            if (clearSound === true) {
+              document.getElementById("soundeffect04").play();
+            }
+            clearSound = false;
 
             canvasDrawBoard();
 
@@ -1187,6 +1207,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           // Game Over
           clearInterval(frameRate3);
+          document.getElementById("soundeffect05").play();
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
         }
@@ -1227,45 +1248,53 @@ document.addEventListener("DOMContentLoaded", () => {
     if (freeze === false) {
       if (event.which === 87) {
         // w key
+        document.getElementById("soundeffect02").play();        
         piece.reversePiece();
       }
   
       else if (event.which === 83) {
         // s key
+        document.getElementById("soundeffect02").play();
         piece.moveDown();
       }
   
       else if (event.which === 65) {
         // a key
+        document.getElementById("soundeffect02").play();
         piece.moveLeft();
       }
   
       else if (event.which === 68) {
         // d key
+        document.getElementById("soundeffect02").play();
         piece.moveRight();
       }
   
       else if (event.which === 38) {
         // up key
         event.preventDefault();
+        document.getElementById("soundeffect02").play();
         piece.reversePiece();
       }
   
       else if (event.which === 40) {
         // down key
         event.preventDefault();
+        document.getElementById("soundeffect02").play();
         piece.moveDown();
       }
   
       else if (event.which === 37) {
         // left key
         event.preventDefault();
+        document.getElementById("soundeffect02").play();
         piece.moveLeft();
       }
   
       else if (event.which === 39) {
         // right key
         event.preventDefault();
+        document.getElementById("soundeffect02").play();
         piece.moveRight();
       }
   
@@ -1274,6 +1303,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         event.preventDefault();
   
+        document.getElementById("soundeffect03").play();
+        
         while ( piece.verticalCollision === false && piece.y > 0 ) {
           piece.moveDown();
         }
