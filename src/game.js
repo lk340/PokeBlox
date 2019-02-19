@@ -455,6 +455,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let nextPiece = tetronimoes[Math.floor(Math.random()*tetronimoes.length)];
   let savedPiece = null;
   let freeze = false;
+  let rowsDeleted = 0;
+  let points = 0;
   
   const charcoal = "rgb(54, 54, 54)";
   const ash = "rgb(92, 92, 92)"; 
@@ -854,6 +856,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 board.splice(last, 1);
                 // board.unshift(emptyRow);
                 board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
+                rowsDeleted += 1;
               }
               else {
                 last -= 1;
@@ -861,6 +864,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             canvasDrawBoard();
+
+            console.log(rowsDeleted);
+
+            switch(rowsDeleted) {
+              case 1:
+                points += (rowsDeleted * 10);
+                rowsDeleted = 0;
+                break;
+              case 2:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 3:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 4:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+            }
+
+
+            document.getElementById("points-counter").innerHTML = points;
           }
         }
   
@@ -877,7 +904,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // console.log(piece.verticalCollision);
           // console.log(piece.gameOver);
         }
-      }, 600);
+      }, 400);
     }
   }
 
