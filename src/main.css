@@ -1089,28 +1089,27 @@ h1 {
   /* display: none; */
 }
 
-#audio {
+.audio {
   display: flex;
   flex-direction: column;
   position: absolute;
   margin-left: 260px;
-  margin-top: 295px;
-  border-radius: 15px;
+  /* margin-top: 295px; */
 
-  display: none;
+  /* display: none; */
 
-  /* animation: floatEffect 1s linear infinite; */
+  /* animation: floatEffect 3s linear infinite; */
 
-  border: red solid 1px;
+  /* border: red solid 1px; */
 }
 
 @keyframes floatEffect {
   0%, 100% {
-    transform: translateY(5px);
+    transform: translateY(15px);
   }
 
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-15px);
   }
 }
 
@@ -1118,10 +1117,14 @@ h1 {
   background-color: var(--panchamPurple);
   width: 300px;
   height: 50px;
+  /* border-top: black solid 2px;
+  border-bottom: black solid 2px; */
 
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  overflow: hidden;
 
   /* background: linear-gradient(217deg, white, #626473); */
 }
@@ -1130,14 +1133,36 @@ h1 {
   color: white;
   display: block;
   font-size: 1.4rem;
+
+  animation: musicTitle 3s linear infinite;
+}
+
+@keyframes musicTitle {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translateX(250px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(-250px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 #song-title {
   width: 300px;
   height: 120px;
   background-color: white;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
 
   display: flex;
   justify-content: center;
@@ -1171,11 +1196,9 @@ h1 {
   font-size: 14px;
   color: black;
   width: 300px;
-  height: 120px;
+  height: 450px;
   overflow: auto;
   text-align: center;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
 }
 
 #music-player div span {
@@ -1189,6 +1212,13 @@ h1 {
 #music-player div span:hover {
   background-color: var(--ash);
   color: white;
+}
+
+#music-player #song-list .song-list-spacer {
+  height: 1px;
+  width: 200px;
+  background-color: rgb(233, 233, 233);
+  margin: auto;
 }
 /* ============================= SOUNDTRACK END ============================= */
 

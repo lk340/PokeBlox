@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("detail-modal-information").classList.remove("show-about");
       document.getElementById("detail-modal-information").classList.add("hide-about");
     }
+
+    pauseGame();
   });
 
   document.getElementById("details").addEventListener("click", () => {
@@ -43,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about-modal-close").classList.remove("about-modal-x-hide");
       document.getElementById("about-modal-close").classList.add("about-modal-x-show");
     }
+
+    pauseGame();
   });
 
   // Close About Modal
@@ -60,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("about-modal-close").classList.remove("about-modal-x-show");
       document.getElementById("about-modal-close").classList.add("about-modal-x-hide");
     }
+
+    startGame();
   });
   
   document.getElementById("about-modal-close").addEventListener("click", () => {
@@ -76,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("detail-modal-information").classList.remove("show-about");
       document.getElementById("detail-modal-information").classList.add("hide-about");
     }
+
+    startGame();
   });
   // ============================================================ DETAILS MODAL END ============================================================
 
@@ -92,6 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("guide-modal-info").classList.remove("show-guide-modal-info");
     document.getElementById("guide-modal-info").classList.add("hide-guide-modal-info");
+
+    // startGame();
   });
 
   document.getElementById("close-guide-modal").addEventListener("click", () => {
@@ -106,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("guide-modal-info").classList.remove("show-guide-modal-info");
     document.getElementById("guide-modal-info").classList.add("hide-guide-modal-info");
+
+    // startGame();
   });
 
   document.getElementById("guide").addEventListener("click", () => {
@@ -120,6 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("guide-modal-info").classList.remove("hide-guide-modal-info");
     document.getElementById("guide-modal-info").classList.add("show-guide-modal-info");
+
+    // pauseGame();
   });
   // ============================================================ DIRECTIONS MODAL END ============================================================
 
