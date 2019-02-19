@@ -1339,6 +1339,9 @@ document.addEventListener("DOMContentLoaded", () => {
     points = 0;
     document.getElementById("points-counter").innerHTML = points;
     board = [];
+    clearInterval(frameRate);
+    clearInterval(frameRate2);
+    clearInterval(frameRate3);
     generateEmptyBoardArray();
     canvasDrawBoard();
     startGame();
@@ -1511,9 +1514,17 @@ document.addEventListener("DOMContentLoaded", () => {
       pauseGame();
     }
 
-    else if (event.which === 85) {
+    else if (event.which === 82) {
       // u key
-      console.log("u key");
+      console.log("r key");
+      if (pauseSong === false) {
+        pauseSong = true;
+        currentSong.pause();
+      }
+      else {
+        pauseSong = false;
+        currentSong.play();
+      }
     }
 
     else if (event.which === 73) {

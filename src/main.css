@@ -472,6 +472,7 @@ h1 {
   text-align: left;
   padding: 2px 0;
   padding-left: 43px;
+  margin-top: -8px;
 
   transition-duration: 0.3s;
 }
@@ -1326,7 +1327,7 @@ h1 {
 #music-player #song-list .song-list-spacer {
   height: 1px;
   width: 200px;
-  background-color: rgb(233, 233, 233);
+  background-color: var(--charcoal);
   margin: auto;
 }
 /* ============================= SOUNDTRACK END ============================= */
