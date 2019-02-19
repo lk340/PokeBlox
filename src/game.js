@@ -850,9 +850,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
 
             let last = board.length - 1;
-            while (board[last].countColors(charcoal) === false) {
+            while (board[last] && board[last].countColors(charcoal) === false) {
               // debugger;
-              console.log(board[last]);
               if (!board[last].includes(charcoal)) {
                 board.splice(last, 1);
                 // board.unshift(emptyRow);
@@ -860,16 +859,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 rowsDeleted += 1;
               }
               else {
-                if (last > 0) {
-                  last -= 1;
+                if (last > 0) {            
+                  console.log(last);
+                  if (last - 1 === 0) {
+                    break;
+                  }
+
+                  else {
+                    last -= 1;  
+                  }
                 }
               }
+              console.log(`LAST: ${last}`);
             }
-            console.log("--------------------------------------------------")
+            console.log("--------------------------------------------------");
 
             canvasDrawBoard();
-
-            console.log(rowsDeleted);
 
             switch(rowsDeleted) {
               case 1:
@@ -881,11 +886,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 rowsDeleted = 0;
                 break;
               case 3:
-                points += (rowsDeleted * 10) + 10;
+                points += (rowsDeleted * 10) + 20;
                 rowsDeleted = 0;
                 break;
               case 4:
-                points += (rowsDeleted * 10) + 10;
+                points += (rowsDeleted * 10) + 30;
                 rowsDeleted = 0;
                 break;
             }
@@ -1007,11 +1012,11 @@ document.addEventListener("DOMContentLoaded", () => {
           // console.log(piece.gameOver);
         }
 
-        if (parseInt(document.getElementById("points-counter").innerHTML) > 250) {
+        if (parseInt(document.getElementById("points-counter").innerHTML) > 500) {
           clearInterval(frameRate2);
           startGame3();
         }
-      }, 300);
+      }, 250);
     }
   }
 
