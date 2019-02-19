@@ -201,16 +201,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================ CHANGE MUSIC START ============================================================
   document.getElementById("change-music").addEventListener("click", () => {
-    alert("change-music");
+    const audio2 = document.getElementById("audio").classList[0];
+    
+    if (audio2.includes("audio-hidden")) {
+      document.getElementById("audio").classList.remove("audio-hidden");
+      document.getElementById("audio").classList.add("audio");
+    }
+    else {
+      document.getElementById("audio").classList.remove("audio");
+      document.getElementById("audio").classList.add("audio-hidden");
+    }
   });
   // ============================================================ CHANGE MUSIC END ============================================================
 
-  // ============================================================ AUDIO LOGIC START ============================================================
-  // const audio = new Audio("gsc_battle_team_rocket.mp3");
-  // audio.play();
+  // ============================================================ MUSIC PLAYER START ============================================================
+  document.getElementById("current-song").addEventListener("click", () => {
+    const audio = document.getElementById("audio").classList[0];
+    
+    if (audio.includes("audio-hidden")) {
+      document.getElementById("audio").classList.remove("audio-hidden");
+      document.getElementById("audio").classList.add("audio");
+    }
+    else {
+      document.getElementById("audio").classList.remove("audio");
+      document.getElementById("audio").classList.add("audio-hidden");
+    }
+  });
+  // ============================================================ MUSIC PLAYER END ============================================================
 
-  // const song = document.getElementById("song");
-  // song.play();
+  // ============================================================ AUDIO LOGIC START ============================================================
   let currentSong = document.getElementById("005");
   currentSong.play();
   currentSong.loop = true;
