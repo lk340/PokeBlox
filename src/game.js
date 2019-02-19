@@ -852,42 +852,19 @@ document.addEventListener("DOMContentLoaded", () => {
               // debugger;
               if (!board[last].includes(charcoal)) {
                 board.splice(last, 1);
-                board.unshift(emptyRow);
+                // board.unshift(emptyRow);
+                board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
               }
               else {
                 last -= 1;
               }
+
+              console.log(`LAST: ${last}`);
+              console.log(`EMPTYROW: ${emptyRow}`);
+              console.log(`BOARD: ${board}`);
             }
 
             canvasDrawBoard();
-            // console.log(currentPiece);
-            // console.log(nextPiece);
-
-            // const newBoard = [];
-            // let count = 0;
-
-            // for (let y = board.length - 1; y >= 0; y--) {
-            //   if ( board[y].includes(charcoal) ) {
-            //     newBoard.unshift(board[y]);
-            //   }
-            //   else {
-            //     count += 1;
-            //   }
-            // }
-
-            // for (i = 0; i < count; i++) {
-            //   newBoard.unshift(emptyRow);
-            // }
-
-            // console.log(board);
-            // console.log(newBoard);
-
-            // board = newBoard;
-
-            // console.log(board);
-            // console.log(newBoard);
-
-            // debugger;
           }
         }
   

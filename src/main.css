@@ -1086,7 +1086,7 @@ h1 {
 
 /* ============================= SOUNDTRACK START ============================= */
 .background-music {
-  visibility: hidden;
+  /* display: none; */
 }
 
 #audio {
@@ -1420,14 +1420,3 @@ h1 {
   border: var(--charcoal) solid 1px;
 }
 /* ============================= MUSIC OPTIONS END ============================= */
-
-/* #tetris-canvas {
-  border: white solid 1px;
-} */
-
-#footer {
-  border: red solid 1px;
-  padding: 0;
-  border: 0;
-  height: 0px;
-}
