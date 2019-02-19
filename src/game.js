@@ -852,6 +852,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let last = board.length - 1;
             while (board[last].countColors(charcoal) === false) {
               // debugger;
+              console.log(board[last]);
               if (!board[last].includes(charcoal)) {
                 board.splice(last, 1);
                 // board.unshift(emptyRow);
@@ -859,9 +860,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 rowsDeleted += 1;
               }
               else {
-                last -= 1;
+                if (last > 0) {
+                  last -= 1;
+                }
               }
             }
+            console.log("--------------------------------------------------")
 
             canvasDrawBoard();
 
@@ -904,7 +908,201 @@ document.addEventListener("DOMContentLoaded", () => {
           // console.log(piece.verticalCollision);
           // console.log(piece.gameOver);
         }
+
+        if (parseInt(document.getElementById("points-counter").innerHTML) > 250) {
+          clearInterval(frameRate);
+          startGame2();
+        }
+
       }, 400);
+    }
+  }
+
+
+  let frameRate2;
+  function startGame2() {
+    freeze = false;
+    if ( piece.verticalCollision === false ) {
+      // piece.createPiece();
+      frameRate2 = setInterval(() => {
+        if (piece.gameOver === false) {
+          if ( piece.verticalCollision === false ) {
+            // console.log("no collision");
+            piece.moveDown();
+          }
+
+          else if (piece.verticalCollision === true) {
+            // Logic for creating a new piece
+            // console.log("yes collision");
+            currentPiece = nextPiece;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+            nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+
+            piece.currPiece = currentPiece;
+            piece.currentPieceIndex = 0;
+            piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+            piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+            piece.createColor = pickColor();
+            piece.x = 3;
+            // piece.y = -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.verticalCollision = false;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+
+            let last = board.length - 1;
+            while (board[last].countColors(charcoal) === false) {
+              // debugger;
+              if (!board[last].includes(charcoal)) {
+                board.splice(last, 1);
+                // board.unshift(emptyRow);
+                board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
+                rowsDeleted += 1;
+              }
+              else {
+                last -= 1;
+              }
+            }
+
+            canvasDrawBoard();
+
+            console.log(rowsDeleted);
+
+            switch(rowsDeleted) {
+              case 1:
+                points += (rowsDeleted * 10);
+                rowsDeleted = 0;
+                break;
+              case 2:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 3:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 4:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+            }
+
+
+            document.getElementById("points-counter").innerHTML = points;
+          }
+        }
+  
+        else {
+          // Game Over
+          clearInterval(frameRate2);
+          document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
+          document.getElementById("game-over-screen").classList.add("game-over-screen");
+
+          // console.log(board);
+          // console.log(pieceCounter);
+          // console.log("game over!");
+          // console.log("framerate dead");
+          // console.log(piece.verticalCollision);
+          // console.log(piece.gameOver);
+        }
+
+        if (parseInt(document.getElementById("points-counter").innerHTML) > 250) {
+          clearInterval(frameRate2);
+          startGame3();
+        }
+      }, 300);
+    }
+  }
+
+  let frameRate3;
+  function startGame3() {
+    freeze = false;
+    if ( piece.verticalCollision === false ) {
+      // piece.createPiece();
+      frameRate3 = setInterval(() => {
+        if (piece.gameOver === false) {
+          if ( piece.verticalCollision === false ) {
+            // console.log("no collision");
+            piece.moveDown();
+          }
+
+          else if (piece.verticalCollision === true) {
+            // Logic for creating a new piece
+            // console.log("yes collision");
+            currentPiece = nextPiece;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+            nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+
+            piece.currPiece = currentPiece;
+            piece.currentPieceIndex = 0;
+            piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+            piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+            piece.createColor = pickColor();
+            piece.x = 3;
+            // piece.y = -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.verticalCollision = false;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+
+            let last = board.length - 1;
+            while (board[last].countColors(charcoal) === false) {
+              // debugger;
+              if (!board[last].includes(charcoal)) {
+                board.splice(last, 1);
+                // board.unshift(emptyRow);
+                board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
+                rowsDeleted += 1;
+              }
+              else {
+                last -= 1;
+              }
+            }
+
+            canvasDrawBoard();
+
+            console.log(rowsDeleted);
+
+            switch(rowsDeleted) {
+              case 1:
+                points += (rowsDeleted * 10);
+                rowsDeleted = 0;
+                break;
+              case 2:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 3:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 4:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+            }
+
+
+            document.getElementById("points-counter").innerHTML = points;
+          }
+        }
+  
+        else {
+          // Game Over
+          clearInterval(frameRate3);
+          document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
+          document.getElementById("game-over-screen").classList.add("game-over-screen");
+
+          // console.log(board);
+          // console.log(pieceCounter);
+          // console.log("game over!");
+          // console.log("framerate dead");
+          // console.log(piece.verticalCollision);
+          // console.log(piece.gameOver);
+        }
+      }, 150);
     }
   }
 
@@ -921,6 +1119,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function pauseGame() {
     freeze = true;
     clearInterval(frameRate);
+    clearInterval(frameRate2);
+    clearInterval(frameRate3);
   }
  
   // ============================================================ BOARD GENERATION END ============================================================
