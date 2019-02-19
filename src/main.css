@@ -1131,11 +1131,12 @@ h1 {
   /* background: linear-gradient(217deg, white, #626473); */
 }
 
-#music-title span {
+#now-playing {
   color: white;
   display: block;
   font-size: 1.4rem;
 
+  text-shadow: 0 0 5px white;
   /* animation: musicTitle 2s linear infinite; */
 }
 
