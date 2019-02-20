@@ -992,13 +992,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     deletePiece() {
       
-      if (this.y === 0) {
-        board[0].forEach(grid => {
-          if ( grid !== charcoal ) {
-            this.gameOver = true;
-          }
-        });
-        }
+      // if (this.y === 0) {
+      //   board[0].forEach(grid => {
+      //     if ( grid !== charcoal ) {
+      //       this.gameOver = true;
+      //     }
+      //   });
+      //   }
 
         if (this.gameOver === false) {
           for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
@@ -1055,6 +1055,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       
+      // if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
       if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
         this.x -= shift;
       }
@@ -1136,6 +1137,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
   piece.createPiece();
+  // piece.frameRate();
+
   let shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
   shadowPiece.createPiece();
   shadowPiece.moveDown();
@@ -1143,7 +1146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // while ( piece.verticalCollision === false ) {
     shadowPiece.moveDown();
   }
-  // piece.frameRate();
+  
   let frameRate;
   function startGame() {
     freeze = false;
@@ -1156,6 +1159,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           else if (piece.verticalCollision === true) {
+            // debugger;
             // Logic for creating a new piece
             currentPiece = nextPiece;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
@@ -1174,19 +1178,21 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
 
-            shadowPiece.currPiece = piece.currPiece;
-            shadowPiece.currentPieceIndex = 0;
-            shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-            shadowPiece.x = 3;
-            shadowPiece.y = shadowPiece.currentPieceType === "I" ? 1 : 1;
-            shadowPiece.verticalCollision = false;
+            // shadowPiece.currPiece = piece.currPiece;
+            // shadowPiece.currentPieceIndex = 0;
+            // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+            // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+            // shadowPiece.createColor = shadow;
+            // shadowPiece.x = 3;
+            // shadowPiece.y = shadowPiece.currentPieceType === "I" ? 1 : 1;
+            // shadowPiece.verticalCollision = false;
 
-
+            // shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
             // shadowPiece.moveDown();
-            while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-              // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
+            // while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            //   // while ( piece.verticalCollision === false ) {
+            //   shadowPiece.moveDown();
+            // }
 
             let last = board.length - 1;
             while (board[last] && board[last].countColors(charcoal) === false) {
