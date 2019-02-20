@@ -833,6 +833,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     moveLeft() {
+      document.getElementById("soundeffect02").play();
       this.deletePiece();
       let shift = 0;
       let counter = 0;
@@ -856,6 +857,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     moveRight() {
+      document.getElementById("soundeffect02").play();
       this.deletePiece();
 
       const y_offset = this.currentPiece.length - 1;
@@ -894,6 +896,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     reversePiece() {
       if ( this.verticalCollision === false ) {
+        document.getElementById("soundeffect02").play();
 
         this.deletePiece();
 
@@ -1013,6 +1016,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           // Game Over
           clearInterval(frameRate);
+          currentSong.pause();
           document.getElementById("soundeffect05").play();
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
@@ -1111,6 +1115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           // Game Over
           clearInterval(frameRate2);
+          currentSong.pause();
           document.getElementById("soundeffect05").play();
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
@@ -1207,11 +1212,109 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
           // Game Over
           clearInterval(frameRate3);
+          currentSong.pause();
           document.getElementById("soundeffect05").play();
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
         }
+
+        if (parseInt(document.getElementById("points-counter").innerHTML) > 1000) {
+          clearInterval(frameRate3);
+          startGame4();
+        }
       }, 150);
+    }
+  }
+
+  let frameRate4;
+  function startGame4() {
+    freeze = false;
+    if ( piece.verticalCollision === false ) {
+      frameRate4 = setInterval(() => {
+        if (piece.gameOver === false) {
+          if ( piece.verticalCollision === false ) {
+            piece.moveDown();
+          }
+
+          else if (piece.verticalCollision === true) {
+            // Logic for creating a new piece
+            currentPiece = nextPiece;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
+            nextPiece = piece.tetronimoes[Math.floor(Math.random()*piece.tetronimoes.length)];
+
+            piece.currPiece = currentPiece;
+            piece.currentPieceIndex = 0;
+            piece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+            piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+            piece.createColor = pickColor();
+            piece.x = 3;
+            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.verticalCollision = false;
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
+            document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+
+            let last = board.length - 1;
+            while (board[last] && board[last].countColors(charcoal) === false) {
+              if (!board[last].includes(charcoal)) {
+                board.splice(last, 1);
+                board.unshift([charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal, charcoal]);
+                rowsDeleted += 1;
+                clearSound = true;
+              }
+              else {
+                if (last > 0) {            
+                  if (last - 1 === 0) {
+                    break;
+                  }
+
+                  else {
+                    last -= 1;  
+                  }
+                }
+              }
+            }
+
+            if (clearSound === true) {
+              document.getElementById("soundeffect04").play();
+            }
+            clearSound = false;
+
+            canvasDrawBoard();
+
+            switch(rowsDeleted) {
+              case 1:
+                points += (rowsDeleted * 10);
+                rowsDeleted = 0;
+                break;
+              case 2:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 3:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+              case 4:
+                points += (rowsDeleted * 10) + 10;
+                rowsDeleted = 0;
+                break;
+            }
+
+
+            document.getElementById("points-counter").innerHTML = points;
+          }
+        }
+  
+        else {
+          // Game Over
+          clearInterval(frameRate4);
+          currentSong.pause();
+          document.getElementById("soundeffect05").play();
+          document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
+          document.getElementById("game-over-screen").classList.add("game-over-screen");
+        }
+      }, 100);
     }
   }
 
@@ -1225,6 +1328,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(frameRate);
     clearInterval(frameRate2);
     clearInterval(frameRate3);
+    clearInterval(frameRate4);
     generateEmptyBoardArray();
     canvasDrawBoard();
     startGame();
@@ -1235,6 +1339,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(frameRate);
     clearInterval(frameRate2);
     clearInterval(frameRate3);
+    clearInterval(frameRate4);
   }
  
   // ============================================================ BOARD GENERATION END ============================================================
@@ -1248,7 +1353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (freeze === false) {
       if (event.which === 87) {
         // w key
-        document.getElementById("soundeffect02").play();        
+        // document.getElementById("soundeffect02").play();        
         piece.reversePiece();
       }
   
@@ -1260,20 +1365,20 @@ document.addEventListener("DOMContentLoaded", () => {
   
       else if (event.which === 65) {
         // a key
-        document.getElementById("soundeffect02").play();
+        // document.getElementById("soundeffect02").play();
         piece.moveLeft();
       }
   
       else if (event.which === 68) {
         // d key
-        document.getElementById("soundeffect02").play();
+        // document.getElementById("soundeffect02").play();
         piece.moveRight();
       }
   
       else if (event.which === 38) {
         // up key
         event.preventDefault();
-        document.getElementById("soundeffect02").play();
+        // document.getElementById("soundeffect02").play();
         piece.reversePiece();
       }
   
@@ -1287,14 +1392,14 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (event.which === 37) {
         // left key
         event.preventDefault();
-        document.getElementById("soundeffect02").play();
+        // document.getElementById("soundeffect02").play();
         piece.moveLeft();
       }
   
       else if (event.which === 39) {
         // right key
         event.preventDefault();
-        document.getElementById("soundeffect02").play();
+        // document.getElementById("soundeffect02").play();
         piece.moveRight();
       }
   
