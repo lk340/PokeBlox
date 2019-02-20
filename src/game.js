@@ -833,11 +833,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     moveLeft() {
-      document.getElementById("soundeffect02").play();
       this.deletePiece();
       let shift = 0;
       let counter = 0;
-
+      
       for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
         if ( this.currentPiece[y][0] === 1 && this.y >= 0 ) {
           if ( board[this.y + y][this.x - 1] === charcoal ) {
@@ -848,16 +847,16 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-
+      
       if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
         this.x -= shift;
+        document.getElementById("soundeffect06").play();
       }
 
       this.createPiece();
     }
 
     moveRight() {
-      document.getElementById("soundeffect02").play();
       this.deletePiece();
 
       const y_offset = this.currentPiece.length - 1;
@@ -878,6 +877,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
         this.x += shift;
+        document.getElementById("soundeffect06").play();
       }
 
       this.createPiece();
@@ -957,7 +957,8 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
             piece.createColor = pickColor();
             piece.x = 3;
-            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            // piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -1;
             piece.verticalCollision = false;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
@@ -983,7 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
             if (clearSound === true) {
-              document.getElementById("soundeffect04").play();
+              document.getElementById("soundeffect07").play();
             }
             clearSound = false;
 
@@ -1055,7 +1056,7 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
             piece.createColor = pickColor();
             piece.x = 3;
-            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -1;
             piece.verticalCollision = false;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
@@ -1082,7 +1083,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (clearSound === true) {
-              document.getElementById("soundeffect04").play();
+              document.getElementById("soundeffect07").play();
             }
             clearSound = false;
 
@@ -1152,7 +1153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
             piece.createColor = pickColor();
             piece.x = 3;
-            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -1;
             piece.verticalCollision = false;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
@@ -1179,7 +1180,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (clearSound === true) {
-              document.getElementById("soundeffect04").play();
+              document.getElementById("soundeffect07").play();
             }
             clearSound = false;
 
@@ -1249,7 +1250,7 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
             piece.createColor = pickColor();
             piece.x = 3;
-            piece.y = piece.currentPieceType === "I" ? -1 : -2;
+            piece.y = piece.currentPieceType === "I" ? -1 : -1;
             piece.verticalCollision = false;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
@@ -1276,7 +1277,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (clearSound === true) {
-              document.getElementById("soundeffect04").play();
+              document.getElementById("soundeffect07").play();
             }
             clearSound = false;
 
@@ -1359,7 +1360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       else if (event.which === 83) {
         // s key
-        document.getElementById("soundeffect02").play();
+        document.getElementById("soundeffect06").play();
         piece.moveDown();
       }
   
@@ -1385,7 +1386,7 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (event.which === 40) {
         // down key
         event.preventDefault();
-        document.getElementById("soundeffect02").play();
+        document.getElementById("soundeffect06").play();
         piece.moveDown();
       }
   
@@ -1407,11 +1408,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // spacebar key
         
         event.preventDefault();
-  
-        document.getElementById("soundeffect03").play();
         
         while ( piece.verticalCollision === false && piece.y > 0 ) {
+        // while ( piece.verticalCollision === false ) {
           piece.moveDown();
+        }
+  
+        if (piece.verticalCollision === true) {
+          document.getElementById("soundeffect03").play();
         }
       }
   
@@ -1445,7 +1449,7 @@ document.addEventListener("DOMContentLoaded", () => {
         piece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
         piece.createColor = pickColor();
         piece.x = 3;
-        piece.y = piece.currentPieceType === "I" ? -1 : -2;
+        piece.y = piece.currentPieceType === "I" ? -1 : -1;
         piece.verticalCollision = false;
   
         canvasDrawBoard();
