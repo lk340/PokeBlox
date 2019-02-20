@@ -926,6 +926,215 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
+  class ShadowPiece {
+    constructor(currentPiece, color1, color2) {
+      this.tetronimoes = tetronimoes;
+      this.currPiece = currentPiece;
+      // this.currPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+      this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+      this.currentPieceIndex = 0;
+      this.currentPiece = this.currPiece[this.currentPieceIndex];
+      this.currentPieceType = this.currPiece[this.currPiece.length - 1];
+      this.createColor = color1;
+      this.deleteColor = color2;
+      this.x = 3;
+      // this.y = -2;
+      this.y = this.currentPieceType === "I" ? -1 : -2;
+      this.verticalCollision = false;
+      this.gameOver = false;
+      this.fallDown = true;
+    }
+    
+    createPiece() {
+      if (this.y === 0) {
+        board[0].forEach(grid => {
+          if ( grid !== charcoal ) {
+            this.gameOver = true;
+          }
+        });
+        }
+        if (this.gameOver === false) {
+          for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+            for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+              if ( this.currentPiece[y][x] === 1 ) {
+                const y_val = this.currentPiece.length - 1;
+                const lastIndex = this.currentPiece[y_val].length - 1;
+                if ( this.x + lastIndex > 9 ) {
+                  while ( this.x + lastIndex > 9 ) {
+                    this.x -= 1;
+                  }
+                }
+    
+                if (this.y > -1) {
+                  if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
+                    for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                      for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                        if ( this.currentPiece[y][x] === 1 ) {
+                          board[this.y + y][this.x + x] = this.createColor;
+                        }
+                      }
+                    }
+                    
+                    // this.fallDown = false;
+                    // setTimeout(() => {
+                    //   this.fallDown = true;
+                      this.verticalCollision = true;
+                    // }, 500);
+                  }
+                }
+    
+                generateGridBlock(this.x + x, this.y + y, this.createColor);
+              }
+            }
+          }
+        }
+      // }
+    }
+
+    deletePiece() {
+      
+      if (this.y === 0) {
+        board[0].forEach(grid => {
+          if ( grid !== charcoal ) {
+            this.gameOver = true;
+          }
+        });
+        }
+
+        if (this.gameOver === false) {
+          for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+            for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+              if ( this.currentPiece[y][x] === 1 ) {
+                const y_val = this.currentPiece.length - 1;
+                const lastIndex = this.currentPiece[y_val].length - 1;
+                if ( this.x + lastIndex > 9 ) {
+                  while ( this.x + lastIndex > 9 ) {
+                    this.x -= 1;
+                  }
+                }
+    
+                if (this.y > -1) {
+                  if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
+                    for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                      for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                        if ( this.currentPiece[y][x] === 1 ) {
+                          board[this.y + y][this.x + x] = this.deleteColor;
+                        }
+                      }
+                    }
+                    
+                    // this.fallDown = false;
+                    // setTimeout(() => {
+                    //   this.fallDown = true;
+                    //   this.verticalCollision = true;
+                    // }, 3000);
+
+                    this.verticalCollision = true;
+                  }
+                }
+    
+                generateGridBlock(this.x + x, this.y + y, this.deleteColor);
+              }
+            }
+          }
+        }
+    }
+
+    moveLeft() {
+      this.deletePiece();
+      let shift = 0;
+      let counter = 0;
+      
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+        if ( this.currentPiece[y][0] === 1 && this.y >= 0 ) {
+          if ( board[this.y + y][this.x - 1] === charcoal ) {
+            shift = 1;
+          }
+          else {
+            shift = 0;
+          }
+        }
+      }
+      
+      if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
+        this.x -= shift;
+        document.getElementById("soundeffect06").play();
+      }
+
+      this.createPiece();
+    }
+
+    moveRight() {
+      this.deletePiece();
+
+      const y_offset = this.currentPiece.length - 1;
+      const lastIndex = this.currentPiece[y_offset].length - 1;
+
+      let shift = 0;
+
+      for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+        if ( this.currentPiece[y][this.currentPiece[y].length - 1] === 1 && this.y >= 0 ) {
+          if ( board[this.y + y][this.x + this.currentPiece[y].length - 1 + 1] === charcoal ) {
+            shift = 1;
+          }
+          else {
+            shift = 0;
+          }
+        }
+      }
+
+      if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
+        this.x += shift;
+        document.getElementById("soundeffect06").play();
+      }
+
+      this.createPiece();
+    }
+
+    moveDown() {
+      if (this.fallDown === true) {
+        this.deletePiece();
+        if ( this.verticalCollision === false ) {
+          this.y += 1;
+        }
+
+        this.createPiece();
+      }
+    }
+
+    reversePiece() {
+      if ( this.verticalCollision === false ) {
+        document.getElementById("soundeffect02").play();
+
+        this.deletePiece();
+
+        if (this.currentPieceType === "I") {
+          if ( this.currentPieceIndex === 1 ) {
+            this.currentPieceIndex = 0;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+          else {
+            this.currentPieceIndex += 1;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+        }
+
+        else if (this.currentPieceType !== "O") {
+          if ( this.currentPieceIndex === 3 ) {
+            this.currentPieceIndex = 0;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+          else {
+            this.currentPieceIndex += 1;
+            this.currentPiece = this.currPiece[this.currentPieceIndex];
+          }
+        }
+
+        this.createPiece();
+      }
+    }
+  }
   
   generateEmptyBoardArray();
   canvasDrawBoard();
