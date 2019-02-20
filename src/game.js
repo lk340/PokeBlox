@@ -1229,6 +1229,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let frameRate4;
   function startGame4() {
+    currentSong.pause();
+    currentSong =document.getElementById("014");
+    currentSong.play();
+    
     freeze = false;
     if ( piece.verticalCollision === false ) {
       frameRate4 = setInterval(() => {
@@ -1315,7 +1319,7 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("game-over-screen").classList.remove("game-over-screen-close");
           document.getElementById("game-over-screen").classList.add("game-over-screen");
         }
-      }, 100);
+      }, 80);
     }
   }
 
