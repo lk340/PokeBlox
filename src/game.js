@@ -654,6 +654,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const jColor = "rgb(73, 73, 172)";
   const lColor = "rgb(255, 205, 113)";
 
+  const allColors = [charcoal, iColor, oColor, tColor, sColor, zColor, jColor, lColor];
+
   let pieceCounter = 0;
 
   // COLOR-PICKING LOGIC START
@@ -965,7 +967,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
     
                 if (this.y > -1) {
-                  if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
+                  if ( this.y + y === 19 || (board[this.y + y + 1][this.x + x] !== charcoal && board[this.y + y + 1][this.x + x] !== shadow) ) {
                     // for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
                     //   for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
                     //     if ( this.currentPiece[y][x] === 1 ) {
@@ -1013,7 +1015,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
     
                 if (this.y > -1) {
-                  if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
+                  if ( this.y + y === 19 || (board[this.y + y + 1][this.x + x] !== charcoal && board[this.y + y + 1][this.x + x] !== shadow) ) {
                     // for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
                     //   for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
                     //     if ( this.currentPiece[y][x] === 1 ) {
@@ -1042,7 +1044,6 @@ document.addEventListener("DOMContentLoaded", () => {
     moveLeft() {
       this.deletePiece();
       let shift = 0;
-      let counter = 0;
       
       for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
         if ( this.currentPiece[y][0] === 1 && this.y >= 0 ) {
@@ -1056,7 +1057,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       
       // if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
-      if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
+      if ( this.x - 1 >= 0 && this.y < 20) {
         this.x -= shift;
       }
 
@@ -1082,7 +1083,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
+      // if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
+      if ( this.x + lastIndex + 1 < 10 && this.y < 20 ) {
         this.x += shift;
       }
 
@@ -1141,7 +1143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
   shadowPiece.createPiece();
-  shadowPiece.moveDown();
+  // shadowPiece.moveDown();
   while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
     // while ( piece.verticalCollision === false ) {
     shadowPiece.moveDown();
@@ -1156,6 +1158,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (piece.gameOver === false) {
           if ( piece.verticalCollision === false ) {
             piece.moveDown();
+            while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+              // while ( piece.verticalCollision === false ) {
+              shadowPiece.moveDown();
+            }
           }
 
           else if (piece.verticalCollision === true) {
@@ -1178,14 +1184,14 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
 
-            // shadowPiece.currPiece = piece.currPiece;
-            // shadowPiece.currentPieceIndex = 0;
-            // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-            // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-            // shadowPiece.createColor = shadow;
-            // shadowPiece.x = 3;
-            // shadowPiece.y = shadowPiece.currentPieceType === "I" ? 1 : 1;
-            // shadowPiece.verticalCollision = false;
+            shadowPiece.currPiece = currentPiece;
+            shadowPiece.currentPieceIndex = 0;
+            shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+            shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+            shadowPiece.createColor = shadow;
+            shadowPiece.x = 3;
+            shadowPiece.y = 1;
+            shadowPiece.verticalCollision = false;
 
             // shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
             // shadowPiece.moveDown();
@@ -1591,6 +1597,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // w key
         // document.getElementById("soundeffect02").play();        
         piece.reversePiece();
+
+        if(piece.y > -1) {
+          shadowPiece.y = piece.y + 1;
+          shadowPiece.verticalCollision = false;
+          shadowPiece.reversePiece();
+          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            // while ( piece.verticalCollision === false ) {
+            shadowPiece.moveDown();
+          }
+        }
       }
   
       else if (event.which === 83) {
@@ -1603,13 +1619,50 @@ document.addEventListener("DOMContentLoaded", () => {
         // a key
         // document.getElementById("soundeffect02").play();
         piece.moveLeft();
-        shadowPiece.moveLeft();
+
+        if (piece.y > -1) {
+          
+          shadowPiece.currPiece = currentPiece;
+          shadowPiece.currentPieceIndex = 0;
+          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+          shadowPiece.createColor = shadow;
+          shadowPiece.y = piece.y + 1;
+          // shadowPiece.x = 3;
+          // shadowPiece.y = 1;
+          shadowPiece.verticalCollision = false;
+          
+          shadowPiece.moveLeft();
+          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            // while ( piece.verticalCollision === false ) {
+            shadowPiece.moveDown();
+          }
+        }
       }
   
       else if (event.which === 68) {
         // d key
         // document.getElementById("soundeffect02").play();
         piece.moveRight();
+
+        if (piece.y > -1) {
+
+          shadowPiece.currPiece = currentPiece;
+          shadowPiece.currentPieceIndex = 0;
+          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+          shadowPiece.createColor = shadow;
+          shadowPiece.y = piece.y + 1;
+          // shadowPiece.x = 3;
+          // shadowPiece.y = 1;
+          shadowPiece.verticalCollision = false;
+
+          shadowPiece.moveRight();
+          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            // while ( piece.verticalCollision === false ) {
+            shadowPiece.moveDown();
+          }
+        }
       }
   
       else if (event.which === 38) {
