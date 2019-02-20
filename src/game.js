@@ -1596,17 +1596,18 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.which === 87) {
         // w key
         // document.getElementById("soundeffect02").play();        
-        piece.reversePiece();
-
+        
         if(piece.y > -1) {
-          shadowPiece.y = piece.y + 1;
+          shadowPiece.y = piece.y + 2;
           shadowPiece.verticalCollision = false;
           shadowPiece.reversePiece();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
             // while ( piece.verticalCollision === false ) {
-            shadowPiece.moveDown();
+              shadowPiece.moveDown();
+            }
           }
-        }
+
+        piece.reversePiece();
       }
   
       else if (event.which === 83) {
@@ -1618,8 +1619,85 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (event.which === 65) {
         // a key
         // document.getElementById("soundeffect02").play();
-        piece.moveLeft();
+        
+        if (piece.y > -1) {
+          
+        shadowPiece.currPiece = currentPiece;
+        shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        shadowPiece.createColor = shadow;
+        shadowPiece.y = piece.y + 1;
+        // shadowPiece.x = 3;
+        // shadowPiece.y = 1;
+        shadowPiece.verticalCollision = false;
+        
+        shadowPiece.moveLeft();
+        while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+          // while ( piece.verticalCollision === false ) {
+            shadowPiece.moveDown();
+          }
+        }
 
+        piece.moveLeft();
+      }
+  
+      else if (event.which === 68) {
+        // d key
+        // document.getElementById("soundeffect02").play();
+        
+        if (piece.y > -1) {
+          
+          shadowPiece.currPiece = currentPiece;
+          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+          shadowPiece.createColor = shadow;
+          shadowPiece.y = piece.y + 1;
+          // shadowPiece.x = 3;
+          // shadowPiece.y = 1;
+          shadowPiece.verticalCollision = false;
+          
+          shadowPiece.moveRight();
+          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            // while ( piece.verticalCollision === false ) {
+              shadowPiece.moveDown();
+            }
+          }
+          
+        piece.moveRight();
+      }
+  
+      else if (event.which === 38) {
+        // up key
+        event.preventDefault();
+        // document.getElementById("soundeffect02").play();
+        
+        if(piece.y > -1) {
+          shadowPiece.y = piece.y + 1;
+          shadowPiece.verticalCollision = false;
+          shadowPiece.reversePiece();
+          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            // while ( piece.verticalCollision === false ) {
+              shadowPiece.moveDown();
+            }
+          }
+
+        piece.reversePiece();
+      }
+  
+      else if (event.which === 40) {
+        // down key
+        event.preventDefault();
+        document.getElementById("soundeffect06").play();
+        piece.moveDown();
+      }
+  
+      else if (event.which === 37) {
+        // left key
+        event.preventDefault();
+        // document.getElementById("soundeffect02").play();
+        
         if (piece.y > -1) {
           
           shadowPiece.currPiece = currentPiece;
@@ -1635,18 +1713,20 @@ document.addEventListener("DOMContentLoaded", () => {
           shadowPiece.moveLeft();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
             // while ( piece.verticalCollision === false ) {
-            shadowPiece.moveDown();
+              shadowPiece.moveDown();
+            }
           }
-        }
+
+        piece.moveLeft();
       }
   
-      else if (event.which === 68) {
-        // d key
+      else if (event.which === 39) {
+        // right key
+        event.preventDefault();
         // document.getElementById("soundeffect02").play();
-        piece.moveRight();
-
+        
         if (piece.y > -1) {
-
+          
           shadowPiece.currPiece = currentPiece;
           shadowPiece.currentPieceIndex = 0;
           shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
@@ -1656,40 +1736,14 @@ document.addEventListener("DOMContentLoaded", () => {
           // shadowPiece.x = 3;
           // shadowPiece.y = 1;
           shadowPiece.verticalCollision = false;
-
+          
           shadowPiece.moveRight();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
             // while ( piece.verticalCollision === false ) {
-            shadowPiece.moveDown();
+              shadowPiece.moveDown();
+            }
           }
-        }
-      }
-  
-      else if (event.which === 38) {
-        // up key
-        event.preventDefault();
-        // document.getElementById("soundeffect02").play();
-        piece.reversePiece();
-      }
-  
-      else if (event.which === 40) {
-        // down key
-        event.preventDefault();
-        document.getElementById("soundeffect06").play();
-        piece.moveDown();
-      }
-  
-      else if (event.which === 37) {
-        // left key
-        event.preventDefault();
-        // document.getElementById("soundeffect02").play();
-        piece.moveLeft();
-      }
-  
-      else if (event.which === 39) {
-        // right key
-        event.preventDefault();
-        // document.getElementById("soundeffect02").play();
+
         piece.moveRight();
       }
   
