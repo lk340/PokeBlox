@@ -1058,6 +1058,16 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
       if ( this.x - 1 >= 0 && this.y < 20) {
+        // shadowPiece.currPiece = currentPiece;
+        // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        // shadowPiece.createColor = shadow;
+        // shadowPiece.y = piece.y + 1;
+        // // shadowPiece.x = 3;
+        // // shadowPiece.y = 1;
+        // shadowPiece.verticalCollision = false;
+
         this.x -= shift;
       }
 
@@ -1085,6 +1095,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
       if ( this.x + lastIndex + 1 < 10 && this.y < 20 ) {
+        // shadowPiece.currPiece = currentPiece;
+        // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        // shadowPiece.createColor = shadow;
+        // shadowPiece.y = piece.y + 1;
+        // shadowPiece.x = 3;
+        // shadowPiece.y = 1;
+        shadowPiece.verticalCollision = false;
+
         this.x += shift;
       }
 
@@ -1106,6 +1126,15 @@ document.addEventListener("DOMContentLoaded", () => {
     reversePiece() {
       if ( this.verticalCollision === false ) {
         this.deletePiece();
+
+
+          // shadowPiece.currPiece = currentPiece;
+          // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+          // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+          // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+          // shadowPiece.createColor = shadow;
+          // shadowPiece.y = piece.y + 1;
+          // shadowPiece.verticalCollision = false;
 
         if (this.currentPieceType === "I") {
           if ( this.currentPieceIndex === 1 ) {
@@ -1141,13 +1170,13 @@ document.addEventListener("DOMContentLoaded", () => {
   piece.createPiece();
   // piece.frameRate();
 
-  let shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
-  shadowPiece.createPiece();
-  // shadowPiece.moveDown();
-  while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-    // while ( piece.verticalCollision === false ) {
-    shadowPiece.moveDown();
-  }
+  // let shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
+  // shadowPiece.createPiece();
+  // // shadowPiece.moveDown();
+  // while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+  //   // while ( piece.verticalCollision === false ) {
+  //   shadowPiece.moveDown();
+  // }
   
   let frameRate;
   function startGame() {
@@ -1158,10 +1187,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (piece.gameOver === false) {
           if ( piece.verticalCollision === false ) {
             piece.moveDown();
-            while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-              // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
           }
 
           else if (piece.verticalCollision === true) {
@@ -1183,22 +1208,6 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.verticalCollision = false;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
-
-            shadowPiece.currPiece = currentPiece;
-            shadowPiece.currentPieceIndex = 0;
-            shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-            shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-            shadowPiece.createColor = shadow;
-            shadowPiece.x = 3;
-            shadowPiece.y = 1;
-            shadowPiece.verticalCollision = false;
-
-            // shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
-            // shadowPiece.moveDown();
-            // while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-            //   // while ( piece.verticalCollision === false ) {
-            //   shadowPiece.moveDown();
-            // }
 
             let last = board.length - 1;
             while (board[last] && board[last].countColors(charcoal) === false) {
@@ -1224,6 +1233,20 @@ document.addEventListener("DOMContentLoaded", () => {
               document.getElementById("soundeffect07").play();
             }
             clearSound = false;
+
+            // shadowPiece.currPiece = piece.currPiece;
+            // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+            // shadowPiece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+            // shadowPiece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+            // shadowPiece.createColor = shadow;
+            // shadowPiece.x = piece.x;
+            // shadowPiece.y = piece.y + 1;
+            // shadowPiece.verticalCollision = piece.verticalCollision;
+
+            // while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            //   // while ( piece.verticalCollision === false ) {
+            //   shadowPiece.moveDown();
+            // }
 
             canvasDrawBoard();
 
@@ -1467,7 +1490,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let frameRate4;
   function startGame4() {
     currentSong.pause();
-    currentSong =document.getElementById("014");
+    currentSong = document.getElementById("014");
     currentSong.play();
     
     freeze = false;
@@ -1597,18 +1620,18 @@ document.addEventListener("DOMContentLoaded", () => {
         // w key
         // document.getElementById("soundeffect02").play();        
         
-        if(piece.y > -1) {
-          shadowPiece.deletePiece();
-          shadowPiece.y = piece.y + 2;
-          shadowPiece.verticalCollision = false;
-          shadowPiece.createPiece();
+        // if(piece.y > -1) {
+        //   shadowPiece.deletePiece();
+        //   shadowPiece.y = piece.y + 2;
+        //   shadowPiece.verticalCollision = false;
+        //   shadowPiece.createPiece();
 
-          shadowPiece.reversePiece();
-          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-            // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
-          }
+        //   shadowPiece.reversePiece();
+        //   while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+        //     // while ( piece.verticalCollision === false ) {
+        //       shadowPiece.moveDown();
+        //     }
+        //   }
 
         piece.reversePiece();
       }
@@ -1623,25 +1646,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // a key
         // document.getElementById("soundeffect02").play();
         
-        if (piece.y > -1) {
-          shadowPiece.deletePiece();
-          shadowPiece.currPiece = currentPiece;
-          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
-          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-          shadowPiece.createColor = shadow;
-          shadowPiece.y = piece.y + 1;
-          // shadowPiece.x = 3;
-          // shadowPiece.y = 1;
-          shadowPiece.verticalCollision = false;
-          shadowPiece.createPiece();
+        // if (piece.y > -1) {
+        //   shadowPiece.deletePiece();
+        //   shadowPiece.currPiece = currentPiece;
+        //   shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        //   shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        //   shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        //   shadowPiece.createColor = shadow;
+        //   shadowPiece.y = piece.y + 1;
+        //   // shadowPiece.x = 3;
+        //   // shadowPiece.y = 1;
+        //   shadowPiece.verticalCollision = false;
+        //   shadowPiece.createPiece();
           
-          shadowPiece.moveLeft();
-          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-            // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
-        }
+        //   shadowPiece.moveLeft();
+        //   while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+        //     // while ( piece.verticalCollision === false ) {
+        //       shadowPiece.moveDown();
+        //     }
+        // }
 
         piece.moveLeft();
       }
@@ -1650,25 +1673,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // d key
         // document.getElementById("soundeffect02").play();
         
-        if (piece.y > -1) {
-          shadowPiece.deletePiece();
-          shadowPiece.currPiece = currentPiece;
-          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
-          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-          shadowPiece.createColor = shadow;
-          shadowPiece.y = piece.y + 1;
-          // shadowPiece.x = 3;
-          // shadowPiece.y = 1;
-          shadowPiece.verticalCollision = false;
-          shadowPiece.createPiece();
+        // if (piece.y > -1) {
+        //   shadowPiece.deletePiece();
+        //   shadowPiece.currPiece = currentPiece;
+        //   shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        //   shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        //   shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        //   shadowPiece.createColor = shadow;
+        //   shadowPiece.y = piece.y + 1;
+        //   // shadowPiece.x = 3;
+        //   // shadowPiece.y = 1;
+        //   shadowPiece.verticalCollision = false;
+        //   shadowPiece.createPiece();
           
-          shadowPiece.moveRight();
-          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-            // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
-          }
+        //   shadowPiece.moveRight();
+        //   while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+        //     // while ( piece.verticalCollision === false ) {
+        //       shadowPiece.moveDown();
+        //     }
+        //   }
           
         piece.moveRight();
       }
@@ -1677,19 +1700,24 @@ document.addEventListener("DOMContentLoaded", () => {
         // up key
         event.preventDefault();
         // document.getElementById("soundeffect02").play();
+        //   shadowPiece.deletePiece();
+        //   shadowPiece.currPiece = currentPiece;
+        //   shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        //   shadowPiece.currentPiece = piece.currPiece[piece.currentPieceIndex];
+        //   shadowPiece.currentPieceType = piece.currPiece[piece.currPiece.length - 1];
+        //   shadowPiece.createColor = shadow;
+        //   shadowPiece.y = piece.y + 1;
+        //   shadowPiece.verticalCollision = false;
+        //   shadowPiece.createPiece();
         
-        if(piece.y > -1) {
-          shadowPiece.deletePiece();
-          shadowPiece.y = piece.y + 1;
-          shadowPiece.verticalCollision = false;
-          shadowPiece.createPiece();
+        // if(piece.y > -1) {
 
-          shadowPiece.reversePiece();
-          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-            // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
-          }
+        //   shadowPiece.reversePiece();
+        //   while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+        //     // while ( piece.verticalCollision === false ) {
+        //       shadowPiece.moveDown();
+        //     }
+        //   }
 
         piece.reversePiece();
       }
@@ -1705,27 +1733,26 @@ document.addEventListener("DOMContentLoaded", () => {
         // left key
         event.preventDefault();
         // document.getElementById("soundeffect02").play();
+        //   shadowPiece.deletePiece();
+        //   shadowPiece.currPiece = currentPiece;
+        //   shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        //   shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        //   shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        //   shadowPiece.createColor = shadow;
+        //   shadowPiece.y = piece.y + 1;
+        //   // shadowPiece.x = 3;
+        //   // shadowPiece.y = 1;
+        //   shadowPiece.verticalCollision = false;
+        //   shadowPiece.createPiece();
         
-        if (piece.y > -1) {
+        // if (piece.y > -1) {
           
-          shadowPiece.deletePiece();
-          shadowPiece.currPiece = currentPiece;
-          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
-          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-          shadowPiece.createColor = shadow;
-          shadowPiece.y = piece.y + 1;
-          // shadowPiece.x = 3;
-          // shadowPiece.y = 1;
-          shadowPiece.verticalCollision = false;
-          shadowPiece.createPiece();
-          
-          shadowPiece.moveLeft();
-          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-            // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
-          }
+        //   shadowPiece.moveLeft();
+        //   while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+        //     // while ( piece.verticalCollision === false ) {
+        //       shadowPiece.moveDown();
+        //     }
+        //   }
 
         piece.moveLeft();
       }
@@ -1735,25 +1762,26 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         // document.getElementById("soundeffect02").play();
         
-        if (piece.y > -1) {
-          shadowPiece.deletePiece();
-          shadowPiece.currPiece = currentPiece;
-          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
-          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-          shadowPiece.createColor = shadow;
-          shadowPiece.y = piece.y + 1;
-          // shadowPiece.x = 3;
-          // shadowPiece.y = 1;
-          shadowPiece.verticalCollision = false;
-          shadowPiece.createPiece();
+        // shadowPiece.deletePiece();
+        // shadowPiece.currPiece = currentPiece;
+        // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        // shadowPiece.createColor = shadow;
+        // shadowPiece.y = piece.y + 1;
+        // // shadowPiece.x = 3;
+        // // shadowPiece.y = 1;
+        // shadowPiece.verticalCollision = false;
+        // shadowPiece.createPiece();
+
+        // if (piece.y > -1) {
           
-          shadowPiece.moveRight();
-          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-            // while ( piece.verticalCollision === false ) {
-              shadowPiece.moveDown();
-            }
-          }
+        //   shadowPiece.moveRight();
+        //   while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+        //     // while ( piece.verticalCollision === false ) {
+        //       shadowPiece.moveDown();
+        //     }
+        //   }
 
         piece.moveRight();
       }
@@ -1763,17 +1791,17 @@ document.addEventListener("DOMContentLoaded", () => {
         
         event.preventDefault();
 
-        shadowPiece.deletePiece();
-        shadowPiece.currPiece = currentPiece;
-        shadowPiece.currentPieceIndex = piece.currentPieceIndex;
-        shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-        shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-        shadowPiece.createColor = shadow;
-        shadowPiece.y = piece.y + 1;
-        // shadowPiece.x = 3;
-        // shadowPiece.y = 1;
-        shadowPiece.verticalCollision = false;
-        shadowPiece.createPiece();
+        // shadowPiece.deletePiece();
+        // shadowPiece.currPiece = currentPiece;
+        // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        // shadowPiece.createColor = shadow;
+        // shadowPiece.y = piece.y + 1;
+        // // shadowPiece.x = 3;
+        // // shadowPiece.y = 1;
+        // shadowPiece.verticalCollision = false;
+        // shadowPiece.createPiece();
         
         while ( piece.verticalCollision === false && piece.y > 0 ) {
         // while ( piece.verticalCollision === false ) {
@@ -1782,12 +1810,34 @@ document.addEventListener("DOMContentLoaded", () => {
   
         if (piece.verticalCollision === true) {
           document.getElementById("soundeffect03").play();
+
+          // shadowPiece.currPiece = piece.currPiece;
+          // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+          // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+          // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+          // shadowPiece.createColor = shadow;
+          // shadowPiece.x = 3;
+          // shadowPiece.y = piece.y + 1;
+          // // shadowPiece.y = 1;
+          // shadowPiece.verticalCollision = false;
         }
       }
   
       else if (event.which === 16) {
         // shift key
   
+        // shadowPiece.deletePiece();
+        // shadowPiece.currPiece = currentPiece;
+        // shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        // shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        // shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        // shadowPiece.createColor = shadow;
+        // shadowPiece.y = piece.y + 1;
+        // // shadowPiece.x = 3;
+        // // shadowPiece.y = 1;
+        // shadowPiece.verticalCollision = false;
+        // shadowPiece.createPiece();
+        
         document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("show-tetronimo");
         document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("hide-tetronimo");
         
