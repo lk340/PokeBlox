@@ -644,6 +644,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let points = 0;
   
   const charcoal = "rgb(54, 54, 54)";
+  const shadow = "rgb(41, 41, 41)";
   const ash = "rgb(92, 92, 92)"; 
   const iColor = "rgb(145, 145, 245)";
   const oColor = "rgb(255, 255, 149)";
@@ -928,32 +929,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   class ShadowPiece {
-    constructor(currentPiece, color1, color2) {
-      this.tetronimoes = tetronimoes;
+    constructor(currentPiece, nextPiece, color1, color2) {
       this.currPiece = currentPiece;
-      // this.currPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
-      this.nextPiece = this.tetronimoes[Math.floor(Math.random()*this.tetronimoes.length)];
+      this.nextPiece = nextPiece;
       this.currentPieceIndex = 0;
       this.currentPiece = this.currPiece[this.currentPieceIndex];
       this.currentPieceType = this.currPiece[this.currPiece.length - 1];
       this.createColor = color1;
       this.deleteColor = color2;
       this.x = 3;
-      // this.y = -2;
-      this.y = this.currentPieceType === "I" ? -1 : -2;
+      this.y = this.currentPieceType === "I" ? 1 : 1;
       this.verticalCollision = false;
       this.gameOver = false;
       this.fallDown = true;
     }
     
     createPiece() {
-      if (this.y === 0) {
-        board[0].forEach(grid => {
-          if ( grid !== charcoal ) {
-            this.gameOver = true;
-          }
-        });
-        }
+      // if (this.y === 0) {
+      //   board[0].forEach(grid => {
+      //     if ( grid !== charcoal ) {
+      //       this.gameOver = true;
+      //     }
+      //   });
+      //   }
         if (this.gameOver === false) {
           for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
             for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
@@ -968,13 +966,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
                 if (this.y > -1) {
                   if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
-                    for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-                      for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-                        if ( this.currentPiece[y][x] === 1 ) {
-                          board[this.y + y][this.x + x] = this.createColor;
-                        }
-                      }
-                    }
+                    // for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                    //   for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                    //     if ( this.currentPiece[y][x] === 1 ) {
+                    //       board[this.y + y][this.x + x] = this.createColor;
+                    //     }
+                    //   }
+                    // }
                     
                     // this.fallDown = false;
                     // setTimeout(() => {
@@ -1016,13 +1014,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
                 if (this.y > -1) {
                   if ( this.y + y === 19 || board[this.y + y + 1][this.x + x] !== charcoal ) {
-                    for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
-                      for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
-                        if ( this.currentPiece[y][x] === 1 ) {
-                          board[this.y + y][this.x + x] = this.deleteColor;
-                        }
-                      }
-                    }
+                    // for ( let y = this.currentPiece.length - 1; y >= 0; y-- ) {
+                    //   for ( let x = 0; x < this.currentPiece[y].length; x++ ) {
+                    //     if ( this.currentPiece[y][x] === 1 ) {
+                    //       board[this.y + y][this.x + x] = this.deleteColor;
+                    //     }
+                    //   }
+                    // }
                     
                     // this.fallDown = false;
                     // setTimeout(() => {
@@ -1059,7 +1057,6 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if ( this.x - 1 >= 0 && this.verticalCollision === false ) {
         this.x -= shift;
-        document.getElementById("soundeffect06").play();
       }
 
       this.createPiece();
@@ -1086,7 +1083,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if ( this.x + lastIndex + 1 < 10 && this.verticalCollision === false ) {
         this.x += shift;
-        document.getElementById("soundeffect06").play();
       }
 
       this.createPiece();
@@ -1095,8 +1091,9 @@ document.addEventListener("DOMContentLoaded", () => {
     moveDown() {
       if (this.fallDown === true) {
         this.deletePiece();
+
         if ( this.verticalCollision === false ) {
-          this.y += 1;
+            this.y += 1;
         }
 
         this.createPiece();
@@ -1105,8 +1102,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     reversePiece() {
       if ( this.verticalCollision === false ) {
-        document.getElementById("soundeffect02").play();
-
         this.deletePiece();
 
         if (this.currentPieceType === "I") {
@@ -1141,6 +1136,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let piece = new CurrentPiece(currentPiece, pickColor(), charcoal);
   piece.createPiece();
+  let shadowPiece = new ShadowPiece(piece.currPiece, piece.nextPiece, shadow, charcoal);
+  shadowPiece.createPiece();
+  shadowPiece.moveDown();
+  while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+    // while ( piece.verticalCollision === false ) {
+    shadowPiece.moveDown();
+  }
   // piece.frameRate();
   let frameRate;
   function startGame() {
@@ -1171,6 +1173,20 @@ document.addEventListener("DOMContentLoaded", () => {
             piece.verticalCollision = false;
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.remove("hide-tetronimo");
             document.getElementById(`tetronimo-${nextPiece.last()}-next`).classList.add("show-tetronimo");
+
+            shadowPiece.currPiece = piece.currPiece;
+            shadowPiece.currentPieceIndex = 0;
+            shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+            shadowPiece.x = 3;
+            shadowPiece.y = shadowPiece.currentPieceType === "I" ? 1 : 1;
+            shadowPiece.verticalCollision = false;
+
+
+            // shadowPiece.moveDown();
+            while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+              // while ( piece.verticalCollision === false ) {
+              shadowPiece.moveDown();
+            }
 
             let last = board.length - 1;
             while (board[last] && board[last].countColors(charcoal) === false) {
@@ -1581,6 +1597,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // a key
         // document.getElementById("soundeffect02").play();
         piece.moveLeft();
+        shadowPiece.moveLeft();
       }
   
       else if (event.which === 68) {
