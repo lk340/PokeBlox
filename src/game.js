@@ -1598,8 +1598,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // document.getElementById("soundeffect02").play();        
         
         if(piece.y > -1) {
+          shadowPiece.deletePiece();
           shadowPiece.y = piece.y + 2;
           shadowPiece.verticalCollision = false;
+          shadowPiece.createPiece();
+
           shadowPiece.reversePiece();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
             // while ( piece.verticalCollision === false ) {
@@ -1621,22 +1624,23 @@ document.addEventListener("DOMContentLoaded", () => {
         // document.getElementById("soundeffect02").play();
         
         if (piece.y > -1) {
+          shadowPiece.deletePiece();
+          shadowPiece.currPiece = currentPiece;
+          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+          shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+          shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+          shadowPiece.createColor = shadow;
+          shadowPiece.y = piece.y + 1;
+          // shadowPiece.x = 3;
+          // shadowPiece.y = 1;
+          shadowPiece.verticalCollision = false;
+          shadowPiece.createPiece();
           
-        shadowPiece.currPiece = currentPiece;
-        shadowPiece.currentPieceIndex = piece.currentPieceIndex;
-        shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
-        shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
-        shadowPiece.createColor = shadow;
-        shadowPiece.y = piece.y + 1;
-        // shadowPiece.x = 3;
-        // shadowPiece.y = 1;
-        shadowPiece.verticalCollision = false;
-        
-        shadowPiece.moveLeft();
-        while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
-          // while ( piece.verticalCollision === false ) {
-            shadowPiece.moveDown();
-          }
+          shadowPiece.moveLeft();
+          while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
+            // while ( piece.verticalCollision === false ) {
+              shadowPiece.moveDown();
+            }
         }
 
         piece.moveLeft();
@@ -1647,7 +1651,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // document.getElementById("soundeffect02").play();
         
         if (piece.y > -1) {
-          
+          shadowPiece.deletePiece();
           shadowPiece.currPiece = currentPiece;
           shadowPiece.currentPieceIndex = piece.currentPieceIndex;
           shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
@@ -1657,6 +1661,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // shadowPiece.x = 3;
           // shadowPiece.y = 1;
           shadowPiece.verticalCollision = false;
+          shadowPiece.createPiece();
           
           shadowPiece.moveRight();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
@@ -1674,8 +1679,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // document.getElementById("soundeffect02").play();
         
         if(piece.y > -1) {
+          shadowPiece.deletePiece();
           shadowPiece.y = piece.y + 1;
           shadowPiece.verticalCollision = false;
+          shadowPiece.createPiece();
+
           shadowPiece.reversePiece();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
             // while ( piece.verticalCollision === false ) {
@@ -1700,8 +1708,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (piece.y > -1) {
           
+          shadowPiece.deletePiece();
           shadowPiece.currPiece = currentPiece;
-          shadowPiece.currentPieceIndex = 0;
+          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
           shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
           shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
           shadowPiece.createColor = shadow;
@@ -1709,6 +1718,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // shadowPiece.x = 3;
           // shadowPiece.y = 1;
           shadowPiece.verticalCollision = false;
+          shadowPiece.createPiece();
           
           shadowPiece.moveLeft();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
@@ -1726,9 +1736,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // document.getElementById("soundeffect02").play();
         
         if (piece.y > -1) {
-          
+          shadowPiece.deletePiece();
           shadowPiece.currPiece = currentPiece;
-          shadowPiece.currentPieceIndex = 0;
+          shadowPiece.currentPieceIndex = piece.currentPieceIndex;
           shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
           shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
           shadowPiece.createColor = shadow;
@@ -1736,6 +1746,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // shadowPiece.x = 3;
           // shadowPiece.y = 1;
           shadowPiece.verticalCollision = false;
+          shadowPiece.createPiece();
           
           shadowPiece.moveRight();
           while ( shadowPiece.verticalCollision === false && shadowPiece.y > 0 ) {
@@ -1751,6 +1762,18 @@ document.addEventListener("DOMContentLoaded", () => {
         // spacebar key
         
         event.preventDefault();
+
+        shadowPiece.deletePiece();
+        shadowPiece.currPiece = currentPiece;
+        shadowPiece.currentPieceIndex = piece.currentPieceIndex;
+        shadowPiece.currentPiece = shadowPiece.currPiece[shadowPiece.currentPieceIndex];
+        shadowPiece.currentPieceType = shadowPiece.currPiece[shadowPiece.currPiece.length - 1];
+        shadowPiece.createColor = shadow;
+        shadowPiece.y = piece.y + 1;
+        // shadowPiece.x = 3;
+        // shadowPiece.y = 1;
+        shadowPiece.verticalCollision = false;
+        shadowPiece.createPiece();
         
         while ( piece.verticalCollision === false && piece.y > 0 ) {
         // while ( piece.verticalCollision === false ) {
