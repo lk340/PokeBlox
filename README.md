@@ -124,7 +124,7 @@ Board class should...
 - [x] Link to live version.
 - [x] Instructions on how to play/use the project.
 - [x] List of techs/languages/plugins/APIs used.
-- [ ] Technical implementation details with code snippets (make sure it looks good).
+- [x] Technical implementation details with code snippets (make sure it looks good).
 - [x] To-dos/future features.
 - [x] No .DS_Stores / debuggers / console.logs.
 - [x] Organize into /assets and /lib.
