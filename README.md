@@ -44,6 +44,10 @@ The piece itself is created using a currentPiece class. The currentPiece class g
 
 ![Piece_Class](piece_class.png)
 
+The pieces are rendered on the board using canvas via the createPiece() instance method. This method checks to see if the game is over and if there is a vertical collision and generates new pieces based on these parameters.
+
+![Create_Piece](create_piece.png)
+
 The logic for clearing the board was implemented as follows:
 - Start iterating through the board bottom-up
 - Using a monkey-patched array method "countColors", seek to find a row that is completely filled with colors other than the default background color of charcoal
