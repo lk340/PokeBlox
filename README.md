@@ -30,6 +30,27 @@ PokéBlox will feature a single game screen with buttons for
 - [x] Turning off the music
 - [x] A start button
 - [x] A pause button
+
+## Implementation
+The board itself is a 2-dimensional array that defaults to containing the background board color (charcoal).
+
+![Board_Array](board_array.png)
+
+The board is drawn using Canvas. I implemeneted this by iterating through the board array and drawing the color at the distance at each index of the board array.
+
+![Canvas_Board](canvas_board.png)
+
+The piece itself is created using a currentPiece class. The currentPiece class generates random pieces, and switches its currPiece instance variable with its nextPiece instance variable with every frame.
+
+![Piece_Class](piece_class.png)
+
+The logic for clearing the board was implemented as follows:
+- Start iterating through the board bottom-up
+- Using a monkey-patched array method "countColors", seek to find a row that is completely filled with colors other than the default background color of charcoal
+- Remove that row from the board array itself using splice and unshift an empty default row to the beginning of the array
+- Continue repeating this process until we hit the part of the board beyond the pieces that are stacked at the bottom
+
+![Board_Clearing_Logic](board_clearing_logic.png)
     
 ## Implementation Timeline
 ##### Day 1
