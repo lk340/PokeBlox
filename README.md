@@ -32,11 +32,11 @@ PokéBlox will feature a single game screen with buttons for
 - [x] A pause button
 
 ## Implementation
-The board itself is a 2-dimensional array that defaults to containing the background board color (charcoal).
+The board itself is a 2-dimensional array that defaults to containing the background board color (charcoal), which is a one-dimensional array of length 10, composed of repeating values of rgb(54, 54, 54).
 
 ![Board_Array](board_array.png)
 
-The board is drawn using Canvas. I implemeneted this by iterating through the board array and drawing the color at the distance at each index of the board array.
+The board is drawn using Canvas. I implemented this by iterating through the board array and drawing the color at the distance at each index of the board array.
 
 ![Canvas_Board](canvas_board.png)
 
